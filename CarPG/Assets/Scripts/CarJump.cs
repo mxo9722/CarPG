@@ -49,7 +49,7 @@ public class CarJump : MonoBehaviour
         if(jumpReady && jumpPressed)
         {
             jumpPressed = false;
-            rigidBody.AddForce(new Vector3(0,1000000,0));
+            rigidBody.AddRelativeForce(0, 500000, 0);
             Debug.Log("Hi");
         }
 
