@@ -55,6 +55,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
+        public WheelCollider[] WheelColliders { get { return m_WheelColliders; } }
+
         // Use this for initialization
         private void Start()
         {
@@ -161,7 +163,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 m_WheelColliders[2].brakeTorque = hbTorque;
                 m_WheelColliders[3].brakeTorque = hbTorque;
             }
-
 
             CalculateRevs();
             GearChanging();
