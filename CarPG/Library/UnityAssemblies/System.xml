@@ -1,0 +1,44 @@
+﻿<?xml version="1.0"?>
+<doc>
+	<assembly>
+		<name>System</name>
+	</assembly>
+	<members>
+		<member name="T:System.Net.NetworkInformation.Ping">
+			<summary>Ping any given IP address (given in dot notation).</summary>
+		</member>
+		<member name="T:System.Diagnostics.Debug">
+			<summary>Class containing methods to ease debugging while developing a game.</summary>
+		</member>
+		<member name="T:System.IO.Compression.CompressionLevel">
+			<summary>Compression Levels relate to how much time should be spent compressing Assets into an Asset Bundle.</summary>
+		</member>
+		<member name="M:System.Diagnostics.Debug.Assert(System.Boolean)">
+			<summary>Assert a condition and logs an error message to the Unity console on failure.</summary>
+		</member>
+		<member name="M:System.Diagnostics.Debug.Assert(System.Boolean,System.String)">
+			<summary>Assert a condition and logs an error message to the Unity console on failure.</summary>
+		</member>
+		<member name="M:System.Diagnostics.Debug.Assert(System.Boolean,System.String,System.String)">
+			<summary>Assert a condition and logs an error message to the Unity console on failure.</summary>
+		</member>
+		<member name="T:System.Configuration.SettingsProvider">
+			<summary>SettingsProvider is the configuration class that specifies how a Project setting or a preference should appear in the Settings or Preferences window.</summary>
+		</member>
+		<member name="T:System.ComponentModel.AsyncOperation">
+			<summary>Asynchronous operation coroutine.</summary>
+		</member>
+		<member name="M:System.Diagnostics.Debug.Assert(System.Boolean,System.String,System.String,System.Object[])">
+			<summary>Assert a condition and logs an error message to the Unity console on failure.</summary>
+		</member>
+		<member name="T:System.Configuration.SettingsProviderAttribute">
+			<summary>Attribute used to register a new SettingsProvider. Use this attribute to decorate a function that returns an instance of a SettingsProvider. If the function returns null, no SettingsProvider appears in the Settings window.</summary>
+		</member>
+		<member name="T:System.ComponentModel.Component">
+			<summary>Base class for everything attached to GameObjects.</summary>
+		</member>
+		<member name="T:System.ComponentModel.Design.MenuCommand">
+			<summary>Used to extract the context for a MenuItem.</summary>
+		</member>
+	</members>
+</doc>

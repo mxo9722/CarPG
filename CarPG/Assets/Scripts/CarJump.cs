@@ -7,13 +7,18 @@ using UnityStandardAssets.Vehicles.Car;
 public class CarJump : MonoBehaviour
 {
 
+    public float jumpHeight = 500000;
+    public float driftForce = 400;
+    private float steering;
+
     private bool jumpReady = false;
     private bool jumpPressed = false;
+    private bool drifting = false;
 
     private CarController controller;
     private Rigidbody rigidBody;
 
-    private WheelCollider[] m_WheelColliders;
+    private WheelCollider[] wheelColliders;
 
     // Start is called before the first frame update
     void Start()
@@ -26,36 +31,108 @@ public class CarJump : MonoBehaviour
             this.enabled = false;
         }
 
-        m_WheelColliders = controller.WheelColliders;
-
+        wheelColliders = controller.WheelColliders;
     }
 
     private void FixedUpdate()
     {
-        jumpPressed = CrossPlatformInputManager.GetButtonDown("Jump");
+        jumpPressed = CrossPlatformInputManager.GetButton("Jump");
+        steering = CrossPlatformInputManager.GetAxis("Horizontal");
     }
 
     // Update is called once per frame
     void Update()
     {
+        Drift();
+
         for (int i = 0; i < 4; i++)
         {
             WheelHit wheelhit;
-            m_WheelColliders[i].GetGroundHit(out wheelhit);
+            wheelColliders[i].GetGroundHit(out wheelhit);
+
             if (wheelhit.normal == Vector3.zero)
-                return; // wheels arent on the ground so dont realign the rigidbody velocity
+            {
+                return;
+            }
+            else if ((rigidBody.velocity).y <= 0 && drifting)
+            {
+                drifting = false;
+                //rigidBody.angularVelocity *= 2;
+            }
         }
 
-        if(jumpReady && jumpPressed)
+        if (jumpReady && jumpPressed)
         {
-            jumpPressed = false;
-            rigidBody.AddRelativeForce(0, 500000, 0);
-            Debug.Log("Hi");
+            jumpReady = false;
+            rigidBody.AddRelativeForce(0, jumpHeight, 0);
+            drifting = true;
+            rigidBody.angularVelocity = rigidBody.angularVelocity/2;
         }
 
         if (!jumpPressed)
         {
             jumpReady = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.rigidbody == null)
+        {
+            if (drifting)
+            {
+                drifting = false;
+                //rigidBody.angularVelocity *= 2;
+            }
+        }
+        else if (collision.rigidbody.isKinematic && drifting)
+        {
+            drifting = false;
+            //rigidBody.angularVelocity *= 2;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (!collision.rigidbody)
+        {
+            if (drifting)
+            {
+                drifting = false;
+                //rigidBody.angularVelocity *= 2;
+            }
+        }
+        else if (collision.rigidbody.isKinematic && drifting)
+        {
+            drifting = false;
+            //rigidBody.angularVelocity *= 2;
+        }
+    }
+
+    void Drift()
+    {
+        if (jumpPressed)
+        {
+            foreach (WheelCollider wheel in wheelColliders) {
+                WheelFrictionCurve friction = wheel.sidewaysFriction;
+                friction.stiffness = 0.3f;
+                wheel.sidewaysFriction = friction;
+            }
+        }
+        else
+        {
+            foreach (WheelCollider wheel in wheelColliders)
+            {
+                WheelFrictionCurve friction = wheel.sidewaysFriction;
+                friction.stiffness = 1.0f;
+                wheel.sidewaysFriction = friction;
+            }
+        }
+
+        if (drifting)
+        {
+            Debug.Log("drift");
+            transform.Rotate(transform.up * steering * driftForce * Time.deltaTime);
         }
     }
 }
