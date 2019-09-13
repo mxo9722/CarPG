@@ -36,6 +36,27 @@ public class CarJump : MonoBehaviour
 
     private void FixedUpdate()
     {
+        var pressed = CrossPlatformInputManager.GetButton("Jump");
+
+        if (!jumpPressed && pressed)
+        {
+            foreach (WheelCollider wheel in wheelColliders)
+            {
+                WheelFrictionCurve friction = wheel.sidewaysFriction;
+                friction.stiffness = 0.3f;
+                wheel.sidewaysFriction = friction;
+            }
+        }
+        else if (jumpPressed && !pressed)
+        {
+            foreach (WheelCollider wheel in wheelColliders)
+            {
+                WheelFrictionCurve friction = wheel.sidewaysFriction;
+                friction.stiffness = 1.0f;
+                wheel.sidewaysFriction = friction;
+            }
+        }
+
         jumpPressed = CrossPlatformInputManager.GetButton("Jump");
         steering = CrossPlatformInputManager.GetAxis("Horizontal");
     }
@@ -111,24 +132,6 @@ public class CarJump : MonoBehaviour
 
     void Drift()
     {
-        if (jumpPressed)
-        {
-            foreach (WheelCollider wheel in wheelColliders) {
-                WheelFrictionCurve friction = wheel.sidewaysFriction;
-                friction.stiffness = 0.3f;
-                wheel.sidewaysFriction = friction;
-            }
-        }
-        else
-        {
-            foreach (WheelCollider wheel in wheelColliders)
-            {
-                WheelFrictionCurve friction = wheel.sidewaysFriction;
-                friction.stiffness = 1.0f;
-                wheel.sidewaysFriction = friction;
-            }
-        }
-
         if (drifting)
         {
             Debug.Log("drift");

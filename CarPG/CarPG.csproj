@@ -641,6 +641,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CarJump.cs" />
     <Compile Include="Assets\Scripts\Damagable.cs" />
+    <Compile Include="Assets\Scripts\EnemyBehaviorScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
