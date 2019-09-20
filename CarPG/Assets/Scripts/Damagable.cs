@@ -5,7 +5,7 @@ using UnityEngine;
 public class Damagable : MonoBehaviour
 {
 
-    public float maxHealth;
+    public float maxHealth = 100;
     private float health;
     public float damageThreshhold;
     public float damageMultiplier;
@@ -17,6 +17,11 @@ public class Damagable : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        CollisionDamage(collision);
+    }
+
+    void CollisionDamage(Collision collision)
+    {
         Debug.Log(collision.impulse.magnitude + "   " + collision.relativeVelocity.magnitude);
 
         float impulse = collision.impulse.magnitude;
@@ -25,14 +30,10 @@ public class Damagable : MonoBehaviour
         {
             impulse /= 100;
         }
-        else
-        {
-            //impulse /= 10000;
-        }
 
-        if (impulse > damageThreshhold)
+        if (impulse * damageMultiplier > damageThreshhold)
         {
-            ApplyDamage((impulse - damageThreshhold) * damageMultiplier);
+            ApplyDamage( impulse * damageMultiplier - damageThreshhold );
         }
     }
 
