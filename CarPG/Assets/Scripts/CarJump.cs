@@ -104,7 +104,7 @@ public class CarJump : MonoBehaviour
 
                 Debug.Log("dot product: "+dot);
 
-                rigidBody.velocity /= 2;
+                //rigidBody.velocity /= 2;
                 //rigidBody.velocity+=(transform.forward*Mathf.Max(boostSpeed,rigidBody.velocity.magnitude)*dot);
             }
 
