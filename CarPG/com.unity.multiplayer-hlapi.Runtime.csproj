@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EBED4402-8EB3-B62D-F3BF-F2D787F1D1FC}</ProjectGuid>
+    <ProjectGuid>{FA5CA632-7858-B348-2678-3563F1DAD317}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>com.unity.multiplayer-hlapi.Runtime</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -232,6 +232,24 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>C:/Users/Chris/Documents/GitHub/CarPG/CarPG/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/Chris/Documents/GitHub/CarPG/CarPG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -246,6 +264,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/Chris/Documents/GitHub/CarPG/CarPG/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>C:/Users/Chris/Documents/GitHub/CarPG/CarPG/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.1.14f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -594,70 +615,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="CarPG.Plugins.csproj">
-      <Project>{1B21C13C-2F4B-A0E1-FCD3-9A8A11F691EF}</Project>
-      <Name>CarPG.Plugins</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.Editor.csproj">
-      <Project>{7C87BE25-0A2E-FC58-1E14-37330F289AA3}</Project>
-      <Name>Unity.Timeline.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.unity.multiplayer-hlapi.Editor.csproj">
-      <Project>{5FCD587C-B023-5664-12C3-B6D9F281A654}</Project>
-      <Name>com.unity.multiplayer-hlapi.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
-      <Name>Unity.TextMeshPro.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{6940CB9D-2F64-7CD4-BA0F-5610D5AB47B0}</Project>
-      <Name>Unity.Timeline</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
-      <Project>{C12CEEC6-100C-58A2-DE36-314E4DE5E40B}</Project>
-      <Name>Unity.CollabProxy.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.unity.multiplayer-weaver.Editor.csproj">
-      <Project>{93D0DB2F-F53D-5A17-ACE7-5C0226DA2A0D}</Project>
-      <Name>com.unity.multiplayer-weaver.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.XR.LegacyInputHelpers.csproj">
-      <Project>{8E7C73A3-7719-6FE2-0D0D-A83EDAB504C7}</Project>
-      <Name>UnityEngine.XR.LegacyInputHelpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.SpatialTracking.csproj">
-      <Project>{779568FA-8B74-9FC0-8E1A-6EBB501CEFE6}</Project>
-      <Name>UnityEditor.SpatialTracking</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.SpatialTracking.csproj">
-      <Project>{EDE48CFA-E9C6-66CB-F43E-070EAA2E76B0}</Project>
-      <Name>UnityEngine.SpatialTracking</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
-      <Project>{D6E266C6-3D1F-28C8-9FEB-2A01E44DBF77}</Project>
-      <Name>Unity.Analytics.DataPrivacy</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.XR.LegacyInputHelpers.csproj">
-      <Project>{E39D021A-24A3-CC45-6B3B-9304A0479D9A}</Project>
-      <Name>UnityEditor.XR.LegacyInputHelpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.unity.multiplayer-hlapi.Runtime.csproj">
-      <Project>{FA5CA632-7858-B348-2678-3563F1DAD317}</Project>
-      <Name>com.unity.multiplayer-hlapi.Runtime</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Scripts\CarJump.cs" />
-    <Compile Include="Assets\Scripts\Damagable.cs" />
-    <Compile Include="Assets\Scripts\EnemyBehaviorScript.cs" />
-    <Compile Include="Assets\Scripts\Inventory.cs" />
-    <Compile Include="Assets\Scripts\InventorySlot.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\ChannelBuffer.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\ChannelPacket.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\ClientScene.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\ConnectionArray.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\CustomAttributes.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\DefaultNetworkTransport.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\DotNetCompatibility.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\INetworkTransport.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\LocalClient.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\LocalConnections.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\LogFilter.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\Messages.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkAnimator.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkBehaviour.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkBuffer.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkCallbacks.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkClient.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkConnection.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkCRC.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkDiscovery.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkHash128.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkIdentity.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkInstanceId.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkLobbyManager.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkLobbyPlayer.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkManager.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkManagerHUD.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkMessageHandlers.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkMigrationManager.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkProximityChecker.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkReader.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkScene.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkSceneId.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkServer.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkServerSimple.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkStartPosition.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkTranformChild.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkTransform.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkTransformVisualizer.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\NetworkWriter.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\PlayerController.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\Properties\AssemblyInfo.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\SyncList.cs" />
+    <Compile Include="Packages\com.unity.multiplayer-hlapi\Runtime\UNetwork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
