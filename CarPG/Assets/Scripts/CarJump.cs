@@ -150,7 +150,7 @@ public class CarJump : MonoBehaviour
     {
         if (drifting)
         {
-            transform.Rotate(transform.up * steering * driftForce * Time.deltaTime);
+            rigidBody.AddTorque(transform.up * steering * driftForce * Time.deltaTime * rigidBody.mass);
         }
     }
 }
