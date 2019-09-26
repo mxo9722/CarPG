@@ -6,13 +6,28 @@ public class Damagable : MonoBehaviour
 {
 
     public float maxHealth = 100;
-    private float health;
+    public float health;
     public float damageThreshhold;
     public float damageMultiplier;
+    [HideInInspector]
+    public Damagable healthPool=null;
 
     void Start()
     {
         health = maxHealth;
+        Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
+        foreach(Rigidbody rb in rbs)
+        {
+            if (rb.gameObject != gameObject)
+            {
+                Damagable damagable = rb.gameObject.AddComponent<Damagable>();
+                damagable.maxHealth = maxHealth;
+                damagable.health = health;
+                damagable.damageThreshhold = damageThreshhold;
+                damagable.damageMultiplier = damageMultiplier;
+                damagable.healthPool = this;
+            }
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -39,7 +54,20 @@ public class Damagable : MonoBehaviour
 
     public void ApplyDamage(float damage)
     {
-        health -= damage;
+
+        if (healthPool!=null)
+        {
+            healthPool.ApplyDamage(damage);
+        }
+        else if (health > 0)
+        {
+            health -= damage;
+            gameObject.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
+            if (health <= 0)
+            {
+                gameObject.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+            }
+        }
     }
 
     void Update()
@@ -50,7 +78,7 @@ public class Damagable : MonoBehaviour
     void OnGUI()
     {
 
-        GUI.Box(new Rect(10, 10, health * 3, 20), health + "/" + maxHealth);
+        //GUI.Box(new Rect(10, 10, health * 3, 20), health + "/" + maxHealth);
 
     }
 }
