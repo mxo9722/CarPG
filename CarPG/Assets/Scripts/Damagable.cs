@@ -41,9 +41,25 @@ public class Damagable : MonoBehaviour
 
         float impulse = collision.impulse.magnitude;
 
+        Damagable damagable;
+        Rigidbody rb;
+        rb = GetComponent<Rigidbody>();
+
         if (collision.rigidbody == null)
         {
             impulse /= 100;
+        }
+        else if ((damagable = collision.gameObject.GetComponent<Damagable>()) != null && rb!=null)
+        {
+            if(collision.rigidbody.velocity.magnitude < rb.velocity.magnitude)
+            {
+                impulse /= 2;
+            }
+        }
+
+        if (collision.gameObject.GetComponent<Cushioned>())
+        {
+            impulse = 0;
         }
 
         if (impulse * damageMultiplier > damageThreshhold)
@@ -75,10 +91,5 @@ public class Damagable : MonoBehaviour
 
     }
 
-    void OnGUI()
-    {
-
-        //GUI.Box(new Rect(10, 10, health * 3, 20), health + "/" + maxHealth);
-
-    }
+    
 }
