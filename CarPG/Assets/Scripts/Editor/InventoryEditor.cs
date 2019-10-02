@@ -12,6 +12,7 @@ public class InventoryEditor : Editor
 
         InventorySlot[] slots = inventory.gameObject.GetComponentsInChildren<InventorySlot>();
 
+        EditorGUI.BeginChangeCheck();
         for (int i= 0;i<slots.Length;i++)
         {
             InventorySlot slot = slots[i];
@@ -20,5 +21,12 @@ public class InventoryEditor : Editor
         }
 
         inventory.slots = slots;
+        if (EditorGUI.EndChangeCheck())
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+
+            }
+        }
     }
 }

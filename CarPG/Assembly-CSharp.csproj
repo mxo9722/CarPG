@@ -63,8 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CarJump.cs" />
+    <Compile Include="Assets\Scripts\Cushioned.cs" />
     <Compile Include="Assets\Scripts\Damagable.cs" />
+    <Compile Include="Assets\Scripts\DestructableTerrain.cs" />
     <Compile Include="Assets\Scripts\EnemyBehaviorScript.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />

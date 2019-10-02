@@ -10,7 +10,7 @@ public class CarJump : MonoBehaviour
     public float jumpHeight = 500000;
     public float driftForce = 400;
     private float steering;
-    private float boostSpeed = 0;
+    private float boostSpeed = 1;
 
     private bool jumpReady = false;
     private bool jumpPressed = false;
@@ -105,7 +105,14 @@ public class CarJump : MonoBehaviour
                 Debug.Log("dot product: "+dot);
 
                 //rigidBody.velocity /= 2;
-                //rigidBody.velocity+=(transform.forward*Mathf.Max(boostSpeed,rigidBody.velocity.magnitude)*dot);
+                if (dot < .99f && dot > 0.0f)
+                {
+                    rigidBody.velocity += (transform.forward * boostSpeed * (1 - dot));
+                }
+                else if (dot > -.99f && dot < 0.0f)
+                {
+                    rigidBody.velocity += (-transform.forward * boostSpeed * (1 + dot));
+                }
             }
 
             jumpReady = true;
@@ -150,7 +157,7 @@ public class CarJump : MonoBehaviour
     {
         if (drifting)
         {
-            transform.Rotate(transform.up * steering * driftForce * Time.deltaTime);
+            rigidBody.AddTorque(transform.up * steering * driftForce * Time.deltaTime * rigidBody.mass);
         }
     }
 }
