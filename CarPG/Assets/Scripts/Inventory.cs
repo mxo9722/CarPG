@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
+[System.Serializable]
 public class Inventory : MonoBehaviour
 {
+    [SerializeField]
     public InventorySlot[] slots;
-
+    [SerializeField]
     public Item itemHeld;
-
+    [SerializeField]
     private Canvas _canvas;
 
     void Start()
@@ -21,6 +23,11 @@ public class Inventory : MonoBehaviour
         {
             button.onClick.AddListener(Click);
         }
+    }
+
+    private void OnValidate()
+    {
+        slots = gameObject.GetComponentsInChildren<InventorySlot>();
     }
 
     public void Update()
@@ -51,8 +58,19 @@ public class Inventory : MonoBehaviour
         {
             if (slot.clicked)
             {
-                slot.clicked = false;
-                Click(slot);
+                if (itemHeld)
+                {
+                    if (slot.Type == itemHeld.IType || slot.Type == Item.ItemType.any)
+                    {
+                        slot.clicked = false;
+                        Click(slot);
+                    }
+                }
+                else
+                {
+                    slot.clicked = false;
+                    Click(slot);
+                }
                 return;
             }
         }

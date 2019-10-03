@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class InventorySlot : MonoBehaviour
 {
     [SerializeField]
-    private Item _content = null;
-    
+    public Item _content = null;
+    [SerializeField]
+    private Item.ItemType type = Item.ItemType.any;
+
+    public Item.ItemType Type
+    {
+        get
+        {
+            return type;
+        }
+    }
+
+    [SerializeField]
     public Item Content
     {
         get
@@ -26,6 +38,7 @@ public class InventorySlot : MonoBehaviour
     [HideInInspector]
     public bool clicked = false;
 
+ 
     public Image itemDisplay;
 
     public void SetClicked(bool c)
@@ -56,7 +69,12 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    private void UpdateGraphic()
+    void OnValidate()
+    {
+        UpdateGraphic();
+    }
+
+    public void UpdateGraphic()
     {
         if (_content)
             itemDisplay.sprite = _content.sprite;

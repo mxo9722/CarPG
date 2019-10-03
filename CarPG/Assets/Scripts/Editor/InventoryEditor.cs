@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[System.Serializable]
 [CustomEditor(typeof(Inventory))]
 public class InventoryEditor : Editor
 {
@@ -12,21 +13,24 @@ public class InventoryEditor : Editor
 
         InventorySlot[] slots = inventory.gameObject.GetComponentsInChildren<InventorySlot>();
 
-        EditorGUI.BeginChangeCheck();
+        
         for (int i= 0;i<slots.Length;i++)
         {
-            InventorySlot slot = slots[i];
+            EditorGUI.BeginChangeCheck();
 
-            slot.Content = (Item)EditorGUILayout.ObjectField(slot.gameObject.name,slot.Content,typeof(Item),false);
+            SerializedObject slot = (new SerializedObject(serializedObject.FindProperty("slots").GetArrayElementAtIndex(i).objectReferenceValue));
+            SerializedProperty content = slot.FindProperty("_content");
+            EditorGUILayout.PropertyField(content,new GUIContent(slots[i].gameObject.name));
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                slot.ApplyModifiedProperties();
+                slots[i].UpdateGraphic();
+                serializedObject.ApplyModifiedProperties();
+            }
         }
 
         inventory.slots = slots;
-        if (EditorGUI.EndChangeCheck())
-        {
-            for (int i = 0; i < slots.Length; i++)
-            {
-
-            }
-        }
+        
     }
 }

@@ -19,8 +19,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     public int health = 5;
     public EnemyState currentState = EnemyState.Idle;
     public float behaveRate = 1; // How often the enemy does things and looks for new things to do
-    public float aggroRange = 15;
-    public float attackRange = 10;
+    public float aggroDistance = 15;
     public float speed = 250;
     public float speedLimit = 10;
     public GameObject car;
@@ -58,10 +57,6 @@ public class EnemyBehaviorScript : MonoBehaviour
             switch (currentState)
             {
                 case EnemyState.Idle:
-<<<<<<< HEAD
-                    Debug.Log(Vector3.Distance(car.transform.position, transform.position));
-                    if (Vector3.Distance(car.transform.position, transform.position) < aggroRange)
-=======
                     if (Mathf.Floor(stateTimer) % 3 == 0) //every 3 seconds this happens twice
                     {
                         Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
@@ -76,39 +71,11 @@ public class EnemyBehaviorScript : MonoBehaviour
                         behaveTimer = Random.value * -1;
                     }
                     if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance)
->>>>>>> Level_Testing
                     {
                         currentState = EnemyState.Aggro;
                         stateTimer = 0;
                         behaveTimer = 1; // setting this to 1 so it starts going NOW
-<<<<<<< HEAD
 
-                        rend.material.shader = Shader.Find("_Color");
-                        rend.material.SetColor("_Color", Color.yellow);
-
-                        rend.material.shader = Shader.Find("Specular");
-                        rend.material.SetColor("_SpecColor", Color.yellow);
-                    }
-                    break;
-                case EnemyState.Aggro:
-                    rb.AddForce(Vector3.Normalize(car.transform.position - transform.position) * speed);
-
-                    if (Vector3.Distance(car.transform.position, transform.position) < attackRange)
-                    {
-                        currentState = EnemyState.Attack;
-                        stateTimer = 0;
-
-                        rend.material.shader = Shader.Find("_Color");
-                        rend.material.SetColor("_Color", Color.red);
-
-                        rend.material.shader = Shader.Find("Specular");
-                        rend.material.SetColor("_SpecColor", Color.red);
-
-                        rb.AddForce(Vector3.Normalize(car.transform.position - transform.position) * speed * 4.0f);
-                        rb.AddForce(Vector3.up);
-                    }
-=======
-                        
                     }
                     break;
                 case EnemyState.Aggro:
@@ -128,14 +95,12 @@ public class EnemyBehaviorScript : MonoBehaviour
                     {
                         currentState = EnemyState.Idle;
                         stateTimer = 0;
-                        
+
                     }
 
->>>>>>> Level_Testing
                     break;
                 case EnemyState.Attack:
-                    
-                    currentState = EnemyState.Idle;
+
                     break;
                 case EnemyState.Vulnerable:
 
@@ -148,7 +113,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
                     if (rb.velocity.magnitude <= 0.03)
                     {
-                        rb.constraints = (RigidbodyConstraints)80+32;
+                        rb.constraints = (RigidbodyConstraints)80 + 32;
 
                         currentState = EnemyState.Aggro;
 
@@ -165,7 +130,7 @@ public class EnemyBehaviorScript : MonoBehaviour
                     break;
             }
         }
-        
+
     }
 
     private void LateUpdate()
