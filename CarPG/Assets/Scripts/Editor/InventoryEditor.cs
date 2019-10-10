@@ -30,6 +30,15 @@ public class InventoryEditor : Editor
             }
         }
 
+        EditorGUILayout.Space();
+
+        EditorGUI.BeginChangeCheck();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponSlot"), new GUIContent("Weapon Slot"));
+        if (EditorGUI.EndChangeCheck())
+        {
+            serializedObject.ApplyModifiedProperties();
+        }
+
         inventory.slots = slots;
         
     }

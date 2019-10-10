@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Vehicles.Car;
 
 [System.Serializable]
 public class Inventory : MonoBehaviour
@@ -14,9 +15,15 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Canvas _canvas;
 
+    private InventoryApplier car;
+    [SerializeField]
+    public InventorySlot weaponSlot;
+
     void Start()
     {
         _canvas=gameObject.GetComponent<Canvas>();
+
+        car = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryApplier>();
 
         Button[] buttons = GetComponentsInChildren<Button>();
         foreach(Button button in buttons)
@@ -48,6 +55,8 @@ public class Inventory : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
+                car.SetWeapon(weaponSlot.Content.prefab);
+                
             }
         }
     }
@@ -60,7 +69,7 @@ public class Inventory : MonoBehaviour
             {
                 if (itemHeld)
                 {
-                    if (slot.Type == itemHeld.IType || slot.Type == Item.ItemType.any)
+                    if (slot.Type == itemHeld.itemType || slot.Type == Item.ItemType.any)
                     {
                         slot.clicked = false;
                         Click(slot);

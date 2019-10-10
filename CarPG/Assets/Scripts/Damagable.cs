@@ -15,17 +15,20 @@ public class Damagable : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
-        foreach(Rigidbody rb in rbs)
+        if (GetComponent<Rigidbody>() == null)
         {
-            if (rb.gameObject != gameObject)
+            Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in rbs)
             {
-                Damagable damagable = rb.gameObject.AddComponent<Damagable>();
-                damagable.maxHealth = maxHealth;
-                damagable.health = health;
-                damagable.damageThreshhold = damageThreshhold;
-                damagable.damageMultiplier = damageMultiplier;
-                damagable.healthPool = this;
+                if (rb.gameObject != gameObject)
+                {
+                    Damagable damagable = rb.gameObject.AddComponent<Damagable>();
+                    damagable.maxHealth = maxHealth;
+                    damagable.health = health;
+                    damagable.damageThreshhold = damageThreshhold;
+                    damagable.damageMultiplier = damageMultiplier;
+                    damagable.healthPool = this;
+                }
             }
         }
     }
@@ -57,9 +60,14 @@ public class Damagable : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.GetComponent<Cushioned>())
+        var cushion=collision.gameObject.GetComponent<Cushioned>();
+
+        if (cushion)
         {
-            impulse = 0;
+            if (!cushion.takeDamage)
+                impulse = 0;
+            else
+                impulse /= cushion.impulseDivider;
         }
 
         if (impulse * damageMultiplier > damageThreshhold)

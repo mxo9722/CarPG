@@ -77,8 +77,14 @@ public class InventorySlot : MonoBehaviour
     public void UpdateGraphic()
     {
         if (_content)
+        {
             itemDisplay.sprite = _content.sprite;
+            itemDisplay.enabled = true;
+        }
         else
+        {
             itemDisplay.sprite = null;
+            itemDisplay.enabled = false;
+        }
     }
 }

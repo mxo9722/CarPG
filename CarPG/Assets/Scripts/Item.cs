@@ -22,19 +22,9 @@ public class Item : ScriptableObject
     [SerializeField]
     public Sprite sprite;
     [SerializeField]
-    private int itemType;
-
-    public ItemType IType
-    {
-        get
-        {
-            return (ItemType)itemType;
-        }
-        set
-        {
-            itemType = (int)value;
-        }
-    }
+    public ItemType itemType;
+    [SerializeField]
+    public GameObject prefab;
 
     public void DisplayItemInfo(Vector2 mouse)
     {
