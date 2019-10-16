@@ -40,9 +40,8 @@ public class Damagable : MonoBehaviour
 
     void CollisionDamage(Collision collision)
     {
-        Debug.Log(collision.impulse.magnitude + "   " + collision.relativeVelocity.magnitude);
-
-        float impulse = collision.impulse.magnitude;
+        //Debug.Log(collision.impulse.magnitude + "   " + collision.relativeVelocity.magnitude);
+        float impulse = collision.impulse.magnitude;        
 
         Damagable damagable;
         Rigidbody rb;
@@ -50,13 +49,24 @@ public class Damagable : MonoBehaviour
 
         if (collision.rigidbody == null)
         {
-            impulse /= 100;
+            impulse /= 50;
         }
-        else if ((damagable = collision.gameObject.GetComponent<Damagable>()) != null && rb!=null)
+        else
         {
-            if(collision.rigidbody.velocity.magnitude < rb.velocity.magnitude)
+            Joint joint;
+            if (joint = collision.gameObject.GetComponent<Joint>())
             {
-                impulse /= 2;
+                if (joint.connectedBody==gameObject.GetComponent<Rigidbody>())
+                {
+                    impulse = 0;
+                }
+            }
+            if ((damagable = collision.gameObject.GetComponent<Damagable>()) != null && rb != null)
+            {
+                if (collision.rigidbody.velocity.magnitude < rb.velocity.magnitude)
+                {
+                    impulse /= 2;
+                }
             }
         }
 

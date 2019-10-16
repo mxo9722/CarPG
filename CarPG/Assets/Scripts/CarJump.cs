@@ -102,8 +102,6 @@ public class CarJump : MonoBehaviour
                 Vector3 horizontal = (rigidBody.velocity-(vertical));
                 float dot = Vector3.Dot(horizontal.normalized, transform.forward);
 
-                Debug.Log("dot product: "+dot);
-
                 //rigidBody.velocity /= 2;
                 if (dot < .99f && dot > 0.0f)
                 {

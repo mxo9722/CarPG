@@ -23,8 +23,16 @@ public class Item : ScriptableObject
     public Sprite sprite;
     [SerializeField]
     public ItemType itemType;
+    [Header("Weapon Properties")]
     [SerializeField]
     public GameObject prefab;
+    [Header("Carmor Properties")]
+    [SerializeField]
+    public Color carmorColor;
+    [SerializeField]
+    public float thresholdBonus=0;
+    [SerializeField]
+    public float mass = 0;
 
     public void DisplayItemInfo(Vector2 mouse)
     {

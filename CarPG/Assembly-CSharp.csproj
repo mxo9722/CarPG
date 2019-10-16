@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\HammerSwing.cs" />
     <Compile Include="Assets\Scripts\CarJump.cs" />
     <Compile Include="Assets\Scripts\Cushioned.cs" />
     <Compile Include="Assets\Scripts\Damagable.cs" />
@@ -73,6 +72,8 @@
     <Compile Include="Assets\Scripts\InventoryApplier.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\HammerHitbox.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\HammerSwing.cs" />
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/moher/Documents/CarPG/CarPG/CarPG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -112,6 +113,12 @@
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
       <HintPath>C:/Users/moher/Documents/CarPG/CarPG/CarPG/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Users/moher/Documents/CarPG/CarPG/CarPG/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Users/moher/Documents/CarPG/CarPG/CarPG/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

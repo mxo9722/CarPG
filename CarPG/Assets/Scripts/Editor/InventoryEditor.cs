@@ -34,6 +34,8 @@ public class InventoryEditor : Editor
 
         EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("weaponSlot"), new GUIContent("Weapon Slot"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("carmorSlot"), new GUIContent("Carmor Slot"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("bumperSlot"), new GUIContent("Bumper Slot"));
         if (EditorGUI.EndChangeCheck())
         {
             serializedObject.ApplyModifiedProperties();

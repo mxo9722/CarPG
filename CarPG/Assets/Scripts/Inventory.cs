@@ -18,6 +18,10 @@ public class Inventory : MonoBehaviour
     private InventoryApplier car;
     [SerializeField]
     public InventorySlot weaponSlot;
+    [SerializeField]
+    public InventorySlot carmorSlot;
+    [SerializeField]
+    public InventorySlot bumperSlot;
 
     void Start()
     {
@@ -30,6 +34,10 @@ public class Inventory : MonoBehaviour
         {
             button.onClick.AddListener(Click);
         }
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        _canvas.enabled = false;
     }
 
     private void OnValidate()
@@ -51,12 +59,17 @@ public class Inventory : MonoBehaviour
             if (_canvas.enabled)
             {
                 Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
                 Time.timeScale = 1;
-                car.SetWeapon(weaponSlot.Content.prefab);
-                
+                car.SetWeapon(weaponSlot.Content?.prefab);
+                car.SetCarmor(carmorSlot.Content);
+                car.SetBumpers(bumperSlot.Content?.prefab);
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
@@ -98,7 +111,7 @@ public class Inventory : MonoBehaviour
 
             var sprite = itemHeld.sprite;
 
-            var croppedTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+            var croppedTexture = new Texture2D((int)sprite.textureRect.width, (int)sprite.textureRect.height);
             var pixels = sprite.texture.GetPixels((int)sprite.textureRect.x,
                                                     (int)sprite.textureRect.y,
                                                     (int)sprite.textureRect.width,
