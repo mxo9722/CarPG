@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        _canvas.enabled = false;
+        //_canvas.enabled = false;
     }
 
     private void OnValidate()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4651308874204812227}
   - component: {fileID: 4651308874204812224}
   - component: {fileID: 4651308874204812230}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponHammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 4651308875064976399}
   - component: {fileID: 4651308875064976398}
   - component: {fileID: 4651308875064976393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4651308876106645141}
   - component: {fileID: 4651308876106645140}
   - component: {fileID: 4651308876106645143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5728974557395732650}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExplosionPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 3277279565976339495}
   - component: {fileID: 3862934266633296698}
   - component: {fileID: 2110157534341120334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,5 +418,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionForce: 0
-  damage: 25
+  damage: 15
   explosionPos: {fileID: 4672263905739519099}
