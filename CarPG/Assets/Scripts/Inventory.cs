@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
 
             if (_canvas.enabled)
             {
-                Time.timeScale = 0;
+                Time.timeScale = 1;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
