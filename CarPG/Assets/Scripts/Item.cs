@@ -28,7 +28,7 @@ public class Item : ScriptableObject
     public GameObject prefab;
     [Header("Carmor Properties")]
     [SerializeField]
-    public Color carmorColor;
+    public Material carmorMaterial;
     [SerializeField]
     public float thresholdBonus=0;
     [SerializeField]

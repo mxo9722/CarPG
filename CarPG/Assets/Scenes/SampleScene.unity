@@ -629,7 +629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130201313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.73, y: 1.61, z: 147.85}
+  m_LocalPosition: {x: -2.9, y: 1.61, z: 80.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 930451567}
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 2
-  m_FollowOffset: {x: 0, y: 2.5, z: -7}
+  m_FollowOffset: {x: 0, y: 1.5, z: -8.5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -775,13 +775,13 @@ MonoBehaviour:
     m_VelocityFilterStrength: 5
     m_Bias: 0
   m_RecenterToTargetHeading:
-    m_enabled: 1
+    m_enabled: 0
     m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_RecenteringTime: 10
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 90.00003
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
@@ -837,7 +837,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 9
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
@@ -6579,7 +6579,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 791480689}
-  m_Follow: {fileID: 418421585}
+  m_Follow: {fileID: 791480689}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 40
@@ -6615,13 +6615,13 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_YAxisRecentering:
-    m_enabled: 1
+    m_enabled: 0
     m_WaitTime: 1
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 90.00003
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
@@ -6642,19 +6642,19 @@ MonoBehaviour:
     m_VelocityFilterStrength: 5
     m_Bias: 0
   m_RecenterToTargetHeading:
-    m_enabled: 1
+    m_enabled: 0
     m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_RecenteringTime: 10
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_BindingMode: 2
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 4.5
-    m_Radius: 6
-  - m_Height: 2.5
-    m_Radius: 7
-  - m_Height: 0.4
+  - m_Height: 3
+    m_Radius: 8
+  - m_Height: 1.5
+    m_Radius: 8.5
+  - m_Height: 0
     m_Radius: 8
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
@@ -6669,7 +6669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296513824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.218, z: 68}
+  m_LocalPosition: {x: -11.299999, y: 4.718, z: 80.01001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400409945}
@@ -7462,7 +7462,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400409943}
-  m_LocalRotation: {x: 0.03564617, y: 0.000000017139081, z: -0.00000000276539, w: 0.9993645}
+  m_LocalRotation: {x: -0.061677452, y: -0.70441204, z: 0.061677497, w: -0.7044115}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7586,12 +7586,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2592135712998387169, guid: 39a3c2579c7551b409152a5f136687f7,
     type: 3}
   m_PrefabInstance: {fileID: 221259640}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &418421585 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5759511461431288950, guid: 765b3ca9c3e49ae44a9ef14e19f4edeb,
-    type: 3}
-  m_PrefabInstance: {fileID: 931369453}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &426312448
 GameObject:
@@ -8491,8 +8485,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513488812}
-  m_LocalRotation: {x: -0.0006792102, y: -0.000000017211784, z: -0.000000006761016,
-    w: 0.9999998}
+  m_LocalRotation: {x: 0.036048986, y: 0.7061876, z: -0.036049113, w: 0.70618695}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9632,6 +9625,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33465680, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
+      propertyPath: m_Mass
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
 --- !u!1 &718898872 stripped
@@ -10082,8 +10079,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812358332}
-  m_LocalRotation: {x: 0.017462349, y: 0, z: 0, w: 0.99984753}
-  m_LocalPosition: {x: 0, y: 3.218, z: 68}
+  m_LocalRotation: {x: 0.04885437, y: 0.70541745, z: -0.048854403, w: 0.70541674}
+  m_LocalPosition: {x: -11.299999, y: 4.718, z: 80.01001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15705,7 +15702,7 @@ PrefabInstance:
     - target: {fileID: 5759511461431288950, guid: 765b3ca9c3e49ae44a9ef14e19f4edeb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 5759511461431288950, guid: 765b3ca9c3e49ae44a9ef14e19f4edeb,
         type: 3}
@@ -15715,7 +15712,7 @@ PrefabInstance:
     - target: {fileID: 5759511461431288950, guid: 765b3ca9c3e49ae44a9ef14e19f4edeb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75
+      value: 80.01
       objectReference: {fileID: 0}
     - target: {fileID: 5759511461431288950, guid: 765b3ca9c3e49ae44a9ef14e19f4edeb,
         type: 3}
@@ -15938,7 +15935,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0.863122, b: 0.6179246, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -16790,6 +16787,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33465680, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
+      propertyPath: m_Mass
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
 --- !u!1001 &1075937647
@@ -17173,7 +17174,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102465513}
-  m_LocalRotation: {x: 0.017462352, y: 0.0000000016956908, z: -0.00000009709071, w: 0.99984753}
+  m_LocalRotation: {x: -0.048854336, y: -0.7054174, z: 0.04885443, w: -0.7054168}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17262,6 +17263,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 33465680, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
+      propertyPath: m_Mass
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
@@ -20268,7 +20273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 2
-  m_FollowOffset: {x: 0, y: 2.5, z: -7}
+  m_FollowOffset: {x: 0, y: 1.5, z: -8.5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -20284,11 +20289,11 @@ MonoBehaviour:
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_RecenteringTime: 10
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 90.00003
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
@@ -20930,7 +20935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 2
-  m_FollowOffset: {x: 0, y: 2.5, z: -7}
+  m_FollowOffset: {x: 0, y: 1.5, z: -8.5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -20946,11 +20951,11 @@ MonoBehaviour:
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_RecenteringTime: 10
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 90.00003
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
@@ -28463,7 +28468,7 @@ PrefabInstance:
     - target: {fileID: 8087631935563699083, guid: e7b965c7c9ceb7d43b551f255ae1f9b1,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8087631935563699085, guid: e7b965c7c9ceb7d43b551f255ae1f9b1,
         type: 3}
@@ -29584,6 +29589,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 33465680, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}
+      propertyPath: m_Mass
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef762f41fae850418fff0f11bc1afd9, type: 3}

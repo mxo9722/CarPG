@@ -80,8 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
-  damageThreshhold: 20
-  damageMultiplier: 0.05
+  damageThreshhold: 10
+  damageMultiplier: 1
   healthPool: {fileID: 0}
 --- !u!1001 &8803763049204112914
 PrefabInstance:

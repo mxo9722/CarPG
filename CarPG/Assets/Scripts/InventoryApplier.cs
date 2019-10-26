@@ -12,9 +12,8 @@ public class InventoryApplier : MonoBehaviour
     private Rigidbody rigidbody;
     private Item carmor;
 
-    public Material carColor;
-
-    private Color originalColor;
+    private Material originalMaterial;
+    public Renderer renderer;
 
     public Transform bumperFrontPos;
     public Transform bumperBackPos;
@@ -27,8 +26,7 @@ public class InventoryApplier : MonoBehaviour
         controller = GetComponent<CarController>();
         damagable = GetComponent<Damagable>();
         rigidbody = GetComponent<Rigidbody>();
-        originalColor = new Color(0f, 0.17647058823f, 0.30588235294f);
-        carColor.color = originalColor;
+        originalMaterial = renderer.material;
 
         bumpers = new GameObject[2];
     }
@@ -55,7 +53,7 @@ public class InventoryApplier : MonoBehaviour
     {
         if (carmor != null)
         {
-            carColor.color = originalColor;
+            renderer.material = originalMaterial;
             damagable.damageThreshhold -= carmor.thresholdBonus;
             rigidbody.mass -= carmor.mass;
         }
@@ -63,7 +61,7 @@ public class InventoryApplier : MonoBehaviour
 
         if (carmor != null)
         {
-            carColor.color = carmor.carmorColor;
+            renderer.material = carmor.carmorMaterial;
             damagable.damageThreshhold += carmor.thresholdBonus;
             rigidbody.mass += carmor.mass;
         }
