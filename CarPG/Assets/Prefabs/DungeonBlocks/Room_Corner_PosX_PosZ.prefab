@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3742273904550862810}
   - component: {fileID: 435117257740181635}
   - component: {fileID: 7298551997053181987}
+  - component: {fileID: 7493117649495025020}
   m_Layer: 0
   m_Name: TileCeiling
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7493117649495025020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306478539261849123}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.00050290953, z: 0.01}
+  m_Center: {x: 0, y: 0.004754043, z: 0}
 --- !u!1 &5769176026504439461
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +102,7 @@ GameObject:
   - component: {fileID: 4679007710130581069}
   - component: {fileID: 2214782270057036737}
   - component: {fileID: 4910702773937589032}
+  - component: {fileID: 4620727695229777318}
   m_Layer: 0
   m_Name: TileWall
   m_TagString: Untagged
@@ -154,6 +169,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4620727695229777318
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769176026504439461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0004995852, y: 0.010000004, z: 0.01}
+  m_Center: {x: -0.0047468506, y: 0.0000000023283064, z: 0}
 --- !u!1 &6608912346807591239
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +193,7 @@ GameObject:
   - component: {fileID: 8784603055998858225}
   - component: {fileID: 2475220627631587294}
   - component: {fileID: 6522884834056667496}
+  - component: {fileID: 2970385727060734557}
   m_Layer: 0
   m_Name: TileWall (1)
   m_TagString: Untagged
@@ -231,6 +260,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &2970385727060734557
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608912346807591239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0004995853, y: 0.010000004, z: 0.010000003}
+  m_Center: {x: -0.0047468515, y: 0.0000000023283064, z: 0}
 --- !u!1 &6708120492234964765
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +318,7 @@ GameObject:
   - component: {fileID: 1136201354452480895}
   - component: {fileID: 8826141706005324306}
   - component: {fileID: 5229342178466625447}
+  - component: {fileID: 6287720648704410373}
   m_Layer: 0
   m_Name: TileFLoor
   m_TagString: Untagged
@@ -342,3 +385,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6287720648704410373
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157235820409115887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.0005003945, z: 0.01}
+  m_Center: {x: 0, y: -0.004747743, z: 0}
