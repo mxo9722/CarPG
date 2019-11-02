@@ -74,10 +74,12 @@
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ParticleTestingScript.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerSwing.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordSwing.cs" />
+    <Compile Include="Assets\Scripts\WizardEnemy.cs" />
     <None Include="Assets\Shaders\ToonBasic.shader" />
     <None Include="Assets\Shaders\CartoonShader.shader" />
     <None Include="Assets\Shaders\ToonLit.shader" />
