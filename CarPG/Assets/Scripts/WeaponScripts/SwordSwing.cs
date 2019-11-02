@@ -33,13 +33,13 @@ public class SwordSwing : MonoBehaviour
 
         float swingSpeed = 1f;
 
-        if (Vector3.Scale(rigidBody.angularVelocity, transform.right).magnitude > swingSpeed && pressed && !hitboxEnabled)
+        if (Vector3.Scale(rigidBody.angularVelocity, transform.up).magnitude > swingSpeed && !hitboxEnabled)
         {
             hitboxEnabled = true;
             hitBox.enabled=(true);
             Debug.Log("enabled");
         }
-        else if(hitboxEnabled&&(Vector3.Scale(rigidBody.angularVelocity, transform.right).magnitude < swingSpeed || !pressed) )
+        else if(hitboxEnabled&&(Vector3.Scale(rigidBody.angularVelocity, transform.up).magnitude < swingSpeed) )
         {
             hitboxEnabled = false;
             hitBox.enabled=(false);

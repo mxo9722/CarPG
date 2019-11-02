@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\ParticleTestingScript.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerSwing.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\SwordHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordSwing.cs" />
     <None Include="Assets\Shaders\ToonBasic.shader" />
     <None Include="Assets\Shaders\CartoonShader.shader" />

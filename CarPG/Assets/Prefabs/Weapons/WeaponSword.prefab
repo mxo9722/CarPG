@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8803562369797564392}
   - component: {fileID: 5670064324803358588}
   - component: {fileID: 6015861017928049880}
+  - component: {fileID: 5379412110633001628}
   m_Layer: 9
   m_Name: Hitbox1
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3209345476702693849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.065}
-  m_LocalScale: {x: 0.45, y: 0.2, z: 2}
+  m_LocalScale: {x: 0.45, y: 0.2, z: 2.05}
   m_Children: []
   m_Father: {fileID: 4495073344764891588}
   m_RootOrder: 1
@@ -91,6 +92,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5379412110633001628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209345476702693849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981f06552a1d75d44932930d2e7ac630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 100
+  damage: 10
+  explosionPos: {fileID: 4495073344764891589}
 --- !u!1 &4495073344764891589
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +192,7 @@ HingeJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 0.1
+  m_ConnectedMassScale: 0.2
 --- !u!114 &4495073344764891641
 MonoBehaviour:
   m_ObjectHideFlags: 0

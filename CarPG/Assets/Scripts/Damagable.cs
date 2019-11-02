@@ -48,7 +48,7 @@ public class Damagable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         impulse /= rb.mass;
-        Debug.Log(impulse);
+        //Debug.Log(impulse);
 
         if (collision.rigidbody == null)
         {
