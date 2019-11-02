@@ -7,7 +7,7 @@ public class SwordSwing : MonoBehaviour
 {
     private HingeJoint joint;
     private Rigidbody rigidBody;
-    public BoxCollider hitBox;
+    public Collider hitBox;
     private bool hitboxEnabled = false;
 
     // Start is called before the first frame update

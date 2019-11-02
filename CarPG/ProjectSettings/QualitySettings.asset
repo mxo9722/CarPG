@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 4
+  m_CurrentQuality: 5
   m_QualitySettings:
   - serializedVersion: 2
     name: Very Low
@@ -148,14 +148,14 @@ QualitySettings:
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Very High
-    pixelLightCount: 6
+    pixelLightCount: 20
     shadows: 2
     shadowResolution: 2
     shadowProjection: 1
     shadowCascades: 2
     shadowDistance: 200
     shadowNearPlaneOffset: 6
-    shadowCascade2Split: 0.33333334
+    shadowCascade2Split: 0.3399125
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     shadowmaskMode: 1
     skinWeights: 4
@@ -191,7 +191,7 @@ QualitySettings:
     shadowDistance: 150
     shadowNearPlaneOffset: 3
     shadowCascade2Split: 0.33333334
-    shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+    shadowCascade4Split: {x: 0.13303837, y: 0.29070795, z: 0.68569314}
     shadowmaskMode: 1
     skinWeights: 4
     textureQuality: 0

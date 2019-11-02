@@ -3,7 +3,12 @@ guid: 0f0ad72c895c77549b725f2f321aecc6
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RampTexture
+    second: {fileID: 2100000, guid: 0468b180058d10a44928a85c1299b7af, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

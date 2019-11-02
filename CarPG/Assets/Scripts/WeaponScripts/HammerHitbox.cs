@@ -28,6 +28,6 @@ public class HammerHitbox : MonoBehaviour
            
         }
         Debug.Log("hit!");
-        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 }

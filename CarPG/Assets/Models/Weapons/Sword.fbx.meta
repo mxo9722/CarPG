@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: e8ebf716b98a36d42ba98c708169ee71
+guid: 5659957a401b85b4eb74edd5c0caf864
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SwordTexture
+    second: {fileID: 2100000, guid: 5434ee1bf2d313942a1c0ecba998c494, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

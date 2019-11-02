@@ -61,7 +61,7 @@ public class WizardEnemy : EnemyBehaviorScript
     new void Attack()
     {
         Projectile newFireball = Instantiate(fireballProjectile, transform.position, new Quaternion());
-        newFireball.CreateProjectile(car.transform.position, projectileSpeed);
+        newFireball.CreateProjectile(car.transform.position, projectileSpeed,""+this.gameObject.GetInstanceID());
         currentState = EnemyState.Vulnerable;
     }
 
