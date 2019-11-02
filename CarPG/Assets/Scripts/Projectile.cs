@@ -12,15 +12,16 @@ public class Projectile : MonoBehaviour
         velocity *= speed;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         transform.position += velocity * Time.deltaTime;
+        Quaternion lookQuat = Quaternion.LookRotation(velocity.normalized);
+        gameObject.transform.rotation = lookQuat;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }

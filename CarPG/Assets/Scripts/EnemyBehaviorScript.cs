@@ -9,23 +9,23 @@ public enum EnemyState
     Attack,
     Vulnerable,
     Hit,
-    Dead
+    Dead,
+    Flee
 }
 
 public class EnemyBehaviorScript : MonoBehaviour
 {
 
-    public Damagable dmg;
-    public int health = 5;
+    protected Damagable dmg;
     public EnemyState currentState = EnemyState.Idle;
     public float behaveRate = 1; // How often the enemy does things and looks for new things to do
     public float aggroDistance = 15;
     public float speed = 5;
     public float speedLimit = 10;
-    public GameObject car;
+    protected  GameObject car;
 
     private Renderer rend;
-    private Rigidbody rb;
+    protected Rigidbody rb;
 
     private CapsuleCollider cCollider;
     private MeshCollider mCollider;
@@ -71,11 +71,13 @@ public class EnemyBehaviorScript : MonoBehaviour
                     Vulnerable();
                     break;
                 case EnemyState.Hit:
-
                     Hit();
                     break;
                 case EnemyState.Dead:
                     Dead();
+                    break;
+                case EnemyState.Flee:
+                    Flee();
                     break;
             }
         }
@@ -128,7 +130,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         rb.velocity += Vector3.up * 2;
 
-        if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 2)
+        if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
         {
             currentState = EnemyState.Idle;
             stateTimer = 0;
@@ -179,5 +181,10 @@ public class EnemyBehaviorScript : MonoBehaviour
     public void Die()
     {
         currentState = EnemyState.Dead;
+    }
+
+    public void Flee()
+    {
+        
     }
 }
