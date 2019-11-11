@@ -77,6 +77,8 @@
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ParticleTestingScript.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\UI\NeedleRot.cs" />
+    <Compile Include="Assets\Scripts\UI\WarningLights.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerSwing.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordHitbox.cs" />

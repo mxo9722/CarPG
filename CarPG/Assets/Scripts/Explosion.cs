@@ -21,16 +21,17 @@ public class Explosion : MonoBehaviour
 
             GameObject go = collider.gameObject;
 
-            while (go.transform.parent != null)
+            Rigidbody rb = null;
+
+            while (go.transform.parent != null && rb == null)
             {
                 go = go.transform.parent.gameObject;
+                rb = go.GetComponentInChildren<Rigidbody>();
             }
-
-            Rigidbody rb = go.GetComponentInChildren<Rigidbody>();
 
             if (rb != null)
             {
-                rb.AddExplosionForce(power, transform.position, radius, power/10);
+                rb.AddExplosionForce(power, transform.position, radius, 2);
             }
 
             Damagable d = go.GetComponentInChildren<Damagable>();
