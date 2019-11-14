@@ -664,18 +664,29 @@
     <Compile Include="Assets\Scripts\Cushioned.cs" />
     <Compile Include="Assets\Scripts\Damagable.cs" />
     <Compile Include="Assets\Scripts\DestructableTerrain.cs" />
-    <Compile Include="Assets\Scripts\EnemyBehaviorScript.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyBehaviorScript.cs" />
+    <Compile Include="Assets\Scripts\Enemy\WizardEnemy.cs" />
+    <Compile Include="Assets\Scripts\Explosion.cs" />
+    <Compile Include="Assets\Scripts\HeadLights.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\InventoryApplier.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\ParticleTestingScript.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\UI\NeedleRot.cs" />
+    <Compile Include="Assets\Scripts\UI\WarningLights.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\HammerSwing.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\SwordHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordSwing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
+    <None Include="Assets\Shaders\CartoonShader.shader" />
+    <None Include="Assets\Shaders\ToonBasic.shader" />
+    <None Include="Assets\Shaders\ToonLit.shader" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Vehicles\Car\CarGuidelines.txt" />
