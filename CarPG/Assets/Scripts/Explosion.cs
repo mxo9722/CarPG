@@ -32,7 +32,7 @@ public class Explosion : MonoBehaviour
                 rb = go.GetComponentInChildren<Rigidbody>();
             }
 
-            if (!explosionList.Contains(rb))
+            if (!explosionList.Contains(rb)&&rb!=null)
             {
                 rb.AddExplosionForce(power, transform.position, radius, 2);
                 explosionList.Add(rb);

@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
     private Cinemachine.CinemachineFreeLook cameraController;
     private float axisMSpeedX;
     private float axisMSpeedY;
+    public static bool InventoryOpen = false;
 
     void Start()
     {
@@ -55,6 +56,9 @@ public class Inventory : MonoBehaviour
     {
         bool press = CrossPlatformInputManager.GetButtonDown("Inventory");
 
+        if (PauseControl.MenuOpen)
+            press = false;
+
         if (press)
         {
             _canvas.enabled = !_canvas.enabled;
@@ -73,6 +77,8 @@ public class Inventory : MonoBehaviour
                 cameraController.m_XAxis.m_MaxSpeed = 0;
                 cameraController.m_YAxis.m_MaxSpeed = 0;
 
+                InventoryOpen = true;
+
             }
             else
             {
@@ -85,6 +91,8 @@ public class Inventory : MonoBehaviour
                 cameraController.m_YAxis.m_MaxSpeed = axisMSpeedY;
 
                 Cursor.lockState = CursorLockMode.Locked;
+
+                InventoryOpen = false;
             }
         }
     }
