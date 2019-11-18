@@ -23,6 +23,10 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     public InventorySlot bumperSlot;
 
+    private Cinemachine.CinemachineFreeLook cameraController;
+    private float axisMSpeedX;
+    private float axisMSpeedY;
+
     void Start()
     {
         _canvas=gameObject.GetComponent<Canvas>();
@@ -38,6 +42,8 @@ public class Inventory : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         //_canvas.enabled = false;
+
+        cameraController = GameObject.FindGameObjectWithTag("CameraController").GetComponent<Cinemachine.CinemachineFreeLook>();
     }
 
     private void OnValidate()
@@ -58,17 +64,26 @@ public class Inventory : MonoBehaviour
 
             if (_canvas.enabled)
             {
-                Time.timeScale = 1;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+
+                axisMSpeedX = cameraController.m_XAxis.m_MaxSpeed;
+                axisMSpeedY = cameraController.m_YAxis.m_MaxSpeed; 
+
+                cameraController.m_XAxis.m_MaxSpeed = 0;
+                cameraController.m_YAxis.m_MaxSpeed = 0;
+
             }
             else
             {
-                Time.timeScale = 1;
                 car.SetWeapon(weaponSlot.Content?.prefab);
                 car.SetCarmor(carmorSlot.Content);
                 car.SetBumpers(bumperSlot.Content?.prefab);
                 Cursor.visible = false;
+
+                cameraController.m_XAxis.m_MaxSpeed = axisMSpeedX;
+                cameraController.m_YAxis.m_MaxSpeed = axisMSpeedY;
+
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }

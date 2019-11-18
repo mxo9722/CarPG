@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class HammerSwing : MonoBehaviour
+public class HammerSwing : Weapon
 {
     private HingeJoint joint;
     private Rigidbody rigidBody;

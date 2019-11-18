@@ -53,8 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f06552a1d75d44932930d2e7ac630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 100
-  damage: 10
+  weapon: {fileID: 4495073344764891641}
   explosionPos: {fileID: 4495073344764891589}
 --- !u!64 &196263396437434394
 MeshCollider:
@@ -168,6 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd9c2f8c62b00345b65fa9cda011e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
+  pushForce: 0
   hitBox: {fileID: 196263396437434394}
 --- !u!1 &4495073344926667724
 GameObject:

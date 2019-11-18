@@ -81,8 +81,8 @@ public class InventoryApplier : MonoBehaviour
         {
             bumpers[0] = Instantiate(bumper, bumperFrontPos);
             bumpers[1] = Instantiate(bumper, bumperBackPos);
-            bumpers[0].GetComponent<Joint>().connectedBody = this.GetComponent<Rigidbody>();
-            bumpers[1].GetComponent<Joint>().connectedBody = this.GetComponent<Rigidbody>();
+            //bumpers[0].GetComponent<Joint>().connectedBody = this.GetComponent<Rigidbody>();
+            //bumpers[1].GetComponent<Joint>().connectedBody = this.GetComponent<Rigidbody>();
         }
     }
 }

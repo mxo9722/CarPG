@@ -71,10 +71,13 @@
     <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\HeadLights.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\Inventory.cs" />
-    <Compile Include="Assets\Scripts\InventoryApplier.cs" />
-    <Compile Include="Assets\Scripts\InventorySlot.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\Inventory\GUIStyleObject.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Inventory\InventoryApplier.cs" />
+    <Compile Include="Assets\Scripts\Inventory\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Item.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseControl.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\ParticleTestingScript.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\NeedleRot.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="Assets\Scripts\WeaponScripts\HammerSwing.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordSwing.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
     <None Include="Assets\Shaders\ToonBasic.shader" />
     <None Include="Assets\Shaders\CartoonShader.shader" />
     <None Include="Assets\Shaders\ToonLit.shader" />

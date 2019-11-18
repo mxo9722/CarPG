@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d9e87cafa39384aa34c125d009cbc0, type: 3}
   m_Name: Bumper
   m_EditorClassIdentifier: 
+  styleObject: {fileID: 11400000, guid: 5affc5053b559ff45a4510878c5c0f8c, type: 2}
   name: Test Bumper
   sprite: {fileID: 21300000, guid: fac3f148a995e2645a3125651b464fb1, type: 3}
   itemType: 0
   prefab: {fileID: 2026451269600903091, guid: d1400d1f3c7bd21408c4d0739f80b048, type: 3}
-  carmorColor: {r: 0, g: 0, b: 0, a: 0}
+  carmorMaterial: {fileID: 0}
   thresholdBonus: 0
   mass: 0
