@@ -659,6 +659,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
+    <None Include="Assets\Shaders\CartoonShader.shader" />
+    <None Include="Assets\Shaders\ToonBasic.shader" />
+    <None Include="Assets\Shaders\ToonLit.shader" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Vehicles\Car\CarGuidelines.txt" />
