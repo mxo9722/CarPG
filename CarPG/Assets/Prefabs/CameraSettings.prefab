@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6112701355273526228}
   - component: {fileID: 6112701355273526231}
   - component: {fileID: 6112701355273526229}
+  - component: {fileID: 85020777083567176}
   m_Layer: 0
-  m_Name: CM FreeLook1
+  m_Name: CameraSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_CollideAgainst:
     serializedVersion: 2
     m_Bits: 1
-  m_IgnoreTag: 
+  m_IgnoreTag: Wall
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -166,6 +167,20 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &85020777083567176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112701355273526230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112dc563a0e9cb0488ceff262b02536b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  car: {fileID: 0}
 --- !u!1 &6112701355310264225
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +205,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112701355310264225}
-  m_LocalRotation: {x: -0.06167751, y: -0.70441175, z: 0.06167743, w: -0.7044118}
+  m_LocalRotation: {x: 0.00000003292507, y: -0.97591466, z: 0.21815285, w: 0.00000039488282}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -266,7 +281,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112701355423948122}
-  m_LocalRotation: {x: 0.036048993, y: 0.7061873, z: -0.0360491, w: 0.70618725}
+  m_LocalRotation: {x: -0.00000015828644, y: 0.98319495, z: -0.18255882, w: -0.00000044775152}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -717,7 +732,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112701356617409311}
-  m_LocalRotation: {x: -0.048854366, y: -0.7054171, z: 0.04885439, w: -0.7054171}
+  m_LocalRotation: {x: 0.000000043631957, y: -0.99761045, z: 0.06909054, w: 0.00000040385788}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

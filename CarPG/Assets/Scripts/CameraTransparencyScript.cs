@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class CameraTransparencyScript : MonoBehaviour
 {
-    public Camera camera;
-    public GameObject car;
+    private Camera camera;
+    private GameObject car;
 
     private List<MeshRenderer> hiddenObjects = new List<MeshRenderer>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        camera = Camera.main;
+        car = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
