@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class SwordSwing : MonoBehaviour
+public class SwordSwing : Weapon
 {
     private HingeJoint joint;
     private Rigidbody rigidBody;

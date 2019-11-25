@@ -10,7 +10,9 @@ namespace UnityStandardAssets.Vehicles.Car
         CarController cController;
         RectTransform rTransform;
 
-        float startRot = 127.35f;
+        float startRot;
+
+        public float speed = 0;
 
         private void Start()
         {
@@ -18,13 +20,13 @@ namespace UnityStandardAssets.Vehicles.Car
             cController = car.GetComponent<CarController>();
             rTransform = GetComponent<RectTransform>();
 
-            //startRot = transform.rotation.z;
+            startRot = GetComponent<RectTransform>().rotation.eulerAngles.z;
         }
 
         // Update is called once per frame
         void Update()
         {
-            rTransform.rotation = Quaternion.Euler(0, 0, startRot - (cController.CurrentSpeed * 1.975f));
+            rTransform.rotation = Quaternion.Euler(0, 0, startRot - (cController.CurrentSpeed* 1.868f));
         }
     }
 }

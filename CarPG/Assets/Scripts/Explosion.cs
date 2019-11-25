@@ -16,6 +16,9 @@ public class Explosion : MonoBehaviour
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
+        List<Rigidbody> explosionList = new List<Rigidbody>();
+        List<Damagable> damagableList = new List<Damagable>();
+
         foreach (Collider collider in colliders)
         {
 
@@ -29,14 +32,15 @@ public class Explosion : MonoBehaviour
                 rb = go.GetComponentInChildren<Rigidbody>();
             }
 
-            if (rb != null)
+            if (!explosionList.Contains(rb)&&rb!=null)
             {
                 rb.AddExplosionForce(power, transform.position, radius, 2);
+                explosionList.Add(rb);
             }
 
             Damagable d = go.GetComponentInChildren<Damagable>();
 
-            if (d != null)
+            if (d != null && !damagableList.Contains(d))
             {
                 float damageAmount = 1 - (Vector3.Distance(transform.position, go.transform.position) / radius);
 
@@ -47,6 +51,8 @@ public class Explosion : MonoBehaviour
                 damageAmount = Mathf.Max(0, damageAmount);
 
                 d.ApplyDamage(damageAmount);
+
+                damagableList.Add(d);
             }
         }
 

@@ -5,20 +5,19 @@ using UnityEngine;
 public class HammerHitbox : MonoBehaviour
 {
 
-    public float explosionForce;
-    public float damage;
+    public Weapon weapon;
     public GameObject explosionPos;
 
     private void OnTriggerEnter(Collider collision)
     {
 
         if(collision.gameObject.GetComponent<Rigidbody>())
-           collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, explosionPos.transform.position, 1f);
+           collision.gameObject.GetComponent<Rigidbody>().AddExplosionForce(weapon.pushForce, explosionPos.transform.position, 1f);
 
         Damagable damagable;
         if (damagable=collision.gameObject.GetComponent<Damagable>())
         {
-            damagable.ApplyDamage(damage);
+            damagable.ApplyDamage(weapon.damage);
             if (damagable.health <= 0 && collision.gameObject.tag == "Enemy")
             {
                 Vector3 scale = collision.gameObject.transform.localScale;

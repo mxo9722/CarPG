@@ -51,21 +51,18 @@ public class InventorySlot : MonoBehaviour
         UpdateGraphic();
     }
 
-    public void OnMouseEnter()
+    public void Hover(bool hover)
     {
-        hover = true;
-    }
-
-    private void OnMouseExit()
-    {
-        hover = false;
+        this.hover = hover;
     }
 
     private void OnGUI()
     {
         if (hover && _content)
         {
-            _content.DisplayItemInfo(Input.mousePosition);
+            var mouse = Event.current.mousePosition;
+            mouse = GUIUtility.ScreenToGUIPoint(mouse);
+            _content.DisplayItemInfo(mouse);
         }
     }
 

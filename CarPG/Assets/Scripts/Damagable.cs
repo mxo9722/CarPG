@@ -47,6 +47,8 @@ public class Damagable : MonoBehaviour
         Rigidbody rb;
         rb = GetComponent<Rigidbody>();
 
+        
+
         impulse /= rb.mass;
         //Debug.Log(impulse);
 
@@ -75,14 +77,23 @@ public class Damagable : MonoBehaviour
                 impulse /= cushion.impulseDivider;
         }
 
-        if (impulse * damageMultiplier > damageThreshhold)
-        {
-            ApplyDamage( impulse * damageMultiplier - damageThreshhold );
+        cushion = collision.contacts[0].thisCollider.gameObject.GetComponent<Cushioned>();
+       if (cushion)
+       {
+            impulse /= cushion.impulseDivider;
         }
+
+        ApplyDamage( impulse * damageMultiplier - damageThreshhold );
+        
     }
 
     public void ApplyDamage(float damage)
     {
+
+        damage -= damageThreshhold;
+
+        if (damage <= 0)
+            return;
 
         if (healthPool!=null)
         {

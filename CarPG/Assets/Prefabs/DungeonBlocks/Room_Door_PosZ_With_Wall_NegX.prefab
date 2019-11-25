@@ -26,7 +26,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
-  m_Mesh: {fileID: -3542558076709543198, guid: 1c2b99d2a01e36549a3b8adda1cbb071, type: 3}
+  m_Mesh: {fileID: -3542558076709543198, guid: 1c2b99d2a01e36549a3b8adda1cbb071, type: 3}y
 --- !u!65 &2775126699899300741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -376,6 +376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TileWall
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5357e4988023bda429bd5cc99d74c536,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5357e4988023bda429bd5cc99d74c536,
         type: 3}
