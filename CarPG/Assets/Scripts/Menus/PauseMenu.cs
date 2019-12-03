@@ -35,6 +35,8 @@ public class PauseMenu : MonoBehaviour
     public void UnloadScene()
     {
         SceneManager.UnloadSceneAsync(gameObject.scene);
+        PauseControl.MenuOpen = false;
+        Cursor.lockState = PauseControl.hideCursor;
     }
 
     public void Awake()

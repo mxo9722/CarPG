@@ -19,6 +19,6 @@ public class SwordHitbox : MonoBehaviour
             damagable.ApplyDamage(weapon.damage);
         }
         Debug.Log("hit!");
-        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 }

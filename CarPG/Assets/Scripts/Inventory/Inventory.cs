@@ -15,14 +15,21 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Canvas _canvas;
 
-    private InventoryApplier car;
+    private InventoryApplier applier;
+
+    private GameObject car;
     [SerializeField]
     public InventorySlot weaponSlot;
     [SerializeField]
     public InventorySlot carmorSlot;
     [SerializeField]
     public InventorySlot bumperSlot;
-
+    [SerializeField]
+    public float pickupDistance = 3;
+    [SerializeField]
+    public static GameObject pickupItem;
+    [SerializeField]
+    
     private Cinemachine.CinemachineFreeLook cameraController;
     private float axisMSpeedX;
     private float axisMSpeedY;
@@ -32,7 +39,7 @@ public class Inventory : MonoBehaviour
     {
         _canvas=gameObject.GetComponent<Canvas>();
 
-        car = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryApplier>();
+        applier = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryApplier>();
 
         Button[] buttons = GetComponentsInChildren<Button>();
         foreach(Button button in buttons)
@@ -45,6 +52,8 @@ public class Inventory : MonoBehaviour
         //_canvas.enabled = false;
 
         cameraController = GameObject.FindGameObjectWithTag("CameraController").GetComponent<Cinemachine.CinemachineFreeLook>();
+
+        car = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnValidate()
@@ -82,9 +91,9 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                car.SetWeapon(weaponSlot.Content?.prefab);
-                car.SetCarmor(carmorSlot.Content);
-                car.SetBumpers(bumperSlot.Content?.prefab);
+                applier.SetWeapon(weaponSlot.Content?.prefab);
+                applier.SetCarmor(carmorSlot.Content);
+                applier.SetBumpers(bumperSlot.Content?.prefab);
                 Cursor.visible = false;
 
                 cameraController.m_XAxis.m_MaxSpeed = axisMSpeedX;
@@ -93,6 +102,32 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
 
                 InventoryOpen = false;
+            }
+        }
+
+        var items = GameObject.FindGameObjectsWithTag("ItemDrop");
+
+        pickupItem = null;
+
+        float closest = pickupDistance;
+
+        foreach(GameObject go in items)
+        {
+
+            float distance = Vector3.Distance(go.transform.position, car.transform.position);
+
+            if (distance < closest)
+            {
+                closest = distance;
+                pickupItem = go;
+            }
+        }
+
+        if (CrossPlatformInputManager.GetButtonDown("PickUp")&&pickupItem!=null)
+        {
+            if (PickUpItem(pickupItem.GetComponent<ItemHolder>().GetContent()))
+            {
+                GameObject.Destroy(pickupItem);
             }
         }
     }
@@ -153,5 +188,35 @@ public class Inventory : MonoBehaviour
     public void DropItem(Item i)
     {
         //TODO: add code to drop whatever item we discard
+
+        Vector3 position = car.transform.position;
+
+        position.y += 1;
+
+        ItemHolder.CreateItemDrop(position,i);
+
+    }
+
+    public bool PickUpItem(Item item)
+    {
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].Content == null)
+            {
+                slots[i].Content = item;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void OnGUI()
+    {
+        if (pickupItem != null)
+        {
+            Rect rect = new Rect(Screen.width/2.0f-100,Screen.height/2.0f+60,200,20);
+            string key = "Q"; //You cannot get the bound key as of now. There may be a way to get it using an eternal tool.
+            GUI.Box(rect, "Press "+key+" to pick up "+pickupItem.name);
+        }
     }
 }

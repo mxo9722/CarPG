@@ -28,13 +28,17 @@ public class Explosion : MonoBehaviour
 
             while (go.transform.parent != null && rb == null)
             {
+                if (go.tag != go.transform.parent.tag)
+                    break;
+
                 go = go.transform.parent.gameObject;
                 rb = go.GetComponentInChildren<Rigidbody>();
+
             }
 
             if (!explosionList.Contains(rb)&&rb!=null)
             {
-                rb.AddExplosionForce(power, transform.position, radius, 2);
+                rb.AddExplosionForce(power, transform.position, radius, 0.3f);
                 explosionList.Add(rb);
             }
 

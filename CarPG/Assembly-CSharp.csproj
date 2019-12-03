@@ -62,6 +62,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DinoFracture\Scripts\DestroyOnAudioFinish.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\DisableObjectsOnFracture.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\FractureEngine.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\FractureGeometry.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\FractureOnCollision.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\FractureOnInput.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\GlueEdgeOnFracture.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\NotifyOnFracture.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\PlaySoundOnFracture.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\PreFracturedGeometry.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\RuntimeFracturedGeometry.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\TransferJointsOnFracture.cs" />
+    <Compile Include="Assets\DinoFracture\Scripts\TriggerExplosionOnCollision.cs" />
+    <Compile Include="Assets\DinoFractureDemo\Scripts\Button.cs" />
+    <Compile Include="Assets\DinoFractureDemo\Scripts\FractureOnClick.cs" />
+    <Compile Include="Assets\DinoFractureDemo\Scripts\GameRoot.cs" />
+    <Compile Include="Assets\DinoFractureDemo\Scripts\TurnOffLightOnFracture.cs" />
+    <Compile Include="Assets\DinoFractureDemo\Scripts\UI.cs" />
+    <Compile Include="Assets\FractureOnDeath.cs" />
     <Compile Include="Assets\Scripts\CameraTransparencyScript.cs" />
     <Compile Include="Assets\Scripts\CarJump.cs" />
     <Compile Include="Assets\Scripts\Cushioned.cs" />
@@ -77,6 +96,7 @@
     <Compile Include="Assets\Scripts\Inventory\InventoryApplier.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Inventory\Item.cs" />
+    <Compile Include="Assets\Scripts\ItemHolder.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseControl.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\ParticleTestingScript.cs" />
@@ -319,6 +339,9 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="DinoFracture">
+      <HintPath>C:/Users/moher/Documents/CarPG/CarPG/CarPG/Assets/Plugins/DinoFracture.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/moher/Documents/CarPG/CarPG/CarPG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
