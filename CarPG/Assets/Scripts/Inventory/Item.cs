@@ -58,7 +58,6 @@ public class Item : ScriptableObject
 
     public void OnValidate()
     {
-        Debug.Log("Validated");
 
         titleHeight = styleObject.titleStyle.CalcSize(new GUIContent("SUBTITLE")).y;
         contentHeight = styleObject.subTitleStyle.CalcSize(new GUIContent("SUBTITLE")).y;

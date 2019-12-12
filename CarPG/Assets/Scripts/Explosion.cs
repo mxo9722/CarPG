@@ -26,9 +26,9 @@ public class Explosion : MonoBehaviour
 
             Rigidbody rb = null;
 
-            while (go.transform.parent != null && rb == null)
+            while (go.transform.parent != null&&!go.GetComponent<Damagable>())
             {
-                if (go.tag != go.transform.parent.tag)
+                if (go.layer != go.transform.parent.gameObject.layer)
                     break;
 
                 go = go.transform.parent.gameObject;
@@ -36,23 +36,23 @@ public class Explosion : MonoBehaviour
 
             }
 
+            Debug.Log(go.name);
+
             if (!explosionList.Contains(rb)&&rb!=null)
             {
                 rb.AddExplosionForce(power, transform.position, radius, 0.3f);
                 explosionList.Add(rb);
             }
 
-            Damagable d = go.GetComponentInChildren<Damagable>();
+            Damagable d = go.GetComponent<Damagable>();
+            //if(d==null)
+                //d = go.GetComponentInChildren<Damagable>();
 
             if (d != null && !damagableList.Contains(d))
             {
-                float damageAmount = 1 - (Vector3.Distance(transform.position, go.transform.position) / radius);
+                float damageAmount = 1 - (Vector3.Distance(transform.position, collider.ClosestPointOnBounds(transform.position)) / radius);
 
                 damageAmount *= damage;
-
-                damageAmount -= d.damageThreshhold;
-
-                damageAmount = Mathf.Max(0, damageAmount);
 
                 d.ApplyDamage(damageAmount);
 

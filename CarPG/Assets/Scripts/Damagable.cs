@@ -8,7 +8,7 @@ public class Damagable : MonoBehaviour
     public float maxHealth = 100;
     public float health;
     public float damageThreshhold;
-    public float damageMultiplier;
+    public float damageMultiplier=1;
     [HideInInspector]
     public Damagable healthPool=null;
 
@@ -83,11 +83,11 @@ public class Damagable : MonoBehaviour
             impulse /= cushion.impulseDivider;
         }
 
-        ApplyDamage( impulse * damageMultiplier - damageThreshhold );
+        ApplyDamage( impulse * damageMultiplier - damageThreshhold, collision );
         
     }
 
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(float damage,Collision col=null)
     {
 
         damage -= damageThreshhold;
@@ -105,7 +105,10 @@ public class Damagable : MonoBehaviour
             gameObject.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
             if (health <= 0)
             {
-                gameObject.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+                if (col != null)
+                    gameObject.SendMessage("DieCollision", col,SendMessageOptions.DontRequireReceiver);
+                else
+                    gameObject.SendMessage("Die",SendMessageOptions.DontRequireReceiver);
             }
         }
     }
