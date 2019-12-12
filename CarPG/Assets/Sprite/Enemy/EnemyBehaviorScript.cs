@@ -105,11 +105,15 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected void Idle()
     {
-        anim.SetTrigger("Standing");
+        if (anim)
+        {
+            anim.SetTrigger("Standing");
+        }
         if (Mathf.Floor(stateTimer) % 3 == 0) //every 3 seconds this happens twice
         {
             Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
-            anim.SetTrigger("Walking");
+            if (anim)
+                anim.SetTrigger("Walking");
             rb.velocity = Vector3.Normalize(wander) * speed;
 
             rb.rotation = Quaternion.identity;
@@ -130,7 +134,8 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected void Aggro()
     {
-        anim.SetTrigger("Running");
+        if (anim)
+            anim.SetTrigger("Running");
         rb.rotation = Quaternion.identity;
 
         var lookPos = car.transform.position - transform.position;
@@ -180,7 +185,8 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
             else if (collidersInRange[i].gameObject.GetComponentInParent<Damagable>() != null)
             {
-                anim.SetTrigger("Attacking");
+                if (anim)
+                    anim.SetTrigger("Attacking");
                 collidersInRange[i].gameObject.GetComponentInParent<Damagable>().ApplyDamage(attackStrength);
                 collidersInRange[i].gameObject.GetComponentInParent<Rigidbody>().AddForce((collidersInRange[i].gameObject.transform.position - transform.position) * attackStrength * attackKnockback);
                 //Debug.Log("This is happening");

@@ -196,9 +196,9 @@ GameObject:
   - component: {fileID: 6082197334148987147}
   - component: {fileID: 9194372758040716247}
   - component: {fileID: 9194372758040716233}
-  - component: {fileID: 9194372758040716232}
   - component: {fileID: 9194372758040716235}
   - component: {fileID: 9194372758040716234}
+  - component: {fileID: 6032606730671754813}
   m_Layer: 0
   m_Name: Unshaded Animated Goblin
   m_TagString: Untagged
@@ -213,9 +213,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916786373279966818}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.18, y: -3.368, z: 3.39}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 980852277059256083}
   - {fileID: 6077170839142644750}
@@ -270,20 +270,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7773132, y: 3.4614735, z: 2.9570217}
   m_Center: {x: -0.0818634, y: -1.1057367, z: 1.4785109}
---- !u!136 &9194372758040716232
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916786373279966818}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.83657837
-  m_Height: 8.091851
-  m_Direction: 1
-  m_Center: {x: 0.052490234, y: -0.30166006, z: -0.18231201}
 --- !u!114 &9194372758040716235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +309,20 @@ MonoBehaviour:
   anim: {fileID: 0}
   behaveTimer: 0
   stateTimer: 0
+--- !u!64 &6032606730671754813
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916786373279966818}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 7336033297182201316, guid: 242d46a9c6bbaff499356e5900e12e90, type: 3}
 --- !u!1 &953107337639245352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,11 +1017,11 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7814782123472144733, guid: 242d46a9c6bbaff499356e5900e12e90, type: 3}
-  - {fileID: 6117936088998095409, guid: 242d46a9c6bbaff499356e5900e12e90, type: 3}
-  - {fileID: -4597107667637640440, guid: 242d46a9c6bbaff499356e5900e12e90, type: 3}
-  - {fileID: 2222221942914795175, guid: 242d46a9c6bbaff499356e5900e12e90, type: 3}
-  - {fileID: 8368722655750445499, guid: 242d46a9c6bbaff499356e5900e12e90, type: 3}
+  - {fileID: 2100000, guid: 7a937427fe210e04f947176d41993e70, type: 2}
+  - {fileID: 2100000, guid: 1563a721f2c87974d91be7be18a0360f, type: 2}
+  - {fileID: 2100000, guid: 74e32e6ae5218f444801179236855b08, type: 2}
+  - {fileID: 2100000, guid: 401336b120589ab41a0f625efd4f57d4, type: 2}
+  - {fileID: 2100000, guid: cbb9c89bbe93ea94db5ec67cc88f8884, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

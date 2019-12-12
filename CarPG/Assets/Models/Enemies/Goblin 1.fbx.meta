@@ -3,7 +3,32 @@ guid: 242d46a9c6bbaff499356e5900e12e90
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoblinNails
+    second: {fileID: 2100000, guid: 1563a721f2c87974d91be7be18a0360f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoblinSkin
+    second: {fileID: 2100000, guid: 7a937427fe210e04f947176d41993e70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoblinTeeth
+    second: {fileID: 2100000, guid: 401336b120589ab41a0f625efd4f57d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: cbb9c89bbe93ea94db5ec67cc88f8884, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert5
+    second: {fileID: 2100000, guid: 74e32e6ae5218f444801179236855b08, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -85,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.01
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
