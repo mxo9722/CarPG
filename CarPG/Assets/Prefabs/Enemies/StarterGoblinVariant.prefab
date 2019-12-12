@@ -75,7 +75,8 @@ MonoBehaviour:
   speed: 5
   speedLimit: 10
   attackStrength: 10
-  collidersInRange: []
+  attackKnockback: 10000
+  anim: {fileID: 0}
   behaveTimer: 0
   stateTimer: 0
 --- !u!114 &33465677

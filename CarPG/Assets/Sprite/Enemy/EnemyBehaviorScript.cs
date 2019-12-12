@@ -24,6 +24,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     public float speedLimit = 10;
     public float attackStrength; //How much DAMAGE this dude does
     public float attackKnockback = 10000;
+    public Animator anim;
     //public float attackDistance;
     protected  GameObject car;
 
@@ -42,6 +43,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
+        anim = GetComponent<Animator>();
         behaveTimer = Random.value * -1;
         rb = GetComponent<Rigidbody>();
         atkCollider = GetComponent<BoxCollider>();
@@ -103,9 +105,11 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected void Idle()
     {
+        anim.SetTrigger("Standing");
         if (Mathf.Floor(stateTimer) % 3 == 0) //every 3 seconds this happens twice
         {
             Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
+            anim.SetTrigger("Walking");
             rb.velocity = Vector3.Normalize(wander) * speed;
 
             rb.rotation = Quaternion.identity;
@@ -126,6 +130,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected void Aggro()
     {
+        anim.SetTrigger("Running");
         rb.rotation = Quaternion.identity;
 
         var lookPos = car.transform.position - transform.position;
@@ -175,6 +180,7 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
             else if (collidersInRange[i].gameObject.GetComponentInParent<Damagable>() != null)
             {
+                anim.SetTrigger("Attacking");
                 collidersInRange[i].gameObject.GetComponentInParent<Damagable>().ApplyDamage(attackStrength);
                 collidersInRange[i].gameObject.GetComponentInParent<Rigidbody>().AddForce((collidersInRange[i].gameObject.transform.position - transform.position) * attackStrength * attackKnockback);
                 //Debug.Log("This is happening");
