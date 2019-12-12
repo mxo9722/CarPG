@@ -81,7 +81,7 @@ public class WizardEnemy : EnemyBehaviorScript
 
             rb.velocity += Vector3.up * 5;
 
-            if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
+            if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance)
             {
                 currentState = EnemyState.Idle;
                 stateTimer = 0;
