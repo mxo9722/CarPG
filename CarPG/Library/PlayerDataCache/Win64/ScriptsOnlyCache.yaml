@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor.dll:
+    - ReplaceWithPrefab
     Assembly-CSharp-firstpass.dll:
     - UnityStandardAssets.Vehicles.Car.CarAudio
     - UnityStandardAssets.Vehicles.Car.CarController
@@ -10,23 +12,36 @@ ScriptsOnlyBuild:
     - UnityStandardAssets.Vehicles.Car.Suspension
     - UnityStandardAssets.Vehicles.Car.WheelEffects
     Assembly-CSharp.dll:
+    - CameraTransparencyScript
     - CarJump
+    - CreditsEscape
     - Cushioned
     - Damagable
-    - DestructableTerrain
+    - DinoFracture.FractureEngine
+    - DinoFracture.RuntimeFracturedGeometry
     - EnemyBehaviorScript
     - Explosion
+    - FractureOnDeath
+    - GUIStyleObject
     - HammerHitbox
     - HammerSwing
     - HeadLights
-    - HealthBar
+    - HotRod
     - Inventory
     - InventoryApplier
     - InventorySlot
     - Item
+    - ItemHolder
+    - MainMenuButton
+    - MusicManager
+    - PauseControl
+    - PauseMenu
     - Projectile
     - SwordHitbox
     - SwordSwing
+    - TitleScript
+    - UnityStandardAssets.Vehicles.Car.NeedleRot
+    - WarningLights
     - WizardEnemy
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
@@ -35,19 +50,104 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachineFreeLook
     - Cinemachine.CinemachineOrbitalTransposer
     - Cinemachine.CinemachinePipeline
+    - Cinemachine.CinemachineTransposer
     - Cinemachine.CinemachineVirtualCamera
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
+    - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
+    Assets/Scenes/Credits.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 111
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9548}
+    - Class: 114
+      Script: {instanceID: 9554}
+    - Class: 114
+      Script: {instanceID: 9560}
+    - Class: 114
+      Script: {instanceID: 9568}
+    - Class: 114
+      Script: {instanceID: 9604}
+    - Class: 114
+      Script: {instanceID: 9606}
+    - Class: 114
+      Script: {instanceID: 10038}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Dungeon.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -90,110 +190,288 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9342}
+      Script: {instanceID: 9350}
     - Class: 114
-      Script: {instanceID: 9396}
+      Script: {instanceID: 9412}
     - Class: 114
-      Script: {instanceID: 9398}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9408}
+      Script: {instanceID: 9484}
     - Class: 114
-      Script: {instanceID: 9440}
+      Script: {instanceID: 9546}
     - Class: 114
-      Script: {instanceID: 9448}
+      Script: {instanceID: 9548}
     - Class: 114
-      Script: {instanceID: 9470}
+      Script: {instanceID: 9554}
     - Class: 114
-      Script: {instanceID: 9500}
+      Script: {instanceID: 9556}
     - Class: 114
-      Script: {instanceID: 9508}
+      Script: {instanceID: 9560}
     - Class: 114
-      Script: {instanceID: 9522}
+      Script: {instanceID: 9568}
     - Class: 114
-      Script: {instanceID: 9558}
+      Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9642}
+      Script: {instanceID: 9688}
     - Class: 114
-      Script: {instanceID: 9748}
+      Script: {instanceID: 9778}
     - Class: 114
-      Script: {instanceID: 9766}
+      Script: {instanceID: 9814}
     - Class: 114
-      Script: {instanceID: 9786}
+      Script: {instanceID: 9860}
     - Class: 114
-      Script: {instanceID: 9854}
+      Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 9874}
+      Script: {instanceID: 9912}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9932}
     - Class: 114
-      Script: {instanceID: 9916}
+      Script: {instanceID: 9954}
     - Class: 114
-      Script: {instanceID: 9930}
+      Script: {instanceID: 9974}
     - Class: 114
-      Script: {instanceID: 10000}
+      Script: {instanceID: 9986}
     - Class: 114
-      Script: {instanceID: 10010}
+      Script: {instanceID: 9992}
     - Class: 114
-      Script: {instanceID: 10012}
+      Script: {instanceID: 9994}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10070}
     - Class: 114
-      Script: {instanceID: 10112}
+      Script: {instanceID: 10080}
     - Class: 114
-      Script: {instanceID: 10164}
+      Script: {instanceID: 10082}
     - Class: 114
-      Script: {instanceID: 10170}
+      Script: {instanceID: 10130}
     - Class: 114
-      Script: {instanceID: 10250}
+      Script: {instanceID: 10182}
     - Class: 114
-      Script: {instanceID: 10280}
+      Script: {instanceID: 10188}
     - Class: 114
-      Script: {instanceID: 10282}
+      Script: {instanceID: 10242}
     - Class: 114
-      Script: {instanceID: 10316}
+      Script: {instanceID: 10248}
+    - Class: 114
+      Script: {instanceID: 10328}
     - Class: 114
       Script: {instanceID: 10358}
     - Class: 114
-      Script: {instanceID: 10416}
+      Script: {instanceID: 10394}
     - Class: 114
-      Script: {instanceID: 10422}
+      Script: {instanceID: 10442}
     - Class: 114
-      Script: {instanceID: 10592}
+      Script: {instanceID: 10500}
     - Class: 114
-      Script: {instanceID: 10624}
+      Script: {instanceID: 10506}
     - Class: 114
-      Script: {instanceID: 10650}
+      Script: {instanceID: 10682}
     - Class: 114
-      Script: {instanceID: 10656}
+      Script: {instanceID: 10722}
     - Class: 114
-      Script: {instanceID: 10668}
+      Script: {instanceID: 10748}
     - Class: 114
-      Script: {instanceID: 10714}
+      Script: {instanceID: 10760}
     - Class: 114
-      Script: {instanceID: 10832}
+      Script: {instanceID: 10806}
     - Class: 114
-      Script: {instanceID: 10846}
+      Script: {instanceID: 10924}
     - Class: 114
-      Script: {instanceID: 11120}
+      Script: {instanceID: 10940}
     - Class: 114
-      Script: {instanceID: 11166}
+      Script: {instanceID: 11138}
     - Class: 114
       Script: {instanceID: 11172}
     - Class: 114
-      Script: {instanceID: 11182}
+      Script: {instanceID: 11230}
+    - Class: 114
+      Script: {instanceID: 11278}
+    - Class: 114
+      Script: {instanceID: 11284}
+    - Class: 114
+      Script: {instanceID: 11294}
     - Class: 115
       Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 134
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 146
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MenuScenes/PauseMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9546}
+    - Class: 114
+      Script: {instanceID: 9548}
+    - Class: 114
+      Script: {instanceID: 9554}
+    - Class: 114
+      Script: {instanceID: 9560}
+    - Class: 114
+      Script: {instanceID: 9568}
+    - Class: 114
+      Script: {instanceID: 9604}
+    - Class: 114
+      Script: {instanceID: 9606}
+    - Class: 114
+      Script: {instanceID: 9848}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Title.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 109
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9376}
+    - Class: 114
+      Script: {instanceID: 9414}
+    - Class: 114
+      Script: {instanceID: 9440}
+    - Class: 114
+      Script: {instanceID: 9442}
+    - Class: 114
+      Script: {instanceID: 9452}
+    - Class: 114
+      Script: {instanceID: 9492}
+    - Class: 114
+      Script: {instanceID: 9514}
+    - Class: 114
+      Script: {instanceID: 9546}
+    - Class: 114
+      Script: {instanceID: 9548}
+    - Class: 114
+      Script: {instanceID: 9554}
+    - Class: 114
+      Script: {instanceID: 9560}
+    - Class: 114
+      Script: {instanceID: 9568}
+    - Class: 114
+      Script: {instanceID: 9604}
+    - Class: 114
+      Script: {instanceID: 9834}
+    - Class: 114
+      Script: {instanceID: 10054}
+    - Class: 114
+      Script: {instanceID: 10182}
+    - Class: 114
+      Script: {instanceID: 10242}
+    - Class: 114
+      Script: {instanceID: 10328}
+    - Class: 114
+      Script: {instanceID: 10360}
+    - Class: 114
+      Script: {instanceID: 10432}
+    - Class: 114
+      Script: {instanceID: 10486}
+    - Class: 114
+      Script: {instanceID: 10590}
+    - Class: 114
+      Script: {instanceID: 10606}
+    - Class: 114
+      Script: {instanceID: 10682}
+    - Class: 114
+      Script: {instanceID: 10714}
+    - Class: 114
+      Script: {instanceID: 10748}
+    - Class: 114
+      Script: {instanceID: 10802}
+    - Class: 114
+      Script: {instanceID: 11078}
+    - Class: 114
+      Script: {instanceID: 11230}
+    - Class: 114
+      Script: {instanceID: 11294}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
     - Class: 137
-      Script: {instanceID: 0}
-    - Class: 138
-      Script: {instanceID: 0}
-    - Class: 146
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -212,6 +490,12 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+      Hash: b9a70cdc50d52775c77ab4f1c7177525
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WarningLights
+  - hash:
+      serializedVersion: 2
       Hash: 23d669c8bf2983ca4a3df160658318a6
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -224,6 +508,12 @@ ScriptsOnlyBuild:
     className: TMP_SelectionCaret
   - hash:
       serializedVersion: 2
+      Hash: 3fdb6824d947de2038a56148cd6a5e1a
+    assemblyName: DinoFracture.dll
+    namespaceName: DinoFracture
+    className: DebugOutline
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -234,6 +524,30 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 6da27547ffc4ab6fef36f1a39fa1ec04
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: GlueEdgeOnFracture
+  - hash:
+      serializedVersion: 2
+      Hash: 0dea16c4483c46b97c2398c267c788de
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: RuntimeFracturedGeometry
+  - hash:
+      serializedVersion: 2
+      Hash: f1dcfe313fbdc58837796178484ae7bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TitleScript
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: PlaySoundOnFracture
   - hash:
       serializedVersion: 2
       Hash: a2113831d3323f931007e1b3812dc814
@@ -312,6 +626,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.Advertisements.Editor.dll
     namespaceName: UnityEngine.Advertisements.Editor
     className: Placeholder
+  - hash:
+      serializedVersion: 2
+      Hash: bdcec00b12eb0d6e1a64a7eff94e30e4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FractureOnInput
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -729,6 +1049,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: FractureEngine
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
@@ -764,6 +1090,30 @@ ScriptsOnlyBuild:
     className: NetworkProximityChecker
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFractureDemo
+    className: TurnOffLightOnFracture
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraTransparencyScript
+  - hash:
+      serializedVersion: 2
+      Hash: ee3d640b7493fadcfc75dbb32fc561f7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Weapon
+  - hash:
+      serializedVersion: 2
       Hash: 00274a21279f5cb831ce20f895049e38
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -774,6 +1124,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.XR.LegacyInputHelpers.dll
     namespaceName: UnityEngine.XR.LegacyInputHelpers
     className: TransitionArmModel
+  - hash:
+      serializedVersion: 2
+      Hash: bd83b7229b21eb9685f7e3c112a20979
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FractureOnDeath
   - hash:
       serializedVersion: 2
       Hash: 780e8f682b3221346c034a6712a0fd25
@@ -818,10 +1174,28 @@ ScriptsOnlyBuild:
     className: InventoryApplier
   - hash:
       serializedVersion: 2
+      Hash: 4aafa364b6d91ea1d4a65e820cc406e3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFractureDemo
+    className: Button
+  - hash:
+      serializedVersion: 2
       Hash: 8963690ef6f6b05ce03bfd8b5c26e20c
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: NoiseSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseControl
+  - hash:
+      serializedVersion: 2
+      Hash: 7dacf4abbf6dc4ea95327c54757e9d95
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HotRod
   - hash:
       serializedVersion: 2
       Hash: 507de485ce5ed57974d394b8e1a87a1d
@@ -842,16 +1216,34 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
+      Hash: dc06651b171619f46ce6ab61f0da361c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: FractureOnCollision
+  - hash:
+      serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CreditsEscape
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Cinemachine.dll
     namespaceName: 
     className: CinemachineTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 8d6e22bfc9300d0bf70cdd01bbb95b41
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: TransferJointsOnFracture
   - hash:
       serializedVersion: 2
       Hash: b8a5e8091ab0b8861d2add371082c5e0
@@ -866,7 +1258,7 @@ ScriptsOnlyBuild:
     className: CinemachineFramingTransposer
   - hash:
       serializedVersion: 2
-      Hash: 2b834d96db3db7f1d9a466e0a2f76fa4
+      Hash: de5ba2792ad5f6ed61a2213df312e956
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyBehaviorScript
@@ -878,7 +1270,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: b2d058475421b7e9f1b61ed0946e52ea
+      Hash: 7ae4bff5fb36e8cc0439be6526446f84
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SwordHitbox
@@ -932,16 +1324,34 @@ ScriptsOnlyBuild:
     className: AxisTouchButton
   - hash:
       serializedVersion: 2
+      Hash: 693918c8817d2fe5ab51ebf16eb4ec5c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemHolder
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Asset
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFractureDemo
+    className: FractureOnClick
+  - hash:
+      serializedVersion: 2
       Hash: 6987e53805e8a29a4a553f91e9a02ba2
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineOrbitalTransposer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture.Internal
+    className: DestroyOnAudioFinish
   - hash:
       serializedVersion: 2
       Hash: f03168bb2f3505e6cc0ba61aff5d31ab
@@ -974,7 +1384,7 @@ ScriptsOnlyBuild:
     className: CinemachineComposer
   - hash:
       serializedVersion: 2
-      Hash: 89ff1f7d66997ee0e404bf14dca0083f
+      Hash: b33c521d443db3d96c7b0a05d47ada7a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WizardEnemy
@@ -1058,13 +1468,31 @@ ScriptsOnlyBuild:
     className: CarSelfRighting
   - hash:
       serializedVersion: 2
+      Hash: 659d6ceab26f9e4237abaaf29249f293
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GoblinTest
+  - hash:
+      serializedVersion: 2
+      Hash: bd0d4d01e7c5bb0ef4d787e918ee6758
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: PreFracturedGeometry
+  - hash:
+      serializedVersion: 2
       Hash: 56df1fa7cea034df9863fe5a24200a32
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineTargetGroup
   - hash:
       serializedVersion: 2
-      Hash: a48fa092bdd40985fba15d5235488087
+      Hash: 403e1e3d158be87cc85bb64f08e213ae
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenuButton
+  - hash:
+      serializedVersion: 2
+      Hash: 3a0963ecd6ab871dac4249725d1bf725
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SwordSwing
@@ -1088,13 +1516,13 @@ ScriptsOnlyBuild:
     className: NetworkStartPosition
   - hash:
       serializedVersion: 2
-      Hash: b2d058475421b7e9f1b61ed0946e52ea
+      Hash: 7ae4bff5fb36e8cc0439be6526446f84
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HammerHitbox
   - hash:
       serializedVersion: 2
-      Hash: 02f7e4b5eeb1131d5560a4c8785934df
+      Hash: 24ae78f3b8e347518a076375cdb1ee48
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Inventory
@@ -1178,6 +1606,12 @@ ScriptsOnlyBuild:
     className: HandHeldCam
   - hash:
       serializedVersion: 2
+      Hash: 3fdb6824d947de2038a56148cd6a5e1a
+    assemblyName: DinoFracture.dll
+    namespaceName: DinoFracture
+    className: DebugOutline
+  - hash:
+      serializedVersion: 2
       Hash: 1e3d6222ff533d213aab144eb854a53b
     assemblyName: Cinemachine.dll
     namespaceName: 
@@ -1188,6 +1622,12 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkMigrationManager
+  - hash:
+      serializedVersion: 2
+      Hash: 4d1b739bfd9fa7dd19f660036bebe189
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: NotifyOnFracture
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1242,6 +1682,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: TimelineAsset
+  - hash:
+      serializedVersion: 2
+      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: NeedleRot
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1304,7 +1750,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: e4e0a3591824c51ef0791638f24e731e
+      Hash: 6d1451b5feafb4ef09c7c944f0780477
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Item
@@ -1334,6 +1780,12 @@ ScriptsOnlyBuild:
     className: TouchPad
   - hash:
       serializedVersion: 2
+      Hash: ce0dd5e43561dd590ba8c1ea3d73639a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: TriggerExplosionOnCollision
+  - hash:
+      serializedVersion: 2
       Hash: 1dcb82730d983b77cec736c6ef19f814
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -1358,10 +1810,28 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 3fdb6824d947de2038a56148cd6a5e1a
+    assemblyName: DinoFracture.dll
+    namespaceName: DinoFracture
+    className: DebugOutline
+  - hash:
+      serializedVersion: 2
       Hash: e6ae40841db498b6e673877ac45ad208
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 17e6f7251928503111dc3a2386f632aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GUIStyleObject
+  - hash:
+      serializedVersion: 2
+      Hash: 23077f488801ec22886ffa93a51e3f1f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MusicManager
   - hash:
       serializedVersion: 2
       Hash: 5372ed2ce39229b1ac910757999a8be2
@@ -1376,6 +1846,12 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
+      Hash: d7bb0b75a99278553dbc91a70b41713a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFracture
+    className: DisableObjectsOnFracture
+  - hash:
+      serializedVersion: 2
       Hash: e0ee4b3d4e27318934cc940a969d3d96
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -1386,6 +1862,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMesh
+  - hash:
+      serializedVersion: 2
+      Hash: 6c0c17c7ea51049f714d90ed59543437
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFractureDemo
+    className: GameRoot
   - hash:
       serializedVersion: 2
       Hash: 31aaf1b0d478f69639405ed5e51607b0
@@ -1400,6 +1882,12 @@ ScriptsOnlyBuild:
     className: CinemachineHardLockToTarget
   - hash:
       serializedVersion: 2
+      Hash: cf7a40edd1caa47216b3f2fe7d768b74
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DinoFractureDemo
+    className: UI
+  - hash:
+      serializedVersion: 2
       Hash: 94a6212bc97ed891bf46c9c21a0658cc
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1412,7 +1900,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: a48fa092bdd40985fba15d5235488087
+      Hash: 3a0963ecd6ab871dac4249725d1bf725
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HammerSwing
@@ -1442,5 +1930,8 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 19
   scenePathNames:
+  - Assets/Scenes/Title.unity
   - Assets/Scenes/Dungeon.unity
-  playerPath: C:/Users/moher/CARPGExecutableMilestone2/CarPG.exe
+  - Assets/Scenes/MenuScenes/PauseMenu.unity
+  - Assets/Scenes/Credits.unity
+  playerPath: Z:/IGMProfile/Documents/GitHub/CarPG_Build/CarPG.exe

@@ -8,7 +8,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PauseControl : MonoBehaviour
 {
 
-    public SceneAsset pauseMenu;
+    //public SceneAsset pauseMenu;
 
     public static bool MenuOpen = false;
 
@@ -24,16 +24,16 @@ public class PauseControl : MonoBehaviour
     {
         var pressed = CrossPlatformInputManager.GetButtonDown("Pause");
 
-        if (pressed&&!SceneManager.GetSceneByName(pauseMenu.name).isLoaded)
+        if (pressed&&!SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {
-            SceneManager.LoadSceneAsync(AssetDatabase.GetAssetPath(pauseMenu),LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("PauseMenu",LoadSceneMode.Additive);
             hideCursor = Cursor.lockState;
             Cursor.lockState = CursorLockMode.None;
             MenuOpen = true;
         }
         else if (pressed)
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(pauseMenu.name).buildIndex);
+            SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("PauseMenu").buildIndex);
             Cursor.lockState = hideCursor;
             MenuOpen = false;
         }

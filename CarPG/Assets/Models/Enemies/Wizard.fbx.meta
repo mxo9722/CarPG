@@ -3,7 +3,37 @@ guid: 68fc00146a8fa5f43a35698107214c47
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Medal
+    second: {fileID: 2100000, guid: 82a3c47aa39f4fa4ab6b87a66517a58c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobeColorq
+    second: {fileID: 2100000, guid: 6f8df013aef72dc438a93664ed655ee1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobeDark
+    second: {fileID: 2100000, guid: 7b0f5d5a198964f4cb810fbd4c2f2516, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobeTrim
+    second: {fileID: 2100000, guid: b999662e30035dd409e716221e5a947c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WizardEyes
+    second: {fileID: 2100000, guid: 0d2daa4fca3920c4c9f25f03e43c98a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WizardSkin
+    second: {fileID: 2100000, guid: 05148d0d44e38db459f5dfadee69e8d5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

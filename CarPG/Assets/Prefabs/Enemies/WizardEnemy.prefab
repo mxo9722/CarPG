@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5963916392475902331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 6523844011128466229}
   - {fileID: 6523844012144760993}
@@ -46,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5963916392475902331}
-  m_Mesh: {fileID: 7336033297182201316, guid: 8115a8c045b9ddb498d8efd417df1b1c, type: 3}
+  m_Mesh: {fileID: 6449654466282237968, guid: 68fc00146a8fa5f43a35698107214c47, type: 3}
 --- !u!23 &5402279206857340327
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,11 +64,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 719b9f117570e474ca44722a432cd69c, type: 2}
-  - {fileID: 2100000, guid: 81e53395b9f0c7247bba00e8436c12e8, type: 2}
-  - {fileID: 2100000, guid: f97acb5ebb2c8b3468ed6fdbe5d2f416, type: 2}
-  - {fileID: 2100000, guid: 1f3567e102cd597409eb3d031d5ca09f, type: 2}
-  - {fileID: 2100000, guid: 6ebe99114a4608b4fade7292d3263154, type: 2}
+  - {fileID: 2100000, guid: 82a3c47aa39f4fa4ab6b87a66517a58c, type: 2}
+  - {fileID: 2100000, guid: b999662e30035dd409e716221e5a947c, type: 2}
+  - {fileID: 2100000, guid: 0d2daa4fca3920c4c9f25f03e43c98a6, type: 2}
+  - {fileID: 2100000, guid: 05148d0d44e38db459f5dfadee69e8d5, type: 2}
+  - {fileID: 2100000, guid: 74e32e6ae5218f444801179236855b08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,8 +114,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.62573236
-  m_Height: 1.6360236
+  m_Radius: 1.68
+  m_Height: 8.61
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.000000007450581}
 --- !u!64 &6613752190157939503
@@ -167,7 +167,8 @@ MonoBehaviour:
   speed: 5
   speedLimit: 10
   attackStrength: 0
-  collidersInRange: []
+  attackKnockback: 10000
+  anim: {fileID: 0}
   behaveTimer: 0
   stateTimer: 0
   attackRange: 40
