@@ -265,6 +265,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="DinoFracture">
+      <HintPath>Assets/Plugins/DinoFracture.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/Chris/Documents/GitHub/CarPG/CarPG/Library/PackageCache/com.unity.ads@2.3.1/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -651,6 +654,9 @@
     <Compile Include="Packages\com.unity.xr.legacyinputhelpers\Editor\TrackedPoseDriver\TrackedPoseDriverEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\DinoFracture.xml" />
+    <None Include="Assets\Plugins\WP8\DinoFracture.xml" />
+    <None Include="Assets\Plugins\WSA\DinoFracture.xml" />
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
     <None Include="Assets\Shaders\CartoonShader.shader" />
     <None Include="Assets\Shaders\ToonBasic.shader" />

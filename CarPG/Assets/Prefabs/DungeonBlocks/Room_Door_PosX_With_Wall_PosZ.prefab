@@ -109,6 +109,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5008188165236338490}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 0f0ad72c895c77549b725f2f321aecc6,
+        type: 3}
+      propertyPath: m_Name
+      value: TileCeiling
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0f0ad72c895c77549b725f2f321aecc6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -163,11 +168,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0f0ad72c895c77549b725f2f321aecc6,
-        type: 3}
-      propertyPath: m_Name
-      value: TileCeiling
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0ad72c895c77549b725f2f321aecc6, type: 3}
@@ -276,15 +276,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5008188165236338490}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
-        type: 3}
-      propertyPath: m_Name
-      value: TileWallDoor
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.5
+      value: 4.75
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
         type: 3}
@@ -336,6 +331,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
+        type: 3}
+      propertyPath: m_Name
+      value: TileWallDoor
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -362,6 +362,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5008188165236338490}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 1ff852775592e97458f384f7427305ea,
+        type: 3}
+      propertyPath: m_Name
+      value: TileFLoor
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1ff852775592e97458f384f7427305ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -416,11 +421,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 1ff852775592e97458f384f7427305ea,
-        type: 3}
-      propertyPath: m_Name
-      value: TileFLoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ff852775592e97458f384f7427305ea, type: 3}
