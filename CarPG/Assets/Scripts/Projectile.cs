@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
 
     void Hit(Collider collision)
     {
-        if (!ignoreCollision.Contains("" + collision.gameObject.GetInstanceID()) && !ignoreCollision.Contains("" + collision.gameObject.tag))
+        if (!ignoreCollision.Contains("" + collision.gameObject.GetInstanceID()) && !ignoreCollision.Contains("" + collision.gameObject.tag) && !ignoreCollision.Contains("" + collision.gameObject.layer))
         {
             if (explode)
             {

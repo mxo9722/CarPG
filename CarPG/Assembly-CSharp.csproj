@@ -81,13 +81,12 @@
     <Compile Include="Assets\DinoFractureDemo\Scripts\TurnOffLightOnFracture.cs" />
     <Compile Include="Assets\DinoFractureDemo\Scripts\UI.cs" />
     <Compile Include="Assets\FractureOnDeath.cs" />
+    <Compile Include="Assets\HotRod.cs" />
     <Compile Include="Assets\Scripts\CameraTransparencyScript.cs" />
     <Compile Include="Assets\Scripts\CarJump.cs" />
     <Compile Include="Assets\Scripts\Cushioned.cs" />
     <Compile Include="Assets\Scripts\Damagable.cs" />
     <Compile Include="Assets\Scripts\DestructableTerrain.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyBehaviorScript.cs" />
-    <Compile Include="Assets\Scripts\Enemy\WizardEnemy.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\HeadLights.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
@@ -108,6 +107,8 @@
     <Compile Include="Assets\Scripts\WeaponScripts\SwordHitbox.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\SwordSwing.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\Weapon.cs" />
+    <Compile Include="Assets\Sprite\Enemy\EnemyBehaviorScript.cs" />
+    <Compile Include="Assets\Sprite\Enemy\WizardEnemy.cs" />
     <None Include="Assets\Shaders\ToonBasic.shader" />
     <None Include="Assets\Shaders\CartoonShader.shader" />
     <None Include="Assets\Shaders\ToonLit.shader" />

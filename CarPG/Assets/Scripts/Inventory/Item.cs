@@ -67,8 +67,10 @@ public class Item : ScriptableObject
         switch (itemType)
         {
             case ItemType.eBumper:
-                
-                details = new string[] { "Shock Absorption - " + prefab.GetComponent<Cushioned>().impulseDivider};
+                if (prefab != null)
+                {
+                    details = new string[] { "Shock Absorption - " + prefab.GetComponent<Cushioned>().impulseDivider };
+                }
                 break;
             case ItemType.eCarmor:
                 if (thresholdBonus!=0)
@@ -88,7 +90,17 @@ public class Item : ScriptableObject
                 details = new string[] { };
                 break;
             case ItemType.eWeapon:
-                details = new string[] { "Mass - " + prefab.GetComponent<Rigidbody>().mass, "Damage - "+prefab.GetComponent<Weapon>().damage };
+                if (prefab != null)
+                {
+                    if (prefab.GetComponent<Rigidbody>())
+                    {
+                        details = new string[] { "Mass - " + prefab.GetComponent<Rigidbody>().mass, "Damage - " + prefab.GetComponent<Weapon>().damage };
+                    }
+                    else
+                    {
+                        details = new string[] { "Mass - 1", "Damage - " + prefab.GetComponent<Weapon>().damage };
+                    }
+                }
                 break;
         }
 
