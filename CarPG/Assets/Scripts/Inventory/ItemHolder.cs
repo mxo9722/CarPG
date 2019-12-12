@@ -23,7 +23,7 @@ public class ItemHolder : MonoBehaviour
         if (i == null)
             return null;
 
-        var drop = Instantiate(Resources.Load("ItemDrop", typeof(GameObject))) as GameObject;
+        var drop = Instantiate(Resources.Load("ItemDrop", typeof(GameObject)),position,Quaternion.identity) as GameObject;
 
         drop.GetComponent<ItemHolder>().SetContent(i);
 
