@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
-    private Item content;
+    public Item content;
 
     public void SetContent(Item i)
     {

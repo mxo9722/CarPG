@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5323063795655956147}
   - component: {fileID: 5323063795655956140}
   m_Layer: 0
-  m_Name: TileDoor
+  m_Name: Ddestructable Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7073f993d1758244d95ab0d46ab588b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForceFalloffRadius: 1
+  AdjustForKinematic: 1
 --- !u!114 &5323063795655956147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +160,7 @@ MonoBehaviour:
   FractureTemplate: {fileID: 100000, guid: bb85f1155c6bfa044bd2c250028a85b8, type: 3}
   PiecesParent: {fileID: 0}
   NumFracturePieces: 5
-  NumIterations: 3
+  NumIterations: 2
   NumGenerations: 1
   FractureRadius: 0.3
   UVScale: 0
