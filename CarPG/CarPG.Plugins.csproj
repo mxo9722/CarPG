@@ -232,6 +232,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="DinoFracture">
+      <HintPath>Assets/Plugins/DinoFracture.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/Chris/Documents/GitHub/CarPG/CarPG/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -687,6 +690,9 @@
     <Compile Include="Assets\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\DinoFracture.xml" />
+    <None Include="Assets\Plugins\WP8\DinoFracture.xml" />
+    <None Include="Assets\Plugins\WSA\DinoFracture.xml" />
     <None Include="Assets\Scenes\TestSampleSceneStuff\Shaders\Skybox-Procedural.shader" />
     <None Include="Assets\Shaders\CartoonShader.shader" />
     <None Include="Assets\Shaders\ToonBasic.shader" />
