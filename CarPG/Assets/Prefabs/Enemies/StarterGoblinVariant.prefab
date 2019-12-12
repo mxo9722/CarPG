@@ -44,6 +44,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 7336033297182201316, guid: 8115a8c045b9ddb498d8efd417df1b1c, type: 3}
+--- !u!65 &6880620118446760153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652127833577621275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1.25, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!114 &33465676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,14 +69,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec714145e4f53164f9963a8b210f06f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: {fileID: 0}
-  health: 5
   currentState: 0
   behaveRate: 0.5
   aggroDistance: 15
   speed: 5
   speedLimit: 10
-  car: {fileID: 0}
+  attackStrength: 10
+  collidersInRange: []
   behaveTimer: 0
   stateTimer: 0
 --- !u!114 &33465677

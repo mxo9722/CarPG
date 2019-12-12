@@ -22,6 +22,9 @@ public class EnemyBehaviorScript : MonoBehaviour
     public float aggroDistance = 15;
     public float speed = 5;
     public float speedLimit = 10;
+    public float attackStrength; //How much DAMAGE this dude does
+    public float attackKnockback = 10000;
+    //public float attackDistance;
     protected  GameObject car;
 
     private Renderer rend;
@@ -29,6 +32,9 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     private CapsuleCollider cCollider;
     private MeshCollider mCollider;
+    private BoxCollider atkCollider;
+
+    private List<Collider> collidersInRange; 
 
     public float behaveTimer = 0;
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
@@ -38,10 +44,12 @@ public class EnemyBehaviorScript : MonoBehaviour
     {
         behaveTimer = Random.value * -1;
         rb = GetComponent<Rigidbody>();
+        atkCollider = GetComponent<BoxCollider>();
         rend = GetComponentInChildren<Renderer>();
         cCollider = GetComponent<CapsuleCollider>();
         mCollider = GetComponent<MeshCollider>();
         car = GameObject.FindWithTag("Player");
+        collidersInRange = new List<Collider>();
     }
 
     // Update is called once per frame
@@ -104,8 +112,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
             Quaternion rotato = Quaternion.LookRotation(wander);
             transform.rotation = rotato;
-
-            rb.velocity += Vector3.up * 2;
+            
             behaveTimer = Random.value * -1;
         }
         if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance)
@@ -128,24 +135,57 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         rb.velocity = Vector3.Normalize(car.transform.position - transform.position) * speed;
 
-        rb.velocity += Vector3.up * 2;
 
         if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
         {
             currentState = EnemyState.Idle;
             stateTimer = 0;
+        }
+        else if (collidersInRange.Contains(car.GetComponentInChildren<MeshCollider>()))
+        {
+            currentState = EnemyState.Attack;
+            //Debug.Log("Get em, boys!");
+        }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        collidersInRange.Add(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        for (int i = 0; i < collidersInRange.Count; i++)
+        {
+            if (collidersInRange[i].Equals(other))
+            {
+                collidersInRange.RemoveAt(i);
+                break;
+            }
         }
     }
 
     protected void Attack()
     {
-
+        for (int i = 0; i < collidersInRange.Count; i++)
+        {
+            if (collidersInRange[i] == null)
+            {
+                collidersInRange.RemoveAt(i); //this might happen if it's destroyed by something else
+            }
+            else if (collidersInRange[i].gameObject.GetComponentInParent<Damagable>() != null)
+            {
+                collidersInRange[i].gameObject.GetComponentInParent<Damagable>().ApplyDamage(attackStrength);
+                collidersInRange[i].gameObject.GetComponentInParent<Rigidbody>().AddForce((collidersInRange[i].gameObject.transform.position - transform.position) * attackStrength * attackKnockback);
+                //Debug.Log("This is happening");
+            }
+        }
+        currentState = EnemyState.Vulnerable;
     }
 
     protected void Vulnerable()
     {
-        behaveTimer = behaveRate - 3.0f;
+        behaveTimer = behaveRate - 2.0f;
         currentState = EnemyState.Aggro;
     }
 

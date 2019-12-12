@@ -162,10 +162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  behaveRate: 0.5
+  behaveRate: 1
   aggroDistance: 50
   speed: 5
   speedLimit: 10
+  attackStrength: 0
+  collidersInRange: []
   behaveTimer: 0
   stateTimer: 0
   attackRange: 40
