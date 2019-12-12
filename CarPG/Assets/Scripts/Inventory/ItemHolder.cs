@@ -29,4 +29,10 @@ public class ItemHolder : MonoBehaviour
 
         return drop;
     }
+
+    void OnValidate()
+    {
+        if (content != null)
+            gameObject.name = content.name;
+    }
 }
