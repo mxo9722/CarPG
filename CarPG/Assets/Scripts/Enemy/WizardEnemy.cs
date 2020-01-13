@@ -8,8 +8,8 @@ public class WizardEnemy : EnemyBehaviorScript
     public float fleeRange = 20.0f;
     public Projectile fireballProjectile;
     public float projectileSpeed = 5.0f;
-    
-    new void Attack()
+
+    protected override void Attack()
     {
         var lookPos = car.transform.position - transform.position;
         lookPos.y = 0;
@@ -20,7 +20,7 @@ public class WizardEnemy : EnemyBehaviorScript
         currentState = EnemyState.Vulnerable;
     }
 
-    new void Aggro()
+    protected override void Aggro()
     {
         if (Vector3.Distance(car.transform.position, transform.position) < fleeRange)
         {
@@ -50,11 +50,6 @@ public class WizardEnemy : EnemyBehaviorScript
                 stateTimer = 0;
             }
         }
-    }
-
-    new void LateUpdate()
-    {
-        base.LateUpdate();
     }
 
     new void Flee()

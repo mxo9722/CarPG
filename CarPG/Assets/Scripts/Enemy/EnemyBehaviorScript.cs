@@ -10,31 +10,33 @@ public enum EnemyState
     Vulnerable,
     Hit,
     Dead,
-    Flee
+    Flee,
+    StandingUp
 }
 
 public class EnemyBehaviorScript : MonoBehaviour
 {
 
-    protected Damagable dmg;
+    protected Damagable health;
     public EnemyState currentState = EnemyState.Idle;
     public float behaveRate = 1; // How often the enemy does things and looks for new things to do
     public float aggroDistance = 15;
     public float speed = 5;
     public float speedLimit = 10;
-    public float attackStrength; //How much DAMAGE this dude does
-    public float attackKnockback = 10000;
-    private Animator anim;
+    public float attackDamage; //How much DAMAGE this dude does
+    public float attackForce = 100;
+    protected Animator anim;
     //public float attackDistance;
     protected  GameObject car;
 
-    private Renderer rend;
+    protected FixedJoint fJoint;
+    protected Renderer rend;
     protected Rigidbody rb;
 
-    private CapsuleCollider cCollider;
+    protected CapsuleCollider cCollider;
 
-    private List<Collider> bodyColliders;
-    private bool ragDoll = true;
+    protected List<Collider> bodyColliders;
+    protected bool ragDoll = true;
 
     public float behaveTimer = 0;
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
@@ -45,18 +47,22 @@ public class EnemyBehaviorScript : MonoBehaviour
     protected void Start()
     {
         anim = GetComponent<Animator>();
-        behaveTimer = Random.value * -1;
-        rb = GetComponent<Rigidbody>();
-        bodyColliders = new List<Collider>(GetComponentsInChildren<Collider>());
         rend = GetComponentInChildren<Renderer>();
         cCollider = GetComponent<CapsuleCollider>();
+        rb = GetComponent<Rigidbody>();
+        health = GetComponent<Damagable>();
+        fJoint = GetComponent<FixedJoint>();
+
+        bodyColliders = new List<Collider>(GetComponentsInChildren<Collider>());
+        behaveTimer = Random.value * -1;
+        
         car = GameObject.FindWithTag("Player");
 
         SetRagDoll(false);
     }
 
     // Update is called once per frame
-    protected void Update()
+    void Update()
     {
         behaveTimer += Time.deltaTime;
         stateTimer += Time.deltaTime;
@@ -91,9 +97,21 @@ public class EnemyBehaviorScript : MonoBehaviour
                 case EnemyState.Flee:
                     Flee();
                     break;
+                case EnemyState.StandingUp:
+                    StandingUp();
+                    break;
             }
         }
 
+    }
+
+    protected virtual void StandingUp()
+    {
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp"))
+        { 
+            currentState = EnemyState.Aggro;
+            fJoint.massScale = 1;
+        }
     }
 
     protected void LateUpdate()
@@ -105,14 +123,14 @@ public class EnemyBehaviorScript : MonoBehaviour
         }
     }
 
-    protected void Idle()
+    protected virtual void Idle()
     {
         SetAnimation("Standing");
         if (Mathf.Floor(stateTimer) % 3 == 0) //every 3 seconds this happens twice
         {
             Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
             SetAnimation("Walking");
-            rb.velocity = Vector3.Normalize(wander) * speed;
+            rb.AddForce( Vector3.Normalize(wander) * speed*rb.mass/Time.deltaTime);
 
             rb.rotation = Quaternion.identity;
 
@@ -121,7 +139,10 @@ public class EnemyBehaviorScript : MonoBehaviour
             
             behaveTimer = Random.value * -1;
         }
-        if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance)
+
+        RaycastHit hit;
+
+        if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance && Physics.Raycast(transform.position, car.transform.position-transform.position, out hit) && hit.transform.tag == "Wall")
         {
             currentState = EnemyState.Aggro;
             stateTimer = 0;
@@ -130,42 +151,15 @@ public class EnemyBehaviorScript : MonoBehaviour
         }
     }
 
-    protected void Aggro()
+    protected virtual void Aggro()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp"))
-            return;
-
-        SetAnimation("Running");
         
-
-        var lookPos = car.transform.position - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = rotation;
-
-        rb.velocity = Vector3.Normalize(car.transform.position - transform.position) * speed;
-
-
-        if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
-        {
-            currentState = EnemyState.Idle;
-            stateTimer = 0;
-        }
-        else if (false)
-            //TODO: add condition that defines the car is close enough
-        {
-            currentState = EnemyState.Attack;
-            //Debug.Log("Get em, boys!");
-        }
     }
 
-    protected void Attack()
+    protected virtual void Attack()
     {
         
-        SetAnimation("Attacking");
-        //collidersInRange[i].gameObject.GetComponentInParent<Damagable>().ApplyDamage(attackStrength);
-        //collidersInRange[i].gameObject.GetComponentInParent<Rigidbody>().AddForce((collidersInRange[i].gameObject.transform.position - transform.position) * attackStrength * attackKnockback);
-        currentState = EnemyState.Vulnerable;
+        
     }
 
     protected void Vulnerable()
@@ -174,33 +168,34 @@ public class EnemyBehaviorScript : MonoBehaviour
         currentState = EnemyState.Aggro;
     }
 
-    protected void Hit()
+    protected virtual void Hit()
     {
+
         if (rb.velocity.magnitude <= 0.03)
         {
-            currentState = EnemyState.Aggro;
+            currentState = EnemyState.StandingUp;
             SetRagDoll(false);
         }
     }
 
-    protected void Dead()
+    protected virtual void Dead()
     {
         rb.constraints = (RigidbodyConstraints)0f;
         SetRagDoll(true);
     }
 
-    public void TakeDamage()
+    public virtual void TakeDamage()
     {
         currentState = EnemyState.Hit;
         SetRagDoll(true);
     }
 
-    public void Die()
+    public virtual void Die()
     {
         currentState = EnemyState.Dead;
     }
 
-    public void Flee()
+    public virtual void Flee()
     {
         
     }
@@ -218,12 +213,15 @@ public class EnemyBehaviorScript : MonoBehaviour
     {
         if (anim && ragDoll!=rd)
         {
+            Debug.Log("Ragdoll set to "+rd);
+
             if (rd)
             {
                 foreach(Collider col in bodyColliders)
                 {
                     col.enabled = true;
                 }
+                fJoint.massScale = 1;
                 cCollider.enabled = false;
                 anim.enabled = false;
                 rb.constraints = (RigidbodyConstraints)0f;
@@ -234,11 +232,21 @@ public class EnemyBehaviorScript : MonoBehaviour
                 {
                     col.enabled = false;
                 }
+
+                fJoint.massScale = 0.1f;
+
+                var pos = gameObject.transform.localPosition;
+                pos.y += cCollider.height / 2.0f * gameObject.transform.localScale.y;
+                gameObject.transform.localPosition = pos;
+                
+                rb.rotation = Quaternion.identity;
+                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                rb.velocity = Vector3.zero;
+                
                 cCollider.enabled = true;
                 anim.enabled = true;
                 SetAnimation("StandingUp");
-                rb.rotation = Quaternion.identity;
-                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                currentState = EnemyState.StandingUp;
             }
 
             ragDoll = rd;
