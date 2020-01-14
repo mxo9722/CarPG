@@ -8,16 +8,12 @@ public class GoblinEnemy : EnemyBehaviorScript
     {
         SetAnimation("Attacking");
 
-        MeeleAttack.MakeMeeleAttack(attackDamage, cCollider.radius, transform.position + transform.forward * cCollider.radius * 2, health, attackForce*rb.mass);
-        //collidersInRange[i].gameObject.GetComponentInParent<Damagable>().ApplyDamage(attackStrength);
-        //collidersInRange[i].gameObject.GetComponentInParent<Rigidbody>().AddForce((collidersInRange[i].gameObject.transform.position - transform.position) * attackStrength * attackKnockback);
+        MeeleAttack.MakeMeeleAttack(attackDamage, cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, health, attackForce*rb.mass, "Enemy");
         currentState = EnemyState.Vulnerable;
     }
 
     protected override void Aggro()
     {
-        
-
         SetAnimation("Running");
 
 
@@ -34,11 +30,9 @@ public class GoblinEnemy : EnemyBehaviorScript
             currentState = EnemyState.Idle;
             stateTimer = 0;
         }
-        else if (Vector3.Distance(car.transform.position, transform.position)<cCollider.radius*3)
-        //TODO: add condition that defines the car is close enough
+        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player"))
         {
             currentState = EnemyState.Attack;
-            //Debug.Log("Get em, boys!");
         }
     }
 }

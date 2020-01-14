@@ -125,7 +125,8 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected virtual void Idle()
     {
-        SetAnimation("Standing");
+        if(rb.velocity.magnitude<0.1&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            SetAnimation("Standing");
         if (Mathf.Floor(stateTimer) % 3 == 0) //every 3 seconds this happens twice
         {
             Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
@@ -142,7 +143,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance && Physics.Raycast(transform.position, car.transform.position-transform.position, out hit) && hit.transform.tag == "Wall")
+        if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance && Physics.Raycast(transform.position, car.transform.position-transform.position, out hit) && hit.transform.tag != "Wall")
         {
             currentState = EnemyState.Aggro;
             stateTimer = 0;
@@ -220,7 +221,11 @@ public class EnemyBehaviorScript : MonoBehaviour
                 foreach(Collider col in bodyColliders)
                 {
                     col.enabled = true;
+                    var body=col.gameObject.GetComponent<Rigidbody>();
+                    if (body != null && body != rb)
+                        body.mass *= 100;
                 }
+                
                 fJoint.massScale = 1;
                 cCollider.enabled = false;
                 anim.enabled = false;
@@ -231,6 +236,9 @@ public class EnemyBehaviorScript : MonoBehaviour
                 foreach (Collider col in bodyColliders)
                 {
                     col.enabled = false;
+                    var body = col.gameObject.GetComponent<Rigidbody>();
+                    if (body != null && body != rb)
+                        body.mass /= 100;
                 }
 
                 fJoint.massScale = 0.1f;
