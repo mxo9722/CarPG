@@ -29,7 +29,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     //public float attackDistance;
     protected  GameObject car;
 
-    protected FixedJoint fJoint;
+    protected Joint joint;
     protected Renderer rend;
     protected Rigidbody rb;
 
@@ -51,7 +51,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         cCollider = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Damagable>();
-        fJoint = GetComponent<FixedJoint>();
+        joint = GetComponent<Joint>();
 
         bodyColliders = new List<Collider>(GetComponentsInChildren<Collider>());
         behaveTimer = Random.value * -1;
@@ -110,16 +110,20 @@ public class EnemyBehaviorScript : MonoBehaviour
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp"))
         { 
             currentState = EnemyState.Aggro;
-            fJoint.massScale = 1;
+            joint.massScale = 1;
         }
     }
 
     protected void LateUpdate()
     {
-        if (rb.velocity.magnitude > speedLimit)
+
+        Vector2 moveSpeed = new Vector2(rb.velocity.x, rb.velocity.z);
+
+        if (rb.velocity.magnitude > speedLimit && IsGrounded() && !ragDoll)
         {
-            rb.velocity = Vector3.Normalize(rb.velocity);
-            rb.velocity *= speedLimit;
+            moveSpeed = moveSpeed.normalized*speedLimit;
+
+            rb.velocity = new Vector3(moveSpeed.x,rb.velocity.y,moveSpeed.y);
         }
     }
 
@@ -174,9 +178,18 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         if (rb.velocity.magnitude <= 0.03)
         {
-            currentState = EnemyState.StandingUp;
-            SetRagDoll(false);
+            if (stateTimer > 3)
+            {
+                currentState = EnemyState.StandingUp;
+                SetRagDoll(false);
+            }
         }
+        else 
+        {
+            stateTimer = 0;
+        }
+
+
     }
 
     protected virtual void Dead()
@@ -188,6 +201,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     public virtual void TakeDamage()
     {
         currentState = EnemyState.Hit;
+        stateTimer = 0;
         SetRagDoll(true);
     }
 
@@ -226,10 +240,10 @@ public class EnemyBehaviorScript : MonoBehaviour
                         body.mass *= 100;
                 }
                 
-                fJoint.massScale = 1;
+                joint.massScale = 1;
                 cCollider.enabled = false;
                 anim.enabled = false;
-                rb.constraints = (RigidbodyConstraints)0f;
+                //rb.constraints = (RigidbodyConstraints)0f;
             }
             else
             {
@@ -241,15 +255,11 @@ public class EnemyBehaviorScript : MonoBehaviour
                         body.mass /= 100;
                 }
 
-                fJoint.massScale = 0.1f;
+                joint.massScale = 0.1f;
 
                 var pos = gameObject.transform.localPosition;
                 pos.y += cCollider.height / 2.0f * gameObject.transform.localScale.y;
                 gameObject.transform.localPosition = pos;
-                
-                rb.rotation = Quaternion.identity;
-                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-                rb.velocity = Vector3.zero;
                 
                 cCollider.enabled = true;
                 anim.enabled = true;
@@ -259,5 +269,10 @@ public class EnemyBehaviorScript : MonoBehaviour
 
             ragDoll = rd;
         }
+    }
+
+    public bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, cCollider.bounds.extents.y + 0.1f);
     }
 }
