@@ -1832,7 +1832,7 @@ Animator:
   m_GameObject: {fileID: 5963916392475902331}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 68fc00146a8fa5f43a35698107214c47, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 832a1670608fdac46b8f6901c840649a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1859,7 +1859,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 2
-  m_AngularYMotion: 0
+  m_AngularYMotion: 2
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0

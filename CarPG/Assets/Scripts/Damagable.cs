@@ -20,7 +20,7 @@ public class Damagable : MonoBehaviour
             Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
             foreach (Rigidbody rb in rbs)
             {
-                if (rb.gameObject != gameObject)
+                if (rb.gameObject != gameObject && !rb.gameObject.GetComponent<Damagable>())
                 {
                     Damagable damagable = rb.gameObject.AddComponent<Damagable>();
                     damagable.maxHealth = maxHealth;
@@ -90,10 +90,7 @@ public class Damagable : MonoBehaviour
     public void ApplyDamage(float damage,Collision col=null)
     {
 
-        damage -= damageThreshhold;
-
-        if (damage <= 0)
-            return;
+        
 
         if (healthPool!=null)
         {
@@ -101,7 +98,13 @@ public class Damagable : MonoBehaviour
         }
         else if (health > 0)
         {
+            damage -= damageThreshhold;
+
+            if (damage <= 0)
+                return;
+
             health -= damage;
+
             gameObject.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
             if (health <= 0)
             {
