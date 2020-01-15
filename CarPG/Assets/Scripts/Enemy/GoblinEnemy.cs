@@ -9,7 +9,7 @@ public class GoblinEnemy : EnemyBehaviorScript
         SetAnimation("Attacking");
 
         MeeleAttack.MakeMeeleAttack(attackDamage, cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, health, attackForce*rb.mass, "Enemy");
-        currentState = EnemyState.Vulnerable;
+        currentState = EnemyState.Aggro;
     }
 
     protected override void Aggro()
@@ -30,7 +30,7 @@ public class GoblinEnemy : EnemyBehaviorScript
             currentState = EnemyState.Idle;
             stateTimer = 0;
         }
-        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player"))
+        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player")&&stateTimer>2.5f)
         {
             currentState = EnemyState.Attack;
         }

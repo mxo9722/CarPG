@@ -52,7 +52,7 @@ public class WizardEnemy : EnemyBehaviorScript
         }
     }
 
-    new void Flee()
+    protected override void Flee()
     {
         rb.rotation = Quaternion.identity;
 

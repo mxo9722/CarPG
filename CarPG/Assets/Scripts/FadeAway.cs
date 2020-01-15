@@ -21,7 +21,7 @@ public class FadeAway : MonoBehaviour
         fadeTime += fadeStartTime;
         renderer = new List<Renderer>(GetComponentsInChildren<Renderer>());
 
-        if(WaitTillDeath)
+        if(!WaitTillDeath)
         foreach (Renderer rend in renderer)
         {
             for (int i = 0; i < rend.materials.Length; i++)

@@ -107,7 +107,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected virtual void StandingUp()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp"))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp")&&!anim.GetNextAnimatorStateInfo(0).IsName("StandUp"))
         { 
             currentState = EnemyState.Aggro;
             joint.massScale = 1;
@@ -167,7 +167,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         
     }
 
-    protected void Vulnerable()
+    protected virtual void Vulnerable()
     {
         behaveTimer = behaveRate - 2.0f;
         currentState = EnemyState.Aggro;
@@ -210,7 +210,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         currentState = EnemyState.Dead;
     }
 
-    public virtual void Flee()
+    protected virtual void Flee()
     {
         
     }
@@ -264,6 +264,7 @@ public class EnemyBehaviorScript : MonoBehaviour
                 cCollider.enabled = true;
                 anim.enabled = true;
                 SetAnimation("StandingUp");
+                ;
                 currentState = EnemyState.StandingUp;
             }
 

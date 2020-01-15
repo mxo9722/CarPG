@@ -1932,6 +1932,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarterGoblinVariant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 652127833577621275, guid: bef762f41fae850418fff0f11bc1afd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4564269681805686024, guid: bef762f41fae850418fff0f11bc1afd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2779,6 +2784,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarterGoblinVariant
       objectReference: {fileID: 0}
+    - target: {fileID: 652127833577621275, guid: bef762f41fae850418fff0f11bc1afd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4564269681805686024, guid: bef762f41fae850418fff0f11bc1afd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3033,6 +3043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StarterGoblinVariant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652127833577621275, guid: bef762f41fae850418fff0f11bc1afd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4564269681805686024, guid: bef762f41fae850418fff0f11bc1afd9,
         type: 3}
@@ -7197,22 +7212,22 @@ PrefabInstance:
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.061677504
+      value: -0.0616775
       objectReference: {fileID: 0}
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70441186
+      value: -0.7044119
       objectReference: {fileID: 0}
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.061677456
+      value: 0.06167746
       objectReference: {fileID: 0}
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7044117
+      value: -0.7044116
       objectReference: {fileID: 0}
     - target: {fileID: 6169465099621839793, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
@@ -7282,6 +7297,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StarterGoblin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 652127833577621275, guid: bef762f41fae850418fff0f11bc1afd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4564269681805686024, guid: bef762f41fae850418fff0f11bc1afd9,
         type: 3}
