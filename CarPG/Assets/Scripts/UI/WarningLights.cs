@@ -8,12 +8,13 @@ public class WarningLights : MonoBehaviour
 
     public Image[] warningLights;
 
-    Damagable car; 
+    public Damagable car; 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        car = GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
+        
+        //car = GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
     }
 
     // Update is called once per frame

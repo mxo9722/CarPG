@@ -123,7 +123,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         {
             moveSpeed = moveSpeed.normalized*speedLimit;
 
-            rb.velocity = new Vector3(moveSpeed.x,rb.velocity.y,moveSpeed.y);
+            //rb.velocity = new Vector3(moveSpeed.x,rb.velocity.y,moveSpeed.y);
         }
     }
 
@@ -145,14 +145,14 @@ public class EnemyBehaviorScript : MonoBehaviour
             behaveTimer = Random.value * -1;
         }
 
-        RaycastHit hit;
-
-        if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance && Physics.Raycast(transform.position, car.transform.position-transform.position, out hit) && hit.transform.tag != "Wall")
+        if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance)
         {
-            currentState = EnemyState.Aggro;
-            stateTimer = 0;
-            behaveTimer = 1; // setting this to 1 so it starts going NOW
-
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, car.transform.position - transform.position, out hit) && hit.transform.tag != "Wall") {
+                currentState = EnemyState.Aggro;
+                stateTimer = 0;
+                behaveTimer = 1; // setting this to 1 so it starts going NOW
+            }
         }
     }
 

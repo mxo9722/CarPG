@@ -33,9 +33,9 @@ public class Inventory : MonoBehaviour
     private Cinemachine.CinemachineFreeLook cameraController;
     private float axisMSpeedX;
     private float axisMSpeedY;
-    public static bool InventoryOpen = false;
+    bool InventoryOpen;
 
-    void Start()
+    void Awake()
     {
         _canvas=gameObject.GetComponent<Canvas>();
 
@@ -75,7 +75,7 @@ public class Inventory : MonoBehaviour
             itemHeld = null;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
-            if (_canvas.enabled)
+            if (Cursor.lockState==CursorLockMode.Locked)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -91,9 +91,6 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                applier.SetWeapon(weaponSlot.Content?.prefab);
-                applier.SetCarmor(carmorSlot.Content);
-                applier.SetBumpers(bumperSlot.Content?.prefab);
                 Cursor.visible = false;
 
                 cameraController.m_XAxis.m_MaxSpeed = axisMSpeedX;
@@ -102,6 +99,13 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
 
                 InventoryOpen = false;
+
+                if(weaponSlot.Content!=null)
+                    applier.SetWeapon(weaponSlot.Content?.prefab);
+                applier.SetCarmor(carmorSlot.Content);
+                if(bumperSlot.Content!=null)
+                    applier.SetBumpers(bumperSlot.Content?.prefab);
+                
             }
         }
 

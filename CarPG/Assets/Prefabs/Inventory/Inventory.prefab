@@ -20,7 +20,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &8087631935563699082
 RectTransform:
@@ -204,7 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e738b1849e28e2c478db6667665d9af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 102900000, guid: 161fb020019754d4ea152b40a5ca0f42, type: 3}
 --- !u!1 &8087631936878556495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,11 +1024,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot2
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1134,11 +1128,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
@@ -1309,11 +1298,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot1
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1418,11 +1402,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
@@ -1593,11 +1572,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot25
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1703,11 +1677,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &2083984104643392390 stripped
@@ -1739,11 +1708,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot23
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -1850,11 +1814,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &2069387001780757186 stripped
@@ -1886,11 +1845,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot24
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -1996,11 +1950,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
@@ -2308,11 +2257,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot18
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2417,11 +2361,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
@@ -2592,11 +2531,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot20
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2701,11 +2635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
@@ -3013,11 +2942,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot9
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3123,11 +3047,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265800670647435 stripped
@@ -3159,11 +3078,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -3270,11 +3184,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265800840209176 stripped
@@ -3306,11 +3215,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -3417,11 +3321,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265802022925056 stripped
@@ -3453,11 +3352,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -3564,11 +3458,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265802082097066 stripped
@@ -3600,11 +3489,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -3711,11 +3595,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265802088472992 stripped
@@ -3747,11 +3626,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -3858,11 +3732,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265801839108103 stripped
@@ -3894,11 +3763,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -4005,11 +3869,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265802224815539 stripped
@@ -4041,11 +3900,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -4152,11 +4006,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265802622744434 stripped
@@ -4188,11 +4037,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -4299,11 +4143,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
 --- !u!114 &5468265802396579995 stripped
@@ -4335,11 +4174,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925775734319998, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4313925775734319999, guid: 1d0c34876b5da004db80939057d66594,
         type: 3}
@@ -4445,11 +4279,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313925776435506013, guid: 1d0c34876b5da004db80939057d66594,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c34876b5da004db80939057d66594, type: 3}
