@@ -10,6 +10,7 @@ public class GoblinEnemy : EnemyBehaviorScript
 
         MeeleAttack.MakeMeeleAttack(attackDamage, cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, health, attackForce*rb.mass, "Enemy");
         currentState = EnemyState.Aggro;
+        stateTimer = 0;
     }
 
     protected override void Aggro()
@@ -22,7 +23,7 @@ public class GoblinEnemy : EnemyBehaviorScript
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = rotation;
 
-        rb.AddForce(Vector3.Normalize(car.transform.position - transform.position) * speed * rb.mass/Time.deltaTime);
+        MoveTo(car.transform.position,speed);
 
 
         if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
@@ -30,7 +31,7 @@ public class GoblinEnemy : EnemyBehaviorScript
             currentState = EnemyState.Idle;
             stateTimer = 0;
         }
-        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player")&&stateTimer>2.5f)
+        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player")&&stateTimer>3f)
         {
             currentState = EnemyState.Attack;
         }

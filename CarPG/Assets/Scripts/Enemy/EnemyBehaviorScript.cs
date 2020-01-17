@@ -135,7 +135,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         {
             Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
             SetAnimation("Walking");
-            rb.AddForce( Vector3.Normalize(wander) * speed*rb.mass/Time.deltaTime);
+            MoveTo(wander,speed);
 
             rb.rotation = Quaternion.identity;
 
@@ -222,6 +222,27 @@ public class EnemyBehaviorScript : MonoBehaviour
             {
                 anim.SetTrigger(setting);
             }
+    }
+
+    public void MoveTo(Vector3 target,float speed)
+    {
+        Move((target-this.transform.position).normalized*speed);
+    }
+
+    public void Move(Vector3 targetVelocity)
+    {
+        if (IsGrounded())
+        {
+
+            var velocity = rb.velocity;
+
+            var velocityChange = targetVelocity - velocity;
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -speedLimit, speed);
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -speedLimit, speed);
+            velocityChange.y = 0;
+
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
     }
 
     public void SetRagDoll(bool rd)
