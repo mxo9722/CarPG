@@ -106,7 +106,7 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
+    agentHeight: 1.5
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: f4d3f67614d4a76469c2efff1208660a, type: 2}
 --- !u!1 &22761251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &370110359
 Transform:
@@ -1208,7 +1208,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &426312449
 BoxCollider:
@@ -1299,7 +1299,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &443196961
 BoxCollider:
@@ -3408,6 +3408,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unshaded Animated Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 916786373279966818, guid: a3beb900c0b6f044e8add26ab0bc847e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4243039017762002033, guid: a3beb900c0b6f044e8add26ab0bc847e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3809,7 +3814,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1225837722
 Transform:
@@ -4629,7 +4634,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1417071876
 Transform:
@@ -7212,22 +7217,22 @@ PrefabInstance:
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0616775
+      value: -0.061677504
       objectReference: {fileID: 0}
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7044119
+      value: -0.70441186
       objectReference: {fileID: 0}
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.06167746
+      value: 0.061677456
       objectReference: {fileID: 0}
     - target: {fileID: 1847986561974763919, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7044116
+      value: -0.7044117
       objectReference: {fileID: 0}
     - target: {fileID: 6169465099621839793, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}

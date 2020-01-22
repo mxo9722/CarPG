@@ -11,11 +11,14 @@ public class Damagable : MonoBehaviour
     public float damageMultiplier=1;
     [HideInInspector]
     public Damagable healthPool=null;
+    public bool includeChildren=false;
+    private Rigidbody rb;
 
     void Start()
     {
         health = maxHealth;
-        if (GetComponent<Rigidbody>() == null)
+        rb = GetComponent<Rigidbody>();
+        if (rb == null||includeChildren)
         {
             Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
             foreach (Rigidbody rb in rbs)
@@ -44,10 +47,6 @@ public class Damagable : MonoBehaviour
         float impulse = collision.impulse.magnitude;
 
         Damagable damagable;
-        Rigidbody rb;
-        rb = GetComponent<Rigidbody>();
-
-        
 
         impulse /= rb.mass;
         //Debug.Log(impulse);
@@ -60,7 +59,7 @@ public class Damagable : MonoBehaviour
         {
             if ((damagable = collision.gameObject.GetComponent<Damagable>()) != null && rb != null)
             {
-                if (collision.rigidbody.velocity.magnitude < rb.velocity.magnitude)
+                if (collision.rigidbody.velocity.magnitude*collision.rigidbody.mass < rb.velocity.magnitude*rb.mass)
                 {
                     impulse /= 2;
                 }
@@ -94,7 +93,15 @@ public class Damagable : MonoBehaviour
 
         if (healthPool!=null)
         {
-            healthPool.ApplyDamage(damage);
+            Rigidbody b;
+            if (b=healthPool.gameObject.GetComponent<Rigidbody>())
+            {
+                healthPool.ApplyDamage(damage*rb.mass/b.mass);
+            }
+            else
+            {
+                healthPool.ApplyDamage(damage);
+            }
         }
         else if (health > 0)
         {

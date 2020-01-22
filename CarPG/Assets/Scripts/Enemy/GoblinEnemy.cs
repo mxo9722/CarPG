@@ -8,9 +8,14 @@ public class GoblinEnemy : EnemyBehaviorScript
     {
         SetAnimation("Attacking");
 
-        MeeleAttack.MakeMeeleAttack(attackDamage, cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, health, attackForce*rb.mass, "Enemy");
+        
         currentState = EnemyState.Aggro;
         stateTimer = 0;
+    }
+
+    public void AttackLand()
+    {
+        MeeleAttack.MakeMeeleAttack(attackDamage, cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, health, attackForce * rb.mass, "Enemy");
     }
 
     protected override void Aggro()

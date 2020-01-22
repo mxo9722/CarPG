@@ -14,7 +14,12 @@ public class WarningLights : MonoBehaviour
     void Awake()
     {
         
-        //car = GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
+        var c = GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
+
+        if (c != null)
+        {
+            car = c;
+        }
     }
 
     // Update is called once per frame

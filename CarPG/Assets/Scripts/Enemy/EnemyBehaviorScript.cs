@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum EnemyState
 {
@@ -37,6 +38,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected List<Collider> bodyColliders;
     protected bool ragDoll = true;
+    public Vector3 idleWalkTarget=Vector3.zero;
 
     public float behaveTimer = 0;
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
@@ -129,20 +131,35 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected virtual void Idle()
     {
-        if(rb.velocity.magnitude<0.1&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if(rb.velocity.magnitude<0.3&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             SetAnimation("Standing");
-        if (Mathf.Floor(stateTimer) % 3 == 0) //every 3 seconds this happens twice
+
+        if (Vector3.Distance(transform.position, idleWalkTarget) > 1)
         {
-            Vector3 wander = new Vector3(Random.value * 2 - 1, 0, Random.value * 2 - 1);
+            MoveTo(idleWalkTarget, speed);
             SetAnimation("Walking");
-            MoveTo(wander,speed);
+        }
 
-            rb.rotation = Quaternion.identity;
+        if (Mathf.Floor(stateTimer) % 3 == 0&&IsGrounded()) //every 3 seconds this happens twice
+        {
+            idleWalkTarget.x = float.PositiveInfinity;
+            float tries = 0;
+            while (float.IsPositiveInfinity(idleWalkTarget.x)&&tries<9)
+            {
+                tries++;
+                float walkRadius = 5;
+                Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+                randomDirection += transform.position;
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomDirection, out hit, 5, 1);
+                Vector3 finalPosition = hit.position;
+                
+                idleWalkTarget = finalPosition;
+            }
+            if (float.IsPositiveInfinity(idleWalkTarget.x))
+                idleWalkTarget = transform.position;
 
-            Quaternion rotato = Quaternion.LookRotation(wander);
-            transform.rotation = rotato;
-            
-            behaveTimer = Random.value * -1;
+            stateTimer = 1;
         }
 
         if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance)
@@ -226,6 +243,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     public void MoveTo(Vector3 target,float speed)
     {
+        target.y = this.transform.position.y;
         Move((target-this.transform.position).normalized*speed);
     }
 
@@ -233,7 +251,6 @@ public class EnemyBehaviorScript : MonoBehaviour
     {
         if (IsGrounded())
         {
-
             var velocity = rb.velocity;
 
             var velocityChange = targetVelocity - velocity;
@@ -242,6 +259,11 @@ public class EnemyBehaviorScript : MonoBehaviour
             velocityChange.y = 0;
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+            velocity.y = 0;
+
+            Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
+            transform.rotation = rotato;
         }
     }
 
@@ -263,6 +285,7 @@ public class EnemyBehaviorScript : MonoBehaviour
                 
                 joint.massScale = 1;
                 cCollider.enabled = false;
+                SetAnimation("StandingUp");
                 anim.enabled = false;
                 //rb.constraints = (RigidbodyConstraints)0f;
             }
@@ -283,9 +306,9 @@ public class EnemyBehaviorScript : MonoBehaviour
                 gameObject.transform.localPosition = pos;
                 
                 cCollider.enabled = true;
+                
                 anim.enabled = true;
-                SetAnimation("StandingUp");
-                ;
+                
                 currentState = EnemyState.StandingUp;
             }
 
