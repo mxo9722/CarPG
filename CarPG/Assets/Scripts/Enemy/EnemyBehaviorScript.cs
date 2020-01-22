@@ -42,6 +42,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     public float behaveTimer = 0;
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
+    public NavMeshAgent agent;
 
     
 
@@ -61,6 +62,8 @@ public class EnemyBehaviorScript : MonoBehaviour
         car = GameObject.FindWithTag("Player");
 
         SetRagDoll(false);
+
+        agent = GetComponentInChildren<NavMeshAgent>();
     }
 
     // Update is called once per frame
