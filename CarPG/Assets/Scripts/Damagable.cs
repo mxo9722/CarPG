@@ -11,6 +11,7 @@ public class Damagable : MonoBehaviour
     public float damageMultiplier=1;
     [HideInInspector]
     public Damagable healthPool=null;
+    public GameObject fireball;
 
     void Start()
     {
@@ -89,9 +90,6 @@ public class Damagable : MonoBehaviour
 
     public void ApplyDamage(float damage,Collision col=null)
     {
-
-        
-
         if (healthPool!=null)
         {
             healthPool.ApplyDamage(damage);
@@ -115,10 +113,5 @@ public class Damagable : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
-    
+   
 }
