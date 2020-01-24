@@ -6,7 +6,7 @@ public class GoblinEnemy : EnemyBehaviorScript
 {
     protected override void Attack()
     {
-        SetAnimation("Attacking");
+        SetAnimationTrigger("Attacking");
 
         
         currentState = EnemyState.Aggro;
@@ -20,15 +20,18 @@ public class GoblinEnemy : EnemyBehaviorScript
 
     protected override void Aggro()
     {
-        SetAnimation("Running");
+        if (rb.velocity.magnitude > 1)
+        { 
+            SetAnimationTrigger("Running");
+        }
+        else
+        {
+            SetAnimationTrigger("Idle");
+        }
 
+        agent.destination = car.transform.position;
 
-        var lookPos = car.transform.position - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = rotation;
-
-        MoveTo(car.transform.position,speed);
+        MoveTo(agent.transform.position,speed);
 
 
         if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
@@ -36,9 +39,13 @@ public class GoblinEnemy : EnemyBehaviorScript
             currentState = EnemyState.Idle;
             stateTimer = 0;
         }
-        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + transform.forward * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player")&&stateTimer>3f)
+        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + (car.transform.position - transform.position).normalized * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player")&&stateTimer>3f)
         {
             currentState = EnemyState.Attack;
+            var targ = car.transform.position;
+            targ.y = transform.position.y;
+            Quaternion rotato = Quaternion.LookRotation(targ-transform.position);
+            transform.rotation = rotato;
         }
     }
 }

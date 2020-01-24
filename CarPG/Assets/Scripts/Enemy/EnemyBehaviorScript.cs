@@ -60,10 +60,10 @@ public class EnemyBehaviorScript : MonoBehaviour
         behaveTimer = Random.value * -1;
         
         car = GameObject.FindWithTag("Player");
+        agent = GetComponentInChildren<NavMeshAgent>();
+        agent.speed = speed*2;
 
         SetRagDoll(false);
-
-        agent = GetComponentInChildren<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -76,8 +76,6 @@ public class EnemyBehaviorScript : MonoBehaviour
         {
             behaveTimer = 0;
 
-            
-
             switch (currentState)
             {
                 case EnemyState.Idle:
@@ -85,7 +83,6 @@ public class EnemyBehaviorScript : MonoBehaviour
                     break;
                 case EnemyState.Aggro:
                     Aggro();
-
                     break;
                 case EnemyState.Attack:
                     Attack();
@@ -108,6 +105,16 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
         }
 
+        var horVel = rb.velocity;
+
+        horVel.y = 0;
+
+        SetAnimationSpeeds(horVel.magnitude);
+
+
+        //agent.Move(new Vector3(transform.position.x, transform.position.y - cCollider.height/2.0f*transform.localScale.y, transform.position.z));
+        //agent.Move(new Vector3(0, - cCollider.height / 2.0f * transform.localScale.y, 0));
+        agent.transform.localPosition = new Vector3(0, -cCollider.height / 2.0f * transform.localScale.y, 0);
     }
 
     protected virtual void StandingUp()
@@ -135,12 +142,13 @@ public class EnemyBehaviorScript : MonoBehaviour
     protected virtual void Idle()
     {
         if(rb.velocity.magnitude<0.3&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            SetAnimation("Standing");
+            SetAnimationTrigger("Standing");
 
-        if (Vector3.Distance(transform.position, idleWalkTarget) > 1)
+        if (!agent.isStopped)
         {
-            MoveTo(idleWalkTarget, speed);
-            SetAnimation("Walking");
+            agent.destination = idleWalkTarget;
+            MoveTo(agent.transform.position, speed);
+            SetAnimationTrigger("Walking");
         }
 
         if (Mathf.Floor(stateTimer) % 3 == 0&&IsGrounded()) //every 3 seconds this happens twice
@@ -160,7 +168,13 @@ public class EnemyBehaviorScript : MonoBehaviour
                 idleWalkTarget = finalPosition;
             }
             if (float.IsPositiveInfinity(idleWalkTarget.x))
+            {
                 idleWalkTarget = transform.position;
+            }
+            else
+            {
+                agent.destination = idleWalkTarget;
+            }
 
             stateTimer = 1;
         }
@@ -235,7 +249,16 @@ public class EnemyBehaviorScript : MonoBehaviour
         
     }
 
-    public void SetAnimation(string setting)
+    public void SetAnimationSpeeds(float horizontalSpeed)
+    {
+        if (anim)
+            if (anim.enabled)
+            {
+                anim.SetFloat("HorizontalSpeed",horizontalSpeed);
+            }
+    }
+
+    public void SetAnimationTrigger(string setting)
     {
         if (anim)
             if(anim.enabled)
@@ -247,7 +270,16 @@ public class EnemyBehaviorScript : MonoBehaviour
     public void MoveTo(Vector3 target,float speed)
     {
         target.y = this.transform.position.y;
-        Move((target-this.transform.position).normalized*speed);
+
+        target = target - this.transform.position;
+
+        if (target.magnitude > speed*Time.deltaTime)
+        {
+            target.Normalize();
+            target *= speed;
+        }
+
+        Move(target);
     }
 
     public void Move(Vector3 targetVelocity)
@@ -261,12 +293,18 @@ public class EnemyBehaviorScript : MonoBehaviour
             velocityChange.z = Mathf.Clamp(velocityChange.z, -speedLimit, speed);
             velocityChange.y = 0;
 
-            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            if (velocityChange.magnitude > speed)
+                velocityChange = velocityChange.normalized * speed;
+
+            rb.AddForce(velocityChange*rb.mass*10*speed, ForceMode.Force);
 
             velocity.y = 0;
 
-            Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
-            transform.rotation = rotato;
+            if (velocity.magnitude > 0.2f)
+            {
+                Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
+                transform.rotation = rotato;
+            }
         }
     }
 
@@ -283,13 +321,17 @@ public class EnemyBehaviorScript : MonoBehaviour
                     col.enabled = true;
                     var body=col.gameObject.GetComponent<Rigidbody>();
                     if (body != null && body != rb)
+                    {
                         body.mass *= 100;
+                        body.constraints = RigidbodyConstraints.None;
+                    }
                 }
                 
                 joint.massScale = 1;
                 cCollider.enabled = false;
-                SetAnimation("StandingUp");
+                SetAnimationTrigger("StandingUp");
                 anim.enabled = false;
+                agent.enabled = false;
                 //rb.constraints = (RigidbodyConstraints)0f;
             }
             else
@@ -299,7 +341,10 @@ public class EnemyBehaviorScript : MonoBehaviour
                     col.enabled = false;
                     var body = col.gameObject.GetComponent<Rigidbody>();
                     if (body != null && body != rb)
+                    {
                         body.mass /= 100;
+                        body.constraints = RigidbodyConstraints.FreezeAll;
+                    }
                 }
 
                 joint.massScale = 0.1f;
@@ -311,6 +356,7 @@ public class EnemyBehaviorScript : MonoBehaviour
                 cCollider.enabled = true;
                 
                 anim.enabled = true;
+                agent.enabled = true;
                 
                 currentState = EnemyState.StandingUp;
             }
