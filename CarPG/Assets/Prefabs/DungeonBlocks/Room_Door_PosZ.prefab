@@ -263,6 +263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileWallDoor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1c2b99d2a01e36549a3b8adda1cbb071,
         type: 3}
       propertyPath: m_LocalPosition.x

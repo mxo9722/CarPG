@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6400000}
   - component: {fileID: 5400000}
   - component: {fileID: 6686282108027578060}
+  - component: {fileID: -2648157631850195510}
+  - component: {fileID: 7529842967405280510}
   m_Layer: 0
   m_Name: StandardFracturePiece
   m_TagString: Untagged
@@ -126,3 +128,31 @@ MonoBehaviour:
   fadeStartTime: 20
   fadeTime: 5
   alphaShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!208 &-2648157631850195510
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &7529842967405280510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e1d7ed4f3d0d24ba17d985e8b286bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

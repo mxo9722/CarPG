@@ -1013,28 +1013,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317420321}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &324548102 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5759511461044801645, guid: 765b3ca9c3e49ae44a9ef14e19f4edeb,
-    type: 3}
-  m_PrefabInstance: {fileID: 167113336}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &324548111
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324548102}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.85, y: 0.5, z: 2.05}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!4 &332562217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4564269681805686024, guid: bef762f41fae850418fff0f11bc1afd9,

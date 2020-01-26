@@ -69,6 +69,10 @@ public class EnemyBehaviorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Vector3.Distance(transform.position, car.transform.position) > 250)
+            return;
+
         behaveTimer += Time.deltaTime;
         stateTimer += Time.deltaTime;
 
@@ -146,12 +150,13 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         if (!agent.isStopped)
         {
-            agent.destination = idleWalkTarget;
+            if(agent.destination!=idleWalkTarget)
+                agent.destination = idleWalkTarget;
             MoveTo(agent.transform.position, speed);
             SetAnimationTrigger("Walking");
         }
 
-        if (Mathf.Floor(stateTimer) % 3 == 0&&IsGrounded()) //every 3 seconds this happens twice
+        if (Mathf.Floor(stateTimer) % 6 == 0&&IsGrounded()) //every 3 seconds this happens twice
         {
             idleWalkTarget.x = float.PositiveInfinity;
             float tries = 0;

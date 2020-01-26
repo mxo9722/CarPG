@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4890765435325751143}
   - component: {fileID: -7935442963563679659}
   - component: {fileID: -8165591527980276853}
+  - component: {fileID: 1803682321085233071}
   m_Layer: 0
   m_Name: DestructionWall
   m_TagString: Wall
@@ -30,9 +31,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4525660673822389800}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 555, y: 15, z: 75}
-  m_LocalScale: {x: 1500.0043, y: 1500, z: 1500.0043}
+  m_LocalScale: {x: 1000.00323, y: 1000, z: 1000.00323}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -128,6 +129,7 @@ MonoBehaviour:
   damageThreshhold: 5
   damageMultiplier: 1
   healthPool: {fileID: 0}
+  includeChildren: 0
 --- !u!114 &-7935442963563679659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +166,19 @@ MonoBehaviour:
   UVScale: 0
   DistributeMass: 1
   Asynchronous: 1
+--- !u!208 &1803682321085233071
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525660673822389800}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.00001, y: 0.0050000004, z: 0.0050000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.0050000004, y: 0, z: 0}
+  m_TimeToStationary: 0.5

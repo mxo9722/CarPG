@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 3519481514094493283}
   - component: {fileID: 3519481514094493284}
   - component: {fileID: -7153502298769284085}
+  - component: {fileID: 1674438204770873470}
+  - component: {fileID: 682375947170392738}
   m_Layer: 0
   m_Name: DestructableColumn
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 3519481514094493212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3333359, y: 0, z: -9.45}
-  m_LocalScale: {x: 1.3333334, y: 6.7, z: 1.3333334}
+  m_LocalScale: {x: 1.3333334, y: 4.5, z: 1.3333334}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -91,7 +93,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3519481514094493212}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -129,6 +131,7 @@ MonoBehaviour:
   damageThreshhold: 5
   damageMultiplier: 1
   healthPool: {fileID: 0}
+  includeChildren: 0
 --- !u!114 &3519481514094493284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +168,33 @@ MonoBehaviour:
   UVScale: 1
   DistributeMass: 1
   Asynchronous: 1
+--- !u!64 &1674438204770873470
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519481514094493212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &682375947170392738
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519481514094493212}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
