@@ -61,7 +61,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         
         car = GameObject.FindWithTag("Player");
         agent = GetComponentInChildren<NavMeshAgent>();
-        agent.speed = speed*2;
+        agent.speed = speedLimit*2;
 
         SetRagDoll(false);
     }
@@ -114,10 +114,6 @@ public class EnemyBehaviorScript : MonoBehaviour
         horVel.y = 0;
 
         SetAnimationSpeeds(horVel.magnitude);
-
-
-        //agent.Move(new Vector3(transform.position.x, transform.position.y - cCollider.height/2.0f*transform.localScale.y, transform.position.z));
-        //agent.Move(new Vector3(0, - cCollider.height / 2.0f * transform.localScale.y, 0));
         agent.transform.localPosition = new Vector3(0, -cCollider.height / 2.0f * transform.localScale.y, 0);
     }
 
@@ -150,9 +146,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         if (!agent.isStopped)
         {
-            if(agent.destination!=idleWalkTarget)
-                agent.destination = idleWalkTarget;
-            MoveTo(agent.transform.position, speed);
+            PathTo(idleWalkTarget, speed);
             SetAnimationTrigger("Walking");
         }
 
@@ -178,7 +172,7 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
             else
             {
-                agent.destination = idleWalkTarget;
+                PathTo(idleWalkTarget, speed);
             }
 
             stateTimer = 1;
@@ -276,32 +270,53 @@ public class EnemyBehaviorScript : MonoBehaviour
     {
         target.y = this.transform.position.y;
 
-        target = target - this.transform.position;
+        target = target - transform.position;
 
-        if (target.magnitude > speed*Time.deltaTime)
+        if (target.magnitude > speedLimit*Time.deltaTime)
         {
             target.Normalize();
-            target *= speed;
+            target *= speedLimit;
         }
 
-        Move(target);
+        Move(target,speed);
     }
 
-    public void Move(Vector3 targetVelocity)
+    public virtual bool PathTo(Vector3 target,float speed)
+    {
+        if (!agent.enabled)
+            return false;
+
+        if (agent.destination != target)
+            agent.destination = target;
+
+        if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
+            return false;
+
+        Vector3 movement = agent.transform.position - transform.position;
+
+        if (movement.magnitude > speedLimit * Time.deltaTime)
+        {
+            movement.Normalize();
+            target *= speedLimit;
+        }
+
+        Move(movement,speed);
+
+        return true;
+    }
+
+    public virtual void Move(Vector3 targetVelocity,float speed)
     {
         if (IsGrounded())
         {
             var velocity = rb.velocity;
 
             var velocityChange = targetVelocity - velocity;
-            velocityChange.x = Mathf.Clamp(velocityChange.x, -speedLimit, speed);
-            velocityChange.z = Mathf.Clamp(velocityChange.z, -speedLimit, speed);
-            velocityChange.y = 0;
 
             if (velocityChange.magnitude > speed)
                 velocityChange = velocityChange.normalized * speed;
 
-            rb.AddForce(velocityChange*rb.mass*10*speed, ForceMode.Force);
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
             velocity.y = 0;
 
@@ -337,6 +352,8 @@ public class EnemyBehaviorScript : MonoBehaviour
                 SetAnimationTrigger("StandingUp");
                 anim.enabled = false;
                 agent.enabled = false;
+
+                currentState = EnemyState.Hit;
                 //rb.constraints = (RigidbodyConstraints)0f;
             }
             else

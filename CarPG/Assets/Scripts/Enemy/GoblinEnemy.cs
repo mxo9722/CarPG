@@ -29,10 +29,7 @@ public class GoblinEnemy : EnemyBehaviorScript
             SetAnimationTrigger("Idle");
         }
 
-        agent.destination = car.transform.position;
-
-        MoveTo(agent.transform.position,speed);
-
+        PathTo(car.transform.position, speed);
 
         if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
         {
