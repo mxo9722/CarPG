@@ -11,7 +11,7 @@ public class Damagable : MonoBehaviour
     public float damageMultiplier=1;
     [HideInInspector]
     public Damagable healthPool=null;
-    public GameObject fireball;
+    
 
     void Start()
     {
