@@ -293,12 +293,7 @@ public class EnemyBehaviorScript : MonoBehaviour
             return false;
 
         Vector3 movement = agent.transform.position - transform.position;
-
-        if (movement.magnitude > speedLimit * Time.deltaTime)
-        {
-            movement.Normalize();
-            target *= speedLimit;
-        }
+        movement = movement.normalized * speed;
 
         Move(movement,speed);
 
@@ -313,9 +308,6 @@ public class EnemyBehaviorScript : MonoBehaviour
 
             var velocityChange = targetVelocity - velocity;
 
-            if (velocityChange.magnitude > speed)
-                velocityChange = velocityChange.normalized * speed;
-
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
             velocity.y = 0;
@@ -324,6 +316,11 @@ public class EnemyBehaviorScript : MonoBehaviour
             {
                 Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
                 transform.rotation = rotato;
+            }
+
+            if (rb.velocity.magnitude > speedLimit)
+            {
+                rb.velocity = rb.velocity.normalized * speedLimit;
             }
         }
     }
