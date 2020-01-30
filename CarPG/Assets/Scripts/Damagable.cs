@@ -36,6 +36,7 @@ public class Damagable : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if(enabled)
         CollisionDamage(collision);
     }
 
@@ -109,6 +110,7 @@ public class Damagable : MonoBehaviour
                 if (col != null)
                     gameObject.SendMessage("DieCollision", col,SendMessageOptions.DontRequireReceiver);
                 gameObject.SendMessage("Die",SendMessageOptions.DontRequireReceiver);
+                
             }
         }
     }
