@@ -15,9 +15,15 @@ public class WizardEnemy : EnemyBehaviorScript
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = rotation;
+        SetAnimationTrigger("Attacking");
+    }
+
+    public void CastSpell()
+    {
         Projectile newFireball = Instantiate(fireballProjectile, transform.position, new Quaternion());
         newFireball.CreateProjectile(car.transform.position, projectileSpeed,""+this.gameObject.GetInstanceID());
-        currentState = EnemyState.Vulnerable;
+        currentState = EnemyState.Aggro;
+        SetAnimationTrigger("Standing");
     }
 
     protected override void Aggro()
@@ -30,6 +36,7 @@ public class WizardEnemy : EnemyBehaviorScript
         else if (Vector3.Distance(car.transform.position, transform.position) < attackRange)
         {
             currentState = EnemyState.Attack;
+            SetAnimationTrigger("Attacking");
         }
         else
         {
@@ -44,7 +51,7 @@ public class WizardEnemy : EnemyBehaviorScript
 
             rb.velocity += Vector3.up * 5;
 
-            if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance)
+            if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance*4)
             {
                 currentState = EnemyState.Idle;
                 stateTimer = 0;
@@ -55,6 +62,8 @@ public class WizardEnemy : EnemyBehaviorScript
     protected override void Flee()
     {
         rb.rotation = Quaternion.identity;
+
+        SetAnimationTrigger("Walking");
 
         var lookPos = transform.position - car.transform.position ;
         lookPos.y = 0;

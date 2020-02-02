@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3123884570274226191}
   - component: {fileID: 3278477150868689146}
   - component: {fileID: 4955035777132316358}
+  - component: {fileID: 3048545823376598024}
   m_Layer: 0
   m_Name: door
   m_TagString: Wall
@@ -202,6 +203,7 @@ MonoBehaviour:
   damageThreshhold: 5
   damageMultiplier: 1
   healthPool: {fileID: 0}
+  includeChildren: 0
 --- !u!114 &3123884570274226191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +252,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c72d82dc668dc4b9335fd28968509c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &3048545823376598024
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7641675118786190384}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.25100002, y: 3.8910003, z: 2.775}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.63500005, z: 0}
+  m_TimeToStationary: 0.5
