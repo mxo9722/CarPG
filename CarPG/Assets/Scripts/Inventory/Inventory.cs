@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     private float axisMSpeedX;
     private float axisMSpeedY;
     bool InventoryOpen;
+    public int money;
 
     void Awake()
     {
@@ -54,6 +55,8 @@ public class Inventory : MonoBehaviour
         cameraController = GameObject.FindGameObjectWithTag("CameraController").GetComponent<Cinemachine.CinemachineFreeLook>();
 
         car = GameObject.FindGameObjectWithTag("Player");
+
+        money = 0;
     }
 
     private void OnValidate()
