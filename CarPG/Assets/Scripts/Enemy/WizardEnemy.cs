@@ -12,7 +12,8 @@ public class WizardEnemy : EnemyBehaviorScript
 
     protected override void Attack()
     {
-        SetAnimationTrigger("Attacking");
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            SetAnimationTrigger("Attacking");
         var lookPos = car.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
@@ -36,6 +37,7 @@ public class WizardEnemy : EnemyBehaviorScript
         else if (Vector3.Distance(car.transform.position, transform.position) < attackRange)
         {
             currentState = EnemyState.Attack;
+
         }
         else
         {
@@ -58,14 +60,13 @@ public class WizardEnemy : EnemyBehaviorScript
         var lookPos = transform.position - car.transform.position;
         lookPos.y = 0;
         lookPos = lookPos.normalized * fleeRange;
-        lookPos += transform.position;
+        lookPos += car.transform.position;
 
 
         NavMeshHit hit;
 
         NavMesh.SamplePosition(lookPos, out hit, fleeRange, 0);
 
-        Debug.Log(lookPos);
         Debug.DrawLine(transform.position, lookPos);
 
         if (NavMesh.SamplePosition(lookPos, out hit, fleeRange, NavMesh.AllAreas))

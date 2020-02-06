@@ -61,7 +61,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         
         car = GameObject.FindWithTag("Player");
         agent = GetComponentInChildren<NavMeshAgent>();
-        agent.speed = speedLimit*2;
+        agent.speed = speedLimit;
 
         SetRagDoll(false);
     }
@@ -146,7 +146,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         if (!agent.isStopped)
         {
-            PathTo(idleWalkTarget, speed);
+            PathTo(idleWalkTarget, speed/2.0f);
             SetAnimationTrigger("Walking");
         }
 
@@ -278,7 +278,7 @@ public class EnemyBehaviorScript : MonoBehaviour
             target *= speedLimit;
         }
 
-        Move(target,speed);
+        Move(target);
     }
 
     public virtual bool PathTo(Vector3 target,float speed)
@@ -296,16 +296,20 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         Debug.Log(movement);
 
-        target.Normalize();
-        target *= speed;
+        movement /= Time.deltaTime;
 
+        if (movement.magnitude > speed)
+        {
+            movement.Normalize();
+            movement *= speed;
+        }
 
-        Move(movement,speed);
+        Move(movement);
 
         return true;
     }
 
-    public virtual void Move(Vector3 targetVelocity,float speed)
+    public virtual void Move(Vector3 targetVelocity)
     {
         if (IsGrounded())
         {
@@ -315,18 +319,14 @@ public class EnemyBehaviorScript : MonoBehaviour
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-            velocity.y = 0;
-
             if (velocity.magnitude > 0.2f)
             {
+                velocity.y = 0;
                 Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
                 transform.rotation = rotato;
             }
 
-            if (rb.velocity.magnitude > speedLimit)
-            {
-                rb.velocity = rb.velocity.normalized * speedLimit;
-            }
+            
         }
     }
 
@@ -391,6 +391,6 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, cCollider.bounds.extents.y + 0.1f);
+        return Physics.Raycast(transform.position, -Vector3.up, cCollider.bounds.extents.y + cCollider.radius / 2.0f);
     }
 }
