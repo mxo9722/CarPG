@@ -7,7 +7,11 @@ public class Collectible : MonoBehaviour
     
     void OnTriggerEnter(Collider collision)
     {
-        gameObject.SendMessage("Collect", SendMessageOptions.DontRequireReceiver);
-        Destroy(gameObject);
+        if(collision.gameObject.tag == "Player")
+        {
+            gameObject.SendMessage("Collect", SendMessageOptions.DontRequireReceiver);
+            Destroy(gameObject);
+        }
+        
     }
 }

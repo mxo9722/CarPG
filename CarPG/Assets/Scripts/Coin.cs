@@ -16,7 +16,6 @@ public class Coin : MonoBehaviour
     {
         float degreesPerSecond = 50.0f;
         transform.Rotate(Vector3.up, degreesPerSecond * Time.deltaTime, Space.Self);
-        transform.Rotate(Vector3.left * degreesPerSecond * Time.deltaTime, Space.Self);
         GetComponent<Rigidbody>().isKinematic = true;
     }
 
