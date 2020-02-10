@@ -292,16 +292,16 @@ public class EnemyBehaviorScript : MonoBehaviour
         if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
             return false;
 
-        Vector3 movement = agent.transform.position - transform.position + new Vector3(0, cCollider.height / 2.0f * transform.localScale.y, 0);
+        Vector3 movement = agent.transform.position - transform.position ;
 
         Debug.Log(movement);
 
         movement /= Time.deltaTime;
 
-        if (movement.magnitude > speed)
+        if (movement.magnitude > speedLimit)
         {
             movement.Normalize();
-            movement *= speed;
+            movement *= speedLimit;
         }
 
         Move(movement);
