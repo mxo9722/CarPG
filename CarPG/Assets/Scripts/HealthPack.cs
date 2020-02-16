@@ -8,7 +8,7 @@ public class HealthPack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        car = GameObject.Find("Car").GetComponent<Damagable>();
+        car = GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
     }
 
     // Update is called once per frame
