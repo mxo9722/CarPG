@@ -41,7 +41,7 @@ public class WizardEnemy : EnemyBehaviorScript
         }
         else
         {
-            PathTo(car.transform.position,speed);
+            PathTo(car.transform.position,acceleration);
 
             if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance*4)
             {
@@ -71,7 +71,7 @@ public class WizardEnemy : EnemyBehaviorScript
 
         if (NavMesh.SamplePosition(lookPos, out hit, fleeRange, NavMesh.AllAreas))
         {
-            PathTo(hit.position,speed);
+            PathTo(hit.position,acceleration);
         }
 
         if (Vector3.Distance(car.transform.position, transform.position) > fleeRange)

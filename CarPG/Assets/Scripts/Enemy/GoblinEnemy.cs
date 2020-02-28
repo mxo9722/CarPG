@@ -29,20 +29,26 @@ public class GoblinEnemy : EnemyBehaviorScript
             SetAnimationTrigger("Idle");
         }
 
-        PathTo(car.transform.position, speed);
 
         if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
         {
             currentState = EnemyState.Idle;
             stateTimer = 0;
         }
-        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + (car.transform.position - transform.position).normalized * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player")&&stateTimer>3f)
+        else if (MeeleAttack.ObjectWithTagWithinRange(cCollider.radius, transform.position + (car.transform.position - transform.position).normalized * cCollider.radius * 2 * transform.localScale.x, gameObject, "Player"))
         {
-            currentState = EnemyState.Attack;
-            var targ = car.transform.position;
-            targ.y = transform.position.y;
-            Quaternion rotato = Quaternion.LookRotation(targ-transform.position);
-            transform.rotation = rotato;
+            if (stateTimer > 3f)
+            {
+                currentState = EnemyState.Attack;
+                var targ = car.transform.position;
+                targ.y = transform.position.y;
+                Quaternion rotato = Quaternion.LookRotation(targ - transform.position);
+                transform.rotation = rotato;
+            }
+        }
+        else
+        {
+            PathTo(car.transform.position, acceleration);
         }
     }
 }
