@@ -40,6 +40,8 @@ public class MeeleAttack
     {
         var colliders = Physics.OverlapSphere(center, radius);
 
+        Debug.DrawLine(center,(center-self.transform.position).normalized*radius+center,Color.red);
+
         foreach (Collider collider in colliders)
         {
             if (collider.gameObject.tag == tag && collider.gameObject!=self && !collider.gameObject.transform.IsChildOf(self.transform))

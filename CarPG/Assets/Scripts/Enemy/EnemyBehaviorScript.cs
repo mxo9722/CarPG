@@ -67,7 +67,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
 
         if (Vector3.Distance(transform.position, car.transform.position) > 250)
