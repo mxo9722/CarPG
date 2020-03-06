@@ -16,7 +16,17 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void Start()
         {
-            car = GameObject.FindWithTag("Player");
+            var players = GameObject.FindGameObjectsWithTag("Player");
+
+            for(int i = 0; i < players.Length; i++)
+            {
+                if (players[i].transform.parent?.tag != "Player")
+                {
+                    car = players[i];
+                    break;
+                }
+            }
+
             cController = car.GetComponent<CarController>();
             rTransform = GetComponent<RectTransform>();
 

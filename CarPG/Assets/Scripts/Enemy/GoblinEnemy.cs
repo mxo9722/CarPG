@@ -45,6 +45,7 @@ public class GoblinEnemy : EnemyBehaviorScript
                 Quaternion rotato = Quaternion.LookRotation(targ - transform.position);
                 transform.rotation = rotato;
             }
+            Move(new Vector3());
         }
         else
         {

@@ -40,7 +40,17 @@ public class Inventory : MonoBehaviour
     {
         _canvas=gameObject.GetComponent<Canvas>();
 
-        applier = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryApplier>();
+        var players = GameObject.FindGameObjectsWithTag("Player");
+
+        
+        for (int i=0;i<players.Length;i++)
+        {
+            applier = players[i].GetComponent<InventoryApplier>();
+            if (applier != null)
+            {
+                break;
+            }
+        }
 
         Button[] buttons = GetComponentsInChildren<Button>();
         foreach(Button button in buttons)

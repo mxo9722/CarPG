@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -57,11 +58,12 @@ public class EnemyBehaviorScript : MonoBehaviour
         joint = GetComponent<Joint>();
 
         bodyColliders = new List<Collider>(GetComponentsInChildren<Collider>());
-        behaveTimer = Random.value * -1;
+        behaveTimer = UnityEngine.Random.value * -1;
         
         car = GameObject.FindWithTag("Player");
         agent = GetComponentInChildren<NavMeshAgent>();
-        agent.speed = maxSpeed;
+        agent.speed = maxSpeed*2;
+        agent.acceleration = acceleration*4;
 
         SetRagDoll(false);
     }
@@ -109,12 +111,10 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
         }
 
-        var horVel = rb.velocity;
+        double horVel = Math.Sqrt(Math.Pow(rb.velocity.x,2)+Math.Pow(rb.velocity.z,2));
 
-        horVel.y = 0;
-
-        SetAnimationSpeeds(horVel.magnitude);
-        agent.transform.localPosition = new Vector3(0, -cCollider.height / 2.0f * transform.localScale.y, 0);
+        SetAnimationSpeeds((float)horVel);
+        agent.transform.localPosition = new Vector3(0, -cCollider.height / 2.0f * transform.lossyScale.y, 0);
 
         Vector2 moveSpeed = new Vector2(rb.velocity.x, rb.velocity.z);
 
@@ -143,7 +143,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         if (!agent.isStopped)
         {
-            PathTo(idleWalkTarget, acceleration/2.0f);
+            PathTo(idleWalkTarget, acceleration/2.0f,maxSpeed/2.0f);
             SetAnimationTrigger("Walking");
         }
 
@@ -155,7 +155,7 @@ public class EnemyBehaviorScript : MonoBehaviour
             {
                 tries++;
                 float walkRadius = 5;
-                Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+                Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
                 randomDirection += transform.position;
                 NavMeshHit hit;
                 NavMesh.SamplePosition(randomDirection, out hit, 5, 1);
@@ -277,7 +277,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         Move(target);
     }
 
-    public virtual bool PathTo(Vector3 target,float speed)
+    public virtual bool PathTo(Vector3 target,float speed,float maxSpeed=-1)
     {
         if (!agent.enabled)
             return false;
@@ -288,41 +288,51 @@ public class EnemyBehaviorScript : MonoBehaviour
         if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
             return false;
 
-        Vector3 movement = agent.transform.position - transform.position ;
+        Vector3 movement = agent.transform.position - transform.position;
+        Debug.Log(movement);
 
-        movement.Normalize();
-        movement *= speed;
-        movement += rb.velocity;
-
-        Move(movement);
+        if (movement.magnitude !=0)
+        {
+            movement.Normalize();
+            movement *= speed;
+            movement += rb.velocity;
+        }
+        else
+        {
+            movement=(new Vector3());
+        }
+        Move(movement,maxSpeed);
 
         return true;
     }
 
-    public virtual void Move(Vector3 targetVelocity)
+    public virtual void Move(Vector3 targetVelocity, float maxSpeed=-1)
     {
         if (IsGrounded())
         {
+            if (maxSpeed == -1)
+            {
+                maxSpeed = this.maxSpeed;
+            }
+
             if (targetVelocity.magnitude > maxSpeed)
             {
-                targetVelocity.Normalize();
+                targetVelocity = targetVelocity.normalized;
                 targetVelocity *= maxSpeed;
             }
 
-            var velocity = rb.velocity;
+            var velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
 
             var velocityChange = targetVelocity - velocity;
 
             rb.AddForce(velocityChange,ForceMode.VelocityChange);
 
-            if (velocity.magnitude > 0.2f)
+            if (velocity.magnitude > 0.05f)
             {
                 velocity.y = 0;
                 Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
                 transform.rotation = rotato;
             }
-
-            
         }
     }
 
@@ -370,7 +380,7 @@ public class EnemyBehaviorScript : MonoBehaviour
                 joint.massScale = 0.1f;
 
                 var pos = gameObject.transform.localPosition;
-                pos.y += cCollider.height / 2.0f * gameObject.transform.localScale.y;
+                pos.y += cCollider.height / 2.0f * gameObject.transform.lossyScale.y;
                 gameObject.transform.localPosition = pos;
                 
                 cCollider.enabled = true;

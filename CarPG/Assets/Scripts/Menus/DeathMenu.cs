@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
@@ -16,15 +17,13 @@ public class DeathMenu : MonoBehaviour
 
     public void Exit()
     {
-        //if (EditorUtility.DisplayDialog("Exit","Are you sure you'd like to quit? Your progress will be lost.","Exit","Continue Playing"))
-        //{
         Application.Quit();
-        //}
     }
 
     public void Replay()
     {
         //Replay code will go here
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name,LoadSceneMode.Single);
     }
 
     /*public void LoadOptions()

@@ -40,7 +40,7 @@ public class MeeleAttack
     {
         var colliders = Physics.OverlapSphere(center, radius);
 
-        Debug.DrawLine(center,(center-self.transform.position).normalized*radius+center,Color.red);
+        //Debug.DrawLine(center,(center-self.transform.position).normalized*radius+center,Color.red);
 
         foreach (Collider collider in colliders)
         {
