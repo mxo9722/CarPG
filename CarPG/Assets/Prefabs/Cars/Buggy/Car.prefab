@@ -6803,7 +6803,6 @@ GameObject:
   - component: {fileID: 217963342}
   - component: {fileID: 2336065340589096269}
   - component: {fileID: 8991947285168793768}
-  - component: {fileID: 324548111}
   m_Layer: 9
   m_Name: Car
   m_TagString: Player
@@ -6999,8 +6998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b22ab2258da354890f918c1b015cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 6512990990650910262, guid: f6ce30035faa72b439eb84a2d3594fc8,
-    type: 3}
+  prevMouseVisible: 0
 --- !u!114 &8991947285168793768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7018,22 +7016,6 @@ MonoBehaviour:
   damage: 0
   explosionEffect: {fileID: 353892447993257469, guid: a0618614604137e45b3420ae69bf8aba,
     type: 3}
---- !u!208 &324548111
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5759511461044801645}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.85, y: 0.5, z: 2.05}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &6758199804322657986
 GameObject:
   m_ObjectHideFlags: 0

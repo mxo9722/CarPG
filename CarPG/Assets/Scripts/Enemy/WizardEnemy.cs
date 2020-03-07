@@ -16,6 +16,8 @@ public class WizardEnemy : EnemyBehaviorScript
             SetAnimationTrigger("Attacking");
         var lookPos = car.transform.position - transform.position;
         lookPos.y = 0;
+
+        Move(Vector3.zero);
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = rotation;
     }

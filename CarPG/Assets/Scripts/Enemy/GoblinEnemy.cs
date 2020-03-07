@@ -20,15 +20,6 @@ public class GoblinEnemy : EnemyBehaviorScript
 
     protected override void Aggro()
     {
-        if (rb.velocity.magnitude > 1)
-        { 
-            SetAnimationTrigger("Running");
-        }
-        else
-        {
-            SetAnimationTrigger("Idle");
-        }
-
 
         if (Vector3.Distance(car.transform.position, transform.position) > aggroDistance * 4)
         {
@@ -45,7 +36,6 @@ public class GoblinEnemy : EnemyBehaviorScript
                 Quaternion rotato = Quaternion.LookRotation(targ - transform.position);
                 transform.rotation = rotato;
             }
-            Move(new Vector3());
         }
         else
         {

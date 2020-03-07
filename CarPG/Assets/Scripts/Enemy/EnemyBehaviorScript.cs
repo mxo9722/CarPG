@@ -27,6 +27,7 @@ public class EnemyBehaviorScript : MonoBehaviour
     public float maxSpeed = 10;
     public float attackDamage; //How much DAMAGE this dude does
     public float attackForce = 100;
+
     protected Animator anim;
     //public float attackDistance;
     protected  GameObject car;
@@ -45,8 +46,6 @@ public class EnemyBehaviorScript : MonoBehaviour
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
     public NavMeshAgent agent;
 
-    
-
     // Start is called before the first frame update
     protected void Start()
     {
@@ -64,6 +63,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         agent = GetComponentInChildren<NavMeshAgent>();
         agent.speed = maxSpeed*2;
         agent.acceleration = acceleration*4;
+        agent.baseOffset = cCollider.height / 2.0f;
 
         SetRagDoll(false);
     }
@@ -111,19 +111,18 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
         }
 
-        double horVel = Math.Sqrt(Math.Pow(rb.velocity.x,2)+Math.Pow(rb.velocity.z,2));
+        
 
-        SetAnimationSpeeds((float)horVel);
-        agent.transform.localPosition = new Vector3(0, -cCollider.height / 2.0f * transform.lossyScale.y, 0);
+        float horVel = new Vector2(rb.velocity.x,rb.velocity.z).magnitude;
 
-        Vector2 moveSpeed = new Vector2(rb.velocity.x, rb.velocity.z);
+        SetAnimationSpeeds(horVel);
 
-        if (rb.velocity.magnitude > maxSpeed && IsGrounded() && !ragDoll)
-        {
-            moveSpeed = moveSpeed.normalized * maxSpeed;
+        agent.transform.localPosition = new Vector3(0, 0, 0);
+    }
 
-            //rb.velocity = new Vector3(moveSpeed.x,rb.velocity.y,moveSpeed.y);
-        }
+    private void LateUpdate()
+    {
+        
     }
 
     protected virtual void StandingUp()
@@ -138,13 +137,9 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected virtual void Idle()
     {
-        if(rb.velocity.magnitude<0.3&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            SetAnimationTrigger("Standing");
-
         if (!agent.isStopped)
         {
             PathTo(idleWalkTarget, acceleration/2.0f,maxSpeed/2.0f);
-            SetAnimationTrigger("Walking");
         }
 
         if (Mathf.Floor(stateTimer) % 6 == 0&&IsGrounded()) //every 3 seconds this happens twice
@@ -289,19 +284,18 @@ public class EnemyBehaviorScript : MonoBehaviour
             return false;
 
         Vector3 movement = agent.transform.position - transform.position;
-        Debug.Log(movement);
+        //Debug.Log(movement);
+
+        //movement.y = 0;
 
         if (movement.magnitude !=0)
         {
-            movement.Normalize();
+            movement/=agent.speed*Time.fixedDeltaTime;
             movement *= speed;
-            movement += rb.velocity;
+            movement += rb.velocity;           
         }
-        else
-        {
-            movement=(new Vector3());
-        }
-        Move(movement,maxSpeed);
+
+        Move(movement, maxSpeed);
 
         return true;
     }
@@ -321,16 +315,16 @@ public class EnemyBehaviorScript : MonoBehaviour
                 targetVelocity *= maxSpeed;
             }
 
-            var velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+            //var velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
 
-            var velocityChange = targetVelocity - velocity;
+            var velocityChange = targetVelocity - rb.velocity;
 
-            rb.AddForce(velocityChange,ForceMode.VelocityChange);
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-            if (velocity.magnitude > 0.05f)
+            if (targetVelocity.magnitude > 0.05f)
             {
-                velocity.y = 0;
-                Quaternion rotato = Quaternion.LookRotation(velocity.normalized);
+                targetVelocity.y = 0;
+                Quaternion rotato = Quaternion.LookRotation(targetVelocity.normalized);
                 transform.rotation = rotato;
             }
         }
@@ -357,7 +351,6 @@ public class EnemyBehaviorScript : MonoBehaviour
                 
                 joint.massScale = 1;
                 cCollider.enabled = false;
-                SetAnimationTrigger("StandingUp");
                 anim.enabled = false;
                 agent.enabled = false;
 
