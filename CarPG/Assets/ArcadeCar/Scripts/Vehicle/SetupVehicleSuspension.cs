@@ -4,20 +4,22 @@ namespace Vehicle
 {
     /// <summary>
     /// Simple monobehaviour that initializes the vehicle suspension springs, based on inspector setup.
+    /// 
+    /// Edited to take the actual transforms so springs can be changed from the editor
     /// </summary>
     public class SetupVehicleSuspension : MonoBehaviour
     {
         [SerializeField]
-        private Vector3 springFrontLeftPosition;
+        private Transform springFrontLeftTransform;
 
         [SerializeField]
-        private Vector3 springFrontRightPosition;
+        private Transform springFrontRightTransform;
 
         [SerializeField]
-        private Vector3 springRearLeftPosition;
+        private Transform springRearLeftTransform;
 
         [SerializeField]
-        private Vector3 springRearRightPosition;
+        private Transform springRearRightTransform;
 
         [SerializeField]
         private VehicleSuspension suspension;
@@ -29,7 +31,7 @@ namespace Vehicle
 
         private void Start()
         {
-            suspension.InitializeSprings(springFrontLeftPosition, springFrontRightPosition, springRearLeftPosition, springRearRightPosition);
+            suspension.InitializeSprings(springFrontLeftTransform.localPosition, springFrontRightTransform.localPosition, springRearLeftTransform.localPosition, springRearRightTransform.localPosition);
         }
     }
 }
