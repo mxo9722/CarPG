@@ -6182,6 +6182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a048741939e076a43abe1616256b2bdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
 --- !u!1 &353989854
@@ -12238,7 +12242,7 @@ MonoBehaviour:
   drawGizmos: 0
   UseWaving: 1
   CosinusAdd: 0
-  WavingSpeed: 3
+  WavingSpeed: 6
   WavingRange: 1
   WavingAxis: {x: 1, y: 1, z: 1}
   TailRotationOffset: {x: 0, y: 0, z: 0}
@@ -16763,7 +16767,7 @@ MonoBehaviour:
   drawGizmos: 0
   UseWaving: 1
   CosinusAdd: 0
-  WavingSpeed: 3
+  WavingSpeed: 6
   WavingRange: 1
   WavingAxis: {x: 1, y: 1, z: 1}
   TailRotationOffset: {x: 0, y: 0, z: 0}
@@ -16894,6 +16898,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a048741939e076a43abe1616256b2bdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
 --- !u!1 &829875529 stripped
@@ -17389,7 +17397,7 @@ MonoBehaviour:
   drawGizmos: 0
   UseWaving: 1
   CosinusAdd: 0
-  WavingSpeed: 3
+  WavingSpeed: 6
   WavingRange: 1
   WavingAxis: {x: 1, y: 1, z: 1}
   TailRotationOffset: {x: 0, y: 0, z: 0}
@@ -20836,7 +20844,7 @@ MonoBehaviour:
   drawGizmos: 0
   UseWaving: 1
   CosinusAdd: 0
-  WavingSpeed: 3
+  WavingSpeed: 6
   WavingRange: 1
   WavingAxis: {x: 1, y: 1, z: 1}
   TailRotationOffset: {x: 0, y: 0, z: 0}
@@ -20898,6 +20906,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a048741939e076a43abe1616256b2bdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
 --- !u!4 &970097109 stripped
@@ -21124,6 +21136,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a048741939e076a43abe1616256b2bdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
 --- !u!1001 &1061101952
@@ -25669,6 +25685,11 @@ PrefabInstance:
       propertyPath: m_BlendShapeWeights.Array.data[0]
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -9104819765758553823, guid: 4f47ff5a2d27a7d41985c7639048135a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1be0922b6b935924789c8fe216ec9bb7, type: 2}
     - target: {fileID: -6057140222963153312, guid: 4f47ff5a2d27a7d41985c7639048135a,
         type: 3}
       propertyPath: m_Controller
@@ -26405,6 +26426,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a048741939e076a43abe1616256b2bdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81485cb92ff5104b979bcab19733055, type: 3}
 --- !u!1 &1476422764
@@ -27113,7 +27138,7 @@ MonoBehaviour:
   drawGizmos: 0
   UseWaving: 1
   CosinusAdd: 0
-  WavingSpeed: 3
+  WavingSpeed: 6
   WavingRange: 1
   WavingAxis: {x: 1, y: 1, z: 1}
   TailRotationOffset: {x: 0, y: 0, z: 0}
@@ -27257,7 +27282,7 @@ MonoBehaviour:
   drawGizmos: 0
   UseWaving: 1
   CosinusAdd: 0
-  WavingSpeed: 3
+  WavingSpeed: 6
   WavingRange: 1
   WavingAxis: {x: 1, y: 1, z: 1}
   TailRotationOffset: {x: 0, y: 0, z: 0}
