@@ -114,7 +114,9 @@ public class Damagable : MonoBehaviour
             if (health <= 0)
             {
                 if (col != null)
-                    gameObject.SendMessage("DieCollision", col,SendMessageOptions.DontRequireReceiver);
+                {
+                    gameObject.SendMessage("DieCollision", col, SendMessageOptions.DontRequireReceiver);
+                } 
                 gameObject.SendMessage("Die",SendMessageOptions.DontRequireReceiver);
                 
             }

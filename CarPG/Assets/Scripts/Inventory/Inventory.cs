@@ -34,12 +34,23 @@ public class Inventory : MonoBehaviour
     private float axisMSpeedX;
     private float axisMSpeedY;
     bool InventoryOpen;
+    public int money;
 
     void Awake()
     {
         _canvas=gameObject.GetComponent<Canvas>();
 
-        applier = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryApplier>();
+        var players = GameObject.FindGameObjectsWithTag("Player");
+
+        
+        for (int i=0;i<players.Length;i++)
+        {
+            applier = players[i].GetComponent<InventoryApplier>();
+            if (applier != null)
+            {
+                break;
+            }
+        }
 
         Button[] buttons = GetComponentsInChildren<Button>();
         foreach(Button button in buttons)
@@ -54,6 +65,8 @@ public class Inventory : MonoBehaviour
         cameraController = GameObject.FindGameObjectWithTag("CameraController").GetComponent<Cinemachine.CinemachineFreeLook>();
 
         car = GameObject.FindGameObjectWithTag("Player");
+
+        money = 0;
     }
 
     private void OnValidate()
