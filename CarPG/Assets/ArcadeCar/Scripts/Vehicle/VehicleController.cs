@@ -69,11 +69,13 @@ namespace Vehicle
         /// <summary>
         /// Range between 0.0f and 1.0f
         /// </summary>
+        [SerializeField]
         private float gasInput;
 
         /// <summary>
         /// Range between 0.0f and 1.0f
         /// </summary>
+        [SerializeField]
         private float brakeInput;
 
         /// <summary>
@@ -149,7 +151,7 @@ namespace Vehicle
                 {
                     if (isMovingForward)
                     {
-                        myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor, steeringTransform.position, ForceMode.Acceleration);
+                        myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * StraightVelocityMagnitude, steeringTransform.position, ForceMode.Acceleration);
                     }
                     else
                     {
@@ -161,7 +163,7 @@ namespace Vehicle
                         if (gasInput < 0.0f)
                         {
                             // Case is moving backwards and player still giving input for keep moving backwards, that is when we rear (reverse) steer
-                            myRigidbody.AddForceAtPosition(steerInput * -projectedRight * steerFactor, steeringTransform.position, ForceMode.Acceleration);
+                            myRigidbody.AddForceAtPosition(steerInput * -projectedRight * steerFactor * StraightVelocityMagnitude, steeringTransform.position, ForceMode.Acceleration);
                         }
                     }
                 }
@@ -188,17 +190,27 @@ namespace Vehicle
                 }
 
                 // Wheels Rolling Resistance, turn front and back traction (so vehicle doesnt tend to move front/back forever)
-                const float WHEELS_ROLLING_RESISTANCE_COEFFICIENT = 0.2f;
+                const float WHEELS_ROLLING_RESISTANCE_COEFFICIENT = 2.0f;
                 Vector3 wheelsRollingResistanceForce = -(straightVelocity * WHEELS_ROLLING_RESISTANCE_COEFFICIENT);
                 myRigidbody.AddForce(wheelsRollingResistanceForce, ForceMode.Acceleration);
             }
             else
             {
                 isMovingForward = false;
+
+                /**if (gasInput != 0.0f || brakeInput > 0.0f) //W and S inputs used for pitching in the air
+                {
+                    myRigidbody.AddRelativeTorque(-new Vector3((gasInput * -.1f) + (brakeInput * .1f), 0.0f, 0.0f), ForceMode.VelocityChange);
+                }**/
+
+                if (!Mathf.Approximately(0.0f, steerInput) && straightVelocityMagnitude > 0.0f) //turning inputs used for rolling in the air TODO: Change to Q and E
+                {
+                    myRigidbody.AddRelativeTorque(-new Vector3(0.0f, 0.0f, steerInput * .1f), ForceMode.VelocityChange);
+                }
             }
 
             // Air Resistance / Aerodynamic drag
-            const float AERODYNAMIC_DRAG_MODIFIER = 0.005f;
+            const float AERODYNAMIC_DRAG_MODIFIER = 0.001f;
             myRigidbody.AddForce(
                 -myRigidbody.velocity.normalized * boxCollider.size.magnitude * AERODYNAMIC_DRAG_MODIFIER * myRigidbody.velocity.sqrMagnitude,
                 ForceMode.Acceleration);
