@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PlayerInput;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,9 +26,9 @@ namespace UnityStandardAssets.Vehicles.Car
 
         void Die()
         {
-            if (GetComponent<CarUserControl>() != null)
+            if (GetComponentInChildren<PcVehicleInput>() != null)
             {
-                GetComponent<CarUserControl>().enabled = false;
+                GetComponent<PcVehicleInput>().enabled = false;
             }
             if (GetComponent<CarJump>() != null)
             {

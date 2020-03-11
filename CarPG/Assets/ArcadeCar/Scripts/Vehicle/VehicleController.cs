@@ -211,9 +211,7 @@ namespace Vehicle
 
             // Air Resistance / Aerodynamic drag
             const float AERODYNAMIC_DRAG_MODIFIER = 0.001f;
-            myRigidbody.AddForce(
-                -myRigidbody.velocity.normalized * boxCollider.size.magnitude * AERODYNAMIC_DRAG_MODIFIER * myRigidbody.velocity.sqrMagnitude,
-                ForceMode.Acceleration);
+            //myRigidbody.AddForce(-myRigidbody.velocity.normalized * boxCollider.size.magnitude * AERODYNAMIC_DRAG_MODIFIER * myRigidbody.velocity.sqrMagnitude,ForceMode.Acceleration);
         }
 
         public void Gas(float gasInput)

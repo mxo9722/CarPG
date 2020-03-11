@@ -425,7 +425,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &917942853
 AudioListener:
@@ -1289,7 +1289,7 @@ PrefabInstance:
     - target: {fileID: 2782380070690457659, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2782380070690457659, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
@@ -1374,12 +1374,12 @@ PrefabInstance:
     - target: {fileID: 4744512467834614753, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000002441747
+      value: 0.00000020953922
       objectReference: {fileID: 0}
     - target: {fileID: 4744512467834614753, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000006628972
+      value: -0.00000006452167
       objectReference: {fileID: 0}
     - target: {fileID: 4744512467834614753, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}

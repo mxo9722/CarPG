@@ -22,41 +22,19 @@ namespace PlayerInput
         [SerializeField]
         private KeyCode breakKeyCode;
 
-        private bool isLeftOn;
-        private bool isRightOn;
+        private float horizontal;
+
         private bool isGasOn;
         private bool isBreakOn;
 
-        public bool IsLeftOn { get { return isLeftOn; } }
-        public bool IsRightOn { get { return isRightOn; } }
+        public float Horizontal { get { return horizontal; } }
+
         public bool IsGasOn { get { return isGasOn; } }
         public bool IsBreakOn { get { return isBreakOn; } }
         
         private void Update()
         {
-            if (!(Input.GetKey(leftKeyCode) && Input.GetKey(rightKeyCode)))
-            {
-                if (Input.GetKey(leftKeyCode))
-                {
-                    isLeftOn = true;
-                    isRightOn = false;
-                }
-                else if (Input.GetKey(rightKeyCode))
-                {
-                    isLeftOn = false;
-                    isRightOn = true;
-                }
-                else
-                {
-                    isLeftOn = false;
-                    isRightOn = false;
-                }
-            }
-            else
-            {
-                isLeftOn = false;
-                isRightOn = false;
-            }
+            horizontal = Input.GetAxis("Horizontal");
 
             if (Input.GetKey(gasKeyCode))
             {

@@ -56,44 +56,9 @@ namespace Vehicle
                 {
                     controller.Gas(0.0f);
                     controller.Brake(0.0f);
-                }       
-
-                if (input.IsLeftOn)
-                {
-                    if (steering > -1.0f)
-                    {
-                        if (steering > 0.0f)
-                        {
-                            steering = 0.0f;
-                        }
-
-                        steering -= steeringInputRate * Time.deltaTime;
-                        if (steering < -1.0f)
-                        {
-                            steering = -1.0f;
-                        }
-                    }
                 }
-                else if (input.IsRightOn)
-                {
-                    if (steering < 1.0f)
-                    {
-                        if (steering < 0.0f)
-                        {
-                            steering = 0.0f;
-                        }
 
-                        steering += steeringInputRate * Time.deltaTime;
-                        if (steering > 1.0f)
-                        {
-                            steering = 1.0f;
-                        }
-                    }
-                }
-                else
-                {
-                    steering = 0.0f;
-                }
+                steering = input.Horizontal;
 
                 controller.Steer(steering);
             }
