@@ -21,6 +21,8 @@ public class MusicManager : MonoBehaviour
 
     private Song currentSong = 0;
 
+    private float musicDelay = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,11 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!lockCurrentSong)
+        if (musicDelay > 0)
+        {
+            musicDelay -= Time.deltaTime;
+        }
+        else if (!lockCurrentSong)
         {
             Song newSong = Song.DrivingSong;
 
@@ -45,8 +51,13 @@ public class MusicManager : MonoBehaviour
                         enemyList.RemoveAt(i);
                         i--;
                     }
+                    else if (enemyList[i].currentState == EnemyState.StandingUp)
+                    {
+                        
+                    }
                     else
                     {
+                        Debug.Log(enemyList[i].currentState.ToString());
                         newSong = Song.FightSong;
                         break;
                     }
@@ -60,6 +71,7 @@ public class MusicManager : MonoBehaviour
                 BGM.Play();
 
                 currentSong = newSong;
+                musicDelay = 3;
             }
         }
     }

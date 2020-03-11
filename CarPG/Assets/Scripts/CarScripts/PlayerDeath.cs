@@ -28,7 +28,7 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             if (GetComponentInChildren<PcVehicleInput>() != null)
             {
-                GetComponent<PcVehicleInput>().enabled = false;
+                GetComponentInChildren<PcVehicleInput>().enabled = false;
             }
             if (GetComponent<CarJump>() != null)
             {
