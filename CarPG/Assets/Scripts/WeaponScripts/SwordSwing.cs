@@ -15,7 +15,7 @@ public class SwordSwing : Weapon
     {
         joint = GetComponent<HingeJoint>();
         rigidBody = GetComponent<Rigidbody>();
-        joint.connectedBody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        joint.connectedBody = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Rigidbody>();
     }
 
     private void Update()
