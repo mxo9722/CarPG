@@ -29,7 +29,10 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     public static GameObject pickupItem;
     [SerializeField]
-    
+    public static Item pickedUpItem;
+
+    public float endMessage = 0;
+
     private Cinemachine.CinemachineFreeLook cameraController;
     private float axisMSpeedX;
     private float axisMSpeedY;
@@ -140,7 +143,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (CrossPlatformInputManager.GetButtonDown("PickUp")&&pickupItem!=null)
+        if (pickupItem!=null)
         {
             if (PickUpItem(pickupItem.GetComponent<ItemHolder>().GetContent()))
             {
@@ -221,6 +224,8 @@ public class Inventory : MonoBehaviour
             if (slots[i].Content == null)
             {
                 slots[i].Content = item;
+                pickedUpItem = item;
+                endMessage = Time.time+5;
                 return true;
             }
         }
@@ -229,11 +234,10 @@ public class Inventory : MonoBehaviour
 
     private void OnGUI()
     {
-        if (pickupItem != null)
+        if (pickedUpItem != null && endMessage>Time.time)
         {
-            Rect rect = new Rect(Screen.width/2.0f-100,Screen.height/2.0f+60,200,20);
-            string key = "Q"; //You cannot get the bound key as of now. There may be a way to get it using an eternal tool.
-            GUI.Box(rect, "Press "+key+" to pick up "+pickupItem.name);
+            Rect rect = new Rect(Screen.width/2.0f-100,Screen.height/2.0f+60,240,40);
+            GUI.Box(rect, "Collected the " +pickedUpItem.name+"!\nPress E to access your inventory.");
         }
     }
 }
