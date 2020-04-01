@@ -62,10 +62,11 @@ public class EnemyBehaviorScript : MonoBehaviour
         car = GameObject.FindWithTag("Player");
         agent = GetComponentInChildren<NavMeshAgent>();
         agent.speed = maxSpeed*2;
-        agent.acceleration = acceleration*4;
+        agent.acceleration = acceleration*2;
         agent.baseOffset = cCollider.height / 2.0f;
 
         SetRagDoll(false);
+        //agent.updatePosition = false;
     }
 
     // Update is called once per frame
@@ -116,8 +117,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         float horVel = new Vector2(rb.velocity.x,rb.velocity.z).magnitude;
 
         SetAnimationSpeeds(horVel);
-
-        agent.transform.localPosition = new Vector3(0, 0, 0);
+        agent.transform.position = transform.position;
     }
 
     private void LateUpdate()
@@ -284,11 +284,14 @@ public class EnemyBehaviorScript : MonoBehaviour
             return false;
 
         Vector3 movement = agent.transform.position - transform.position;
+
+        movement = agent.velocity;
+        //movement = agent.desiredVelocity;
         //Debug.Log(movement);
 
         //movement.y = 0;
 
-        if (movement.magnitude !=0)
+        if (movement.magnitude > 0.1)
         {
             movement/=agent.speed*Time.fixedDeltaTime;
             movement *= speed;
