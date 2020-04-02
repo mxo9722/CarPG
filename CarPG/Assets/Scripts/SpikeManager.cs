@@ -17,16 +17,18 @@ public class SpikeManager : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(transform.position, car.transform.position);
-        if(dist < 10)
+        if(dist < 15)
         {
             for(int i=0; i < spikes.Length; i++)
             {
-                spikes[i].trigger();
-                if (spikes[i].spikeCooldown > 0)
-                {
-                    float objY = spikes[i].transform.position.y;
-                    spikes[i].transform.position = new Vector3(spikes[i].transform.position.x, objY -= 0.2f, spikes[i].transform.position.z);
-                }
+                spikes[i].trigger = true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < spikes.Length; i++)
+            {
+                spikes[i].trigger = false;
             }
         }
     }
