@@ -14,11 +14,15 @@ public class WarningLights : MonoBehaviour
     void Awake()
     {
         
-        var c = GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
+        var c = GameObject.FindGameObjectsWithTag("Player");
 
-        if (c != null)
+        foreach (GameObject ob in c)
         {
-            car = c;
+            if (ob.GetComponent<Damagable>() != null)
+            {
+                car = ob.GetComponent<Damagable>();
+                break;
+            }
         }
     }
 

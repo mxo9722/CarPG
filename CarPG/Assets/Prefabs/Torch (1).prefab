@@ -14367,7 +14367,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -14380,7 +14380,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
+  m_ShadowRadius: 50
   m_ShadowAngle: 0
 --- !u!1001 &9043417589119964822
 PrefabInstance:
@@ -14394,15 +14394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ice cream cone
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -5102530947620581811, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
         type: 3}
