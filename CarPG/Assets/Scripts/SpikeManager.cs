@@ -17,7 +17,7 @@ public class SpikeManager : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(transform.position, car.transform.position);
-        if(dist < 15)
+        if(dist < 20)
         {
             for(int i=0; i < spikes.Length; i++)
             {
