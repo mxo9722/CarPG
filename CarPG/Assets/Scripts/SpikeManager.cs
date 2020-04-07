@@ -24,12 +24,5 @@ public class SpikeManager : MonoBehaviour
                 spikes[i].trigger = true;
             }
         }
-        else
-        {
-            for (int i = 0; i < spikes.Length; i++)
-            {
-                spikes[i].trigger = false;
-            }
-        }
     }
 }
