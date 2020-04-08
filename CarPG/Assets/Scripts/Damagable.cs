@@ -89,6 +89,8 @@ public class Damagable : MonoBehaviour
 
     public void ApplyDamage(float damage,Collision col=null)
     {
+        damage = Mathf.Round(damage);
+
         if (healthPool!=null)
         {
             Rigidbody b;
@@ -103,12 +105,17 @@ public class Damagable : MonoBehaviour
         }
         else if (health > 0)
         {
+
             damage -= damageThreshhold;
+
 
             if (damage <= 0)
                 return;
 
             health -= damage;
+            
+            if (gameObject.GetComponent<EnemyBehaviorScript>())
+                DamageTextController.CreateDamageText(damage.ToString(), transform);
 
             gameObject.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
             if (health <= 0)
