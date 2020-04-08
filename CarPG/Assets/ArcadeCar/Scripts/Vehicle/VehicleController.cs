@@ -11,7 +11,7 @@ namespace Vehicle
     public class VehicleController : MonoBehaviour
     {
         [SerializeField]
-        private Rigidbody myRigidbody;
+        public Rigidbody myRigidbody;
 
         [SerializeField]
         private BoxCollider boxCollider;
@@ -43,10 +43,10 @@ namespace Vehicle
         /// The maximum velocity of the vehicle in metters/seconds.
         /// </summary>
         [SerializeField]
-        private float maximumVelocity;
+        public float maximumVelocity;
 
         [SerializeField]
-        private float accelerationFactor;
+        public float accelerationFactor;
 
         [SerializeField]
         private float brakeFactor;
