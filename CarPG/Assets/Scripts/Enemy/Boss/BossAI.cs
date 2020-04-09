@@ -19,9 +19,8 @@ public class BossAI : MonoBehaviour
 
     private int lives = 3;
 
-    private bool animationEnded = false;
+    public GameObject eye;
 
-    public List<GameObject> chains;
     public GameObject car;
 
     void Start()
@@ -32,10 +31,7 @@ public class BossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animationEnded)
-        {
-
-        }
+        transform.forward=Vector3.Lerp(transform.forward, car.transform.position - transform.position,0.2f*Time.deltaTime);
     }
 
     void BeamAttack()
