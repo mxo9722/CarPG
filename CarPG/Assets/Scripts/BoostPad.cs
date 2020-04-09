@@ -38,7 +38,10 @@ public class BoostPad : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("boost trigger");
-        boostActive = true;
+        if (other.tag == "Player")
+        {
+            Debug.Log("boost trigger");
+            boostActive = true;
+        }
     }
 }
