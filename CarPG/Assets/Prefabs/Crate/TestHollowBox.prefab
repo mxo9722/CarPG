@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1284602922577005650}
   - component: {fileID: 1284602922577005648}
   - component: {fileID: 1589804576923792847}
+  - component: {fileID: 203364324}
   m_Layer: 0
   m_Name: TestHollowBox
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284602922577005649}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -64.87745, y: 41.85, z: -23.46}
   m_LocalScale: {x: 1.1555333, y: 1.1555333, z: 1.1555333}
   m_Children: []
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: d158189ecfb16124392f5d6811900a2d, type: 3}
+  - {fileID: 2100000, guid: 4459fc795281a8d43aa983b9593ae4fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c1bce510365774288ee78e0994c3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   health: 0
-  damageThreshhold: 0
+  damageThreshhold: 5
   damageMultiplier: 1
   healthPool: {fileID: 0}
   includeChildren: 0
@@ -169,3 +170,19 @@ MonoBehaviour:
   EntireMeshBounds:
     m_Center: {x: 0, y: 0, z: -0.000000029802322}
     m_Extent: {x: 0.57776666, y: 0.57776666, z: 0.5777666}
+--- !u!208 &203364324
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284602922577005649}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
