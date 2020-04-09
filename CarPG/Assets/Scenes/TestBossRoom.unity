@@ -2130,22 +2130,22 @@ PrefabInstance:
     - target: {fileID: 6169465099621839793, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.05421355
+      value: 0.054213554
       objectReference: {fileID: 0}
     - target: {fileID: 6169465099621839793, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70502573
+      value: -0.7050257
       objectReference: {fileID: 0}
     - target: {fileID: 6169465099621839793, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.05421357
+      value: -0.054213565
       objectReference: {fileID: 0}
     - target: {fileID: 6169465099621839793, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.70502526
+      value: -0.7050253
       objectReference: {fileID: 0}
     - target: {fileID: 4744512467834614753, guid: 218357d0f31a2d94899ae77deaf0f558,
         type: 3}
@@ -2246,7 +2246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537491907}
-  m_LocalRotation: {x: -0.05421354, y: 0.70502573, z: 0.054213587, w: 0.7050252}
+  m_LocalRotation: {x: -0.054213546, y: 0.7050256, z: 0.05421358, w: 0.7050253}
   m_LocalPosition: {x: -40.548107, y: 7.5, z: -26.636215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2290,6 +2290,32 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1675939891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5474111635750710652, guid: 5c4948262c909cc4483dc8fc239ec790,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903628678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1675939892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675939891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4529d7b5a8c209040a6e78ac23ebe1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossLoc: {fileID: 1794950814}
+  bossFightPrefab: {fileID: 0}
+--- !u!1 &1794950814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1489932162251846740, guid: 5c4948262c909cc4483dc8fc239ec790,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903628678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1903628678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2357,5 +2383,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1675939897, guid: 5c4948262c909cc4483dc8fc239ec790, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5c4948262c909cc4483dc8fc239ec790, type: 3}
