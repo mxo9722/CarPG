@@ -23,6 +23,15 @@ public class FractureOnDeath : MonoBehaviour
 
     void Die()
     {
+        if (AdjustForKinematic)
+        {
+            var body = this.GetComponent<Rigidbody>();
+
+            if (body.isKinematic)
+            {
+                body.isKinematic = false;
+            }
+        }
         GetComponent<FractureGeometry>().Fracture();
     }
 
@@ -55,7 +64,17 @@ public class FractureOnDeath : MonoBehaviour
 
                 Vector3 localPoint = transform.worldToLocalMatrix.MultiplyPoint(_impactPoint);
 
-                GetComponent<FractureGeometry>().Fracture(localPoint);
+            if (AdjustForKinematic)
+            {
+                var body = this.GetComponent<Rigidbody>();
+
+                if (body.isKinematic)
+                {
+                    body.isKinematic = false;
+                }
+            }
+
+            GetComponent<FractureGeometry>().Fracture(localPoint);
         }
     }
 
