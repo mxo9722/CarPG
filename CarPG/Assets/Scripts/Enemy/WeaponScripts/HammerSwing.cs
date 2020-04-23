@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class HammerSwing : Weapon
 {
@@ -20,7 +19,7 @@ public class HammerSwing : Weapon
 
     private void Update()
     {
-        bool pressed = CrossPlatformInputManager.GetButton("Fire3");
+        bool pressed = Input.GetButton("Fire3");
 
         if (pressed)
         {

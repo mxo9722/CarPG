@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Vehicles.Car;
 
 public class CarJump : MonoBehaviour
@@ -37,7 +36,7 @@ public class CarJump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var pressed = CrossPlatformInputManager.GetButton("Jump");
+        var pressed = Input.GetButton("Jump");
 
         if (!jumpPressed && pressed)
         {
@@ -58,8 +57,8 @@ public class CarJump : MonoBehaviour
             }
         }
 
-        jumpPressed = CrossPlatformInputManager.GetButton("Jump");
-        steering = CrossPlatformInputManager.GetAxis("Horizontal");
+        jumpPressed = Input.GetButton("Jump");
+        steering = Input.GetAxis("Horizontal");
     }
 
     // Update is called once per frame

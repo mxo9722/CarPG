@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class HeadLights : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class HeadLights : MonoBehaviour
     void Update()
     {
 
-        if (CrossPlatformInputManager.GetButtonDown("Headlights"))
+        if (Input.GetButtonDown("Headlights"))
         {
             if (activated)
             {
