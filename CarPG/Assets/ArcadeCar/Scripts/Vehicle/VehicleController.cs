@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 namespace Vehicle
 {
@@ -54,6 +55,10 @@ namespace Vehicle
         [SerializeField]
         private float steerFactor;
 
+        //private int stayGroundedFrames = 5;
+
+        //[SerializeField]
+        //private CinemachineFreeLook cameraLogic;
         /// <summary>
         /// Sideways traction based on the movement of the vehicle.
         /// Note: can be tweaked for a more drifting feeling, for example.
@@ -106,8 +111,13 @@ namespace Vehicle
 
         private void FixedUpdate()
         {
+            //myRigidbody.AddForceAtPosition(-transform.up * 10000, transform.position); //lol disable gravity and uncomment this for a wild ride
             if (suspension.AreAllSpringsGrounded())
             {
+                //if (cameraLogic.m_BindingMode != Cinemachine.CinemachineTransposer.BindingMode.LockToTargetNoRoll)
+                //    cameraLogic.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.LockToTargetNoRoll;
+
+
                 Vector3 projectedForward = suspension.GetSuspensionProjectedForwardDirection();
                 Vector3 projectedRight = Vector3.Cross(Vector3.up, projectedForward);
                 straightVelocity = projectedForward * Vector3.Dot(myRigidbody.velocity, projectedForward);
@@ -196,6 +206,14 @@ namespace Vehicle
             }
             else
             {
+                //if (cameraLogic.m_BindingMode != Cinemachine.CinemachineTransposer.BindingMode.WorldSpace)
+                //    cameraLogic.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.WorldSpace;
+
+                //if (stayGroundedFrames < 100)
+                //{
+                //    myRigidbody.AddForceAtPosition(-transform.up * 10000, steeringTransform.position);
+                //    stayGroundedFrames++;
+                //}
                 isMovingForward = false;
 
                 /**if (gasInput != 0.0f || brakeInput > 0.0f) //W and S inputs used for pitching in the air
@@ -210,7 +228,7 @@ namespace Vehicle
             }
 
             // Air Resistance / Aerodynamic drag
-            const float AERODYNAMIC_DRAG_MODIFIER = 0.001f;
+            const float AERODYNAMIC_DRAG_MODIFIER = 0.003f;
             //myRigidbody.AddForce(-myRigidbody.velocity.normalized * boxCollider.size.magnitude * AERODYNAMIC_DRAG_MODIFIER * myRigidbody.velocity.sqrMagnitude,ForceMode.Acceleration);
         }
 
