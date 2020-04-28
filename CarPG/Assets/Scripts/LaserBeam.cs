@@ -10,8 +10,10 @@ public class LaserBeam : MonoBehaviour
 
     public float laserWidth = 1.0f;
     public float noise = 1.0f;
-    public float maxLength = 50.0f;
+    public float maxLength = 100.0f;
     public Color color = Color.red;
+
+    public float damage = 5;
 
 
     LineRenderer lineRenderer;
@@ -24,16 +26,21 @@ public class LaserBeam : MonoBehaviour
     public ParticleSystem endEffect;
     Vector3 offset;
 
+    private SphereCollider col;
+
 
     // Use this for initialization
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startWidth=(laserWidth);
+        lineRenderer.startWidth = (laserWidth);
         lineRenderer.endWidth = laserWidth;
         myTransform = transform;
         offset = new Vector3(0, 0, 0);
         endEffect = GetComponentInChildren<ParticleSystem>();
+
+        col = GetComponent<SphereCollider>();
+
         if (endEffect)
             endEffectTransform = endEffect.transform;
     }
@@ -42,7 +49,7 @@ public class LaserBeam : MonoBehaviour
     void Update()
     {
         RaycastHit raycastHit;
-        Physics.Raycast(transform.position+transform.forward*2,transform.forward,out raycastHit);
+        Physics.Raycast(transform.position + transform.forward * 2, transform.forward, out raycastHit);
         //endEffectTransform = raycastHit.transform;
         RenderLaser();
     }
@@ -74,37 +81,56 @@ public class LaserBeam : MonoBehaviour
     {
         //Raycast from the location of the cube forwards
         RaycastHit[] hit;
-        hit = Physics.RaycastAll(myTransform.position, myTransform.forward, maxLength);
-        int i = 0;
-        while (i < hit.Length)
+
+        hit=Physics.RaycastAll(transform.position+transform.forward, transform.forward, maxLength);
+
+        int cIndex=0;
+
+        for (int i = 0; i<hit.Length; i++)
         {
-            //Check to make sure we aren't hitting triggers but colliders
-            if (!hit[i].collider.isTrigger)
+            if (hit[i].distance < hit[cIndex].distance && !hit[i].collider.isTrigger)
             {
-                length = (int)Mathf.Round(hit[i].distance);
-                position = new Vector3[length];
-                //Move our End Effect particle system to the hit point and start playing it
-                if (endEffect)
-                {
-                    endEffectTransform.position = hit[i].point;
-                    if (!endEffect.isPlaying)
-                        endEffect.Play();
-                }
-                lineRenderer.positionCount=(length);
-                return;
+                cIndex = i;
             }
-            i++;
         }
-        //If we're not hitting anything, don't play the particle effects
+
+        
+
+        //Check to make sure we aren't hitting triggers but colliders
+
+        length = (int)Mathf.Round(hit[cIndex].distance);
+        position = new Vector3[length];
+        //Move our End Effect particle system to the hit point and start playing it
         if (endEffect)
         {
-            if (endEffect.isPlaying)
-                endEffect.Stop();
+            endEffectTransform.position = hit[cIndex].point;
         }
-        length = (int)maxLength;
-        position = new Vector3[length];
-        lineRenderer.positionCount=(length);
+        lineRenderer.positionCount = (length);
+
+        var dam = hit[cIndex].collider.gameObject.GetComponent<Damagable>();
+
+        if (dam != null)
+        {
+            dam.ApplyDamage(Time.deltaTime*damage);
+            Debug.Log(cIndex + " / " + hit.Length);
+        }
+
+        //If we're not hitting anything, don't play the particle effects
+
+        //length = (int)maxLength;
+        //position = new Vector3[length];
+        //lineRenderer.positionCount = (length);
 
 
+    }
+
+    private void OnEnable()
+    {
+        endEffect.Play();
+    }
+
+    private void OnDisable()
+    {
+        endEffect.Stop();
     }
 }

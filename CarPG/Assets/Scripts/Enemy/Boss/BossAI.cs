@@ -16,7 +16,7 @@ public class BossAI : MonoBehaviour
         Hurt
     }
 
-    private BossStates c_state=BossStates.RapidFireAttack;
+    private BossStates c_state=BossStates.BeamAttack;
 
     BossStates curState
     {
@@ -26,11 +26,17 @@ public class BossAI : MonoBehaviour
         set
         {
             c_state = value;
+            if (c_state == BossStates.RapidFireAttack)
+            {
+                float x = Random.value > 0.5 ? 1 : -1;
+                float z = Random.value > 0.5 ? 1 : -1;
+                lastPosition = new Vector3(x,0,z).normalized*circleDistance;
+            }
             stateTimer = 0;
         }
      }
 
-    private int lives = 2;
+    private int lives = 3;
     //private
     private float stateTimer = 0;
 
@@ -106,14 +112,14 @@ public class BossAI : MonoBehaviour
         if (stateTimer < 4)
         {
             //Charge up;
-            transform.forward = Vector3.Lerp((car.transform.position - transform.position).normalized,transform.forward,0.95f);
+            transform.forward = Vector3.Lerp(transform.forward,(car.transform.position - transform.position).normalized,Time.deltaTime*2.25f);
         }
         else if(stateTimer < 10)
         {
             //fire
             laser.enabled = true;
             lr.enabled = true;
-            transform.forward = Vector3.Lerp((car.transform.position - transform.position).normalized, transform.forward, 0.95f);
+            transform.forward = Vector3.Lerp(transform.forward,(car.transform.position - transform.position).normalized,Time.deltaTime*2.25f);
         }
         else
         {
@@ -140,15 +146,16 @@ public class BossAI : MonoBehaviour
 
     void RapidFireAttack()
     {
-        if (stateTimer < 3) {
+        if (stateTimer < 3)
+        {
             //float angle=Mathf.Deg2Rad*(-Vector2.Angle(new Vector2(startLoc.x,startLoc.z),new Vector2(car.transform.position.x,car.transform.position.z)));
-            Vector3 newPos = (car.transform.position- startLoc);
+            Vector3 newPos = lastPosition;
             newPos.y = 0;
             newPos = newPos.normalized*circleDistance; 
             transform.position = Vector3.Lerp(startLoc,newPos+startLoc,stateTimer/3.0f);
-            
-            lastPosition = newPos;
-         }
+            transform.forward = Vector3.Lerp(transform.forward,(newPos).normalized,0.5f);
+            //lastPosition = newPos;
+        }
         else if(stateTimer <13)
         {
             //RapidFire
@@ -160,6 +167,9 @@ public class BossAI : MonoBehaviour
 
             rad += ((stateTimer - 3)/10.0f)*2*Mathf.PI;
 
+            transform.forward = startLoc - transform.position;
+            transform.forward = transform.right;
+
             transform.position = new Vector3(Mathf.Cos(rad)*circleDistance,0,Mathf.Sin(rad)*circleDistance)+startLoc;
             Debug.Log((transform.position-startLoc) + ","+lastPosition+","+rad*Mathf.Rad2Deg);
         }
@@ -167,6 +177,8 @@ public class BossAI : MonoBehaviour
         {
             //MoveBack
             transform.position = Vector3.Lerp(lastPosition+startLoc, startLoc, (stateTimer-13) / 3.0f);
+            transform.forward = Vector3.Lerp(transform.forward,(-lastPosition).normalized, (stateTimer - 13) / 3.0f);
+
         }
         else
         {

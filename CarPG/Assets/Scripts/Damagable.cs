@@ -89,6 +89,7 @@ public class Damagable : MonoBehaviour
 
     public void ApplyDamage(float damage,Collision col=null)
     {
+        if(damage>1)
         damage = Mathf.Round(damage);
 
         if (healthPool!=null)
