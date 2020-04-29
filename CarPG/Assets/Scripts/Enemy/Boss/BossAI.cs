@@ -47,12 +47,14 @@ public class BossAI : MonoBehaviour
 
     public GameObject protectorPrefab;
     public GameObject projectile;
+    public GameObject forceField;
 
     private LaserBeam laser;
     private LineRenderer lr;
     private Rigidbody rb;
+    private Animator animator;
 
-    public Vector3 startLoc;
+    public Vector3 startLoc=new Vector3(-45,7.5f,0);
 
     private Damagable protector;
 
@@ -60,17 +62,20 @@ public class BossAI : MonoBehaviour
 
     public float rapidFireCount = 0;
 
+    public float nextBlink = 3;
+
     public Vector3 lastPosition;
 
     void Start()
     {
         car = GameObject.FindGameObjectWithTag("Player");
-        startLoc = transform.position;
+        //startLoc = transform.position;
         laser = GetComponent<LaserBeam>();
         rb = GetComponent<Rigidbody>();
         laser.enabled = false;
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -115,14 +120,41 @@ public class BossAI : MonoBehaviour
                     break;
                 }
         }
+
+        nextBlink -= Time.deltaTime;
+
+        if (nextBlink <= 0 && curState != BossStates.BeamAttack && curState != BossStates.CreateHealers)
+        {
+
+            animator.SetBool("Open", false);
+            if (animator.GetCurrentAnimatorClipInfo(0).ToString() == "close hold")
+            {
+                nextBlink = Random.Range(3, 5);
+            }
+        }
+        else
+        {
+            animator.SetBool("Open", true);
+        }
+
+        if (protector?.GetComponent<Damagable>().health > 0)
+        {
+            forceField.SetActive(true);
+        }
+        else
+        {
+            forceField.SetActive(false);
+        }
     }
 
     void BeamAttack()
     {
+        transform.position = startLoc;
         if (stateTimer < 8)
         {
             //Charge up;
             transform.forward = Vector3.Lerp(transform.forward,(car.transform.position - transform.position).normalized,Time.deltaTime*2.5f);
+            animator.SetBool("WideEye", true);
         }
         else if(stateTimer < 12)
         {
@@ -136,6 +168,7 @@ public class BossAI : MonoBehaviour
             laser.enabled = false;
             lr.enabled = false;
             curState = BossStates.BeamCool;
+            animator.SetBool("WideEye", false);
         }
     }
 
@@ -164,7 +197,6 @@ public class BossAI : MonoBehaviour
         {
             //float angle=Mathf.Deg2Rad*(-Vector2.Angle(new Vector2(startLoc.x,startLoc.z),new Vector2(car.transform.position.x,car.transform.position.z)));
             Vector3 newPos = lastPosition;
-            newPos.y = 0;
             newPos = newPos.normalized*circleDistance; 
             transform.position = Vector3.Lerp(startLoc,newPos+startLoc,stateTimer/3.0f);
             transform.forward = Vector3.Lerp(transform.forward,(newPos).normalized,0.5f);
@@ -250,6 +282,9 @@ public class BossAI : MonoBehaviour
 
     void Hurt()
     {
+
+        animator.SetBool("EyeWide",false);
+
         if (lives == 0)
         {
             GameObject.Destroy(gameObject);
@@ -281,7 +316,7 @@ public class BossAI : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     { 
 
-        if ((curState == BossStates.BeamAttack||curState==BossStates.BeamCool) && collision.transform.tag=="Player" && GameObject.Find("Protector")==null)
+        if ((curState == BossStates.BeamAttack||curState==BossStates.BeamCool) && collision.transform.tag=="Player" && !forceField.activeSelf)
         {
             //Gets hurt
             rb.isKinematic = false;
