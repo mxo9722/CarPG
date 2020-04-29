@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &255954793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255954794}
+  m_Layer: 9
+  m_Name: WallCorrectionTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &255954794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255954793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.44, z: 2.232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7203452307021902677}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493965267045619467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2445,11 @@ GameObject:
   - component: {fileID: 9026536628070442716}
   - component: {fileID: 8600351778771499001}
   - component: {fileID: 1721903215159363455}
+  - component: {fileID: 606569661}
+  - component: {fileID: 606569662}
+  - component: {fileID: 606569663}
+  - component: {fileID: 606569664}
+  - component: {fileID: 606569665}
   m_Layer: 9
   m_Name: Car2.0
   m_TagString: Player
@@ -2445,6 +2480,7 @@ Transform:
   - {fileID: 270970870051826823}
   - {fileID: 8151204062745684311}
   - {fileID: 8492138157795442036}
+  - {fileID: 255954794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2480,6 +2516,7 @@ MonoBehaviour:
   boxCollider: {fileID: 7138207702895496851}
   suspension: {fileID: 7088774346381266085}
   centerOfMassTransform: {fileID: 7199453833808421899}
+  wallCorrectionTransform: {fileID: 255954794}
   enginePowerTransform: {fileID: 7199341050237013823}
   steeringTransform: {fileID: 7203163964442941301}
   maximumVelocity: 25
@@ -2491,6 +2528,7 @@ MonoBehaviour:
   gasInput: 0
   brakeInput: 0
   steerInput: 0
+  isMovingForward: 0
   straightVelocityMagnitude: 0
 --- !u!114 &7088774346381266085
 MonoBehaviour:
@@ -2576,9 +2614,9 @@ CapsuleCollider:
   m_GameObject: {fileID: 7205155111126078829}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4
-  m_Height: 1.6
+  m_Height: 1.4
   m_Direction: 0
   m_Center: {x: 0, y: -0.3, z: 1.3}
 --- !u!136 &7205155111126078826
@@ -2606,9 +2644,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 3.8
+  m_Height: 3
   m_Direction: 2
-  m_Center: {x: 0.4, y: -0.3, z: -0.1}
+  m_Center: {x: 0.4, y: -0.3, z: -0.4}
 --- !u!136 &7205155111126078828
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2617,12 +2655,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7205155111126078829}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 3.8
+  m_Height: 3
   m_Direction: 2
-  m_Center: {x: -0.4, y: -0.3, z: -0.1}
+  m_Center: {x: -0.4, y: -0.3, z: -0.4}
 --- !u!114 &6363885340792681436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2701,6 +2739,71 @@ MonoBehaviour:
   renderer: {fileID: 536027566771104673}
   bumperFrontPos: {fileID: 6260391035584038350}
   bumperBackPos: {fileID: 70335742558087590}
+--- !u!135 &606569661
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205155111126078829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: -0.3, z: 1.5}
+--- !u!135 &606569662
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205155111126078829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: -0.2, y: -0.3, z: 1.4}
+--- !u!135 &606569663
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205155111126078829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0.2, y: -0.3, z: 1.4}
+--- !u!135 &606569664
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205155111126078829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: -0.35, y: -0.3, z: 1.2}
+--- !u!135 &606569665
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205155111126078829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0.35, y: -0.3, z: 1.2}
 --- !u!1 &7205171702005063381
 GameObject:
   m_ObjectHideFlags: 0

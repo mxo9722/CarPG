@@ -26,6 +26,8 @@ namespace Vehicle
         [SerializeField]
         private Transform centerOfMassTransform;
 
+        [SerializeField]
+        private Transform wallCorrectionTransform;
         /// <summary>
         /// Transform that holds relative position where gas and brake forces are applied.
         /// Note: Can be shifted for alternative styles of vehicles to give different weight transfer feeling.
@@ -88,6 +90,7 @@ namespace Vehicle
         /// </summary>
         public float steerInput;
 
+        [SerializeField]
         private bool isMovingForward;
         private Vector3 straightVelocity;
         public float straightVelocityMagnitude;
@@ -162,6 +165,11 @@ namespace Vehicle
                     if (isMovingForward)
                     {
                         myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * StraightVelocityMagnitude, steeringTransform.position, ForceMode.Acceleration);
+
+                        if (gasInput == 1 && straightVelocityMagnitude < 1.0f) //we're probably stuck on a wall, magnitude won't help us anymore and there is no god
+                        {
+                            myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * 100, wallCorrectionTransform.position, ForceMode.Acceleration);
+                        }
                     }
                     else
                     {
@@ -245,6 +253,20 @@ namespace Vehicle
         public void Steer(float steerInput)
         {
             this.steerInput = Mathf.Clamp(steerInput, -1.0f, 1.0f);
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Wall")
+            {
+                //myRigidbody.AddForceAtPosition(transform.right * steerInput * 200, steeringTransform.position, ForceMode.Acceleration);
+                //GameObject go = new GameObject();
+                //Instantiate(go, collision.contacts[0].point, new Quaternion());
+                
+                Vector3 bounceForce = Vector3.Normalize(wallCorrectionTransform.position - collision.contacts[0].point) * collision.relativeVelocity.magnitude;
+                bounceForce.y = 0;
+                myRigidbody.AddForceAtPosition(bounceForce * 5, wallCorrectionTransform.position, ForceMode.Acceleration);
+            }
         }
     }
 }
