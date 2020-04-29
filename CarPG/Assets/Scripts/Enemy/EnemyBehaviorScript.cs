@@ -18,6 +18,7 @@ public enum EnemyState
 
 public class EnemyBehaviorScript : MonoBehaviour
 {
+    public Vector3 centerMod = Vector3.zero;
 
     protected Damagable health;
     public EnemyState currentState = EnemyState.Idle;
@@ -46,6 +47,8 @@ public class EnemyBehaviorScript : MonoBehaviour
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
     public NavMeshAgent agent;
 
+    public GameObject hips;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -63,7 +66,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         agent = GetComponentInChildren<NavMeshAgent>();
         agent.speed = maxSpeed*2;
         agent.acceleration = acceleration*4;
-        agent.baseOffset = cCollider.height / 2.0f;
+        //agent.baseOffset = cCollider.height / 2.0f;
 
         SetRagDoll(false);
     }
@@ -122,7 +125,13 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        
+        if (hips != null && !ragDoll)
+        {
+            var pos=hips.transform.position;
+            pos.x = transform.position.x;
+            pos.z = transform.position.z;
+            hips.transform.position = pos;
+        }
     }
 
     protected virtual void StandingUp()
@@ -283,7 +292,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
             return false;
 
-        Vector3 movement = agent.transform.position - transform.position;
+        Vector3 movement = agent.transform.position - transform.position - centerMod;
         //Debug.Log(movement);
 
         //movement.y = 0;

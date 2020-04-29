@@ -2465,6 +2465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb020f0c32a5e44ba2b74cd90308778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerMod: {x: 0, y: 0, z: 0}
   currentState: 0
   behaveRate: 0
   aggroDistance: 20
@@ -2476,6 +2477,7 @@ MonoBehaviour:
   behaveTimer: 0
   stateTimer: 0
   agent: {fileID: 4575539864870040812}
+  hips: {fileID: 3367819552263190785}
 --- !u!114 &4575539865546994895
 MonoBehaviour:
   m_ObjectHideFlags: 0
