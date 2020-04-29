@@ -89,9 +89,6 @@ public class Damagable : MonoBehaviour
 
     public void ApplyDamage(float damage,Collision col=null)
     {
-        if(damage>1)
-        damage = Mathf.Round(damage);
-
         if (healthPool!=null)
         {
             Rigidbody b;
@@ -113,10 +110,22 @@ public class Damagable : MonoBehaviour
             if (damage <= 0)
                 return;
 
+            if (damage > 1)
+                damage = Mathf.Ceil(damage);
+
             health -= damage;
-            
+
             if (gameObject.GetComponent<EnemyBehaviorScript>())
-                DamageTextController.CreateDamageText(damage.ToString(), transform);
+            {
+                if (damage < 1)
+                {
+                    DamageTextController.CreateDamageText("1", transform);
+                }
+                else
+                {
+                    DamageTextController.CreateDamageText(damage.ToString(), transform);
+                }
+            }
 
             gameObject.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
             if (health <= 0)

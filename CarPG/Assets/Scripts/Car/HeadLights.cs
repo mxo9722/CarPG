@@ -13,6 +13,12 @@ public class HeadLights : MonoBehaviour
     void Start()
     {
         lights = GetComponentsInChildren<Light>();
+
+        foreach(Light light in lights)
+        {
+            light.enabled = false;
+        }
+
         renderers = GetComponentsInChildren<Renderer>();
     }
 

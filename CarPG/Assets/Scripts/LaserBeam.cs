@@ -111,17 +111,18 @@ public class LaserBeam : MonoBehaviour
 
         if (dam != null)
         {
-            dam.ApplyDamage(Time.deltaTime*damage);
-            Debug.Log(cIndex + " / " + hit.Length);
+            if (dam.gameObject.name == "Pillar")
+                dam.ApplyDamage(Time.deltaTime * damage * 20);
+            else
+                dam.ApplyDamage(Time.deltaTime * damage+dam.damageThreshhold);
         }
 
-        //If we're not hitting anything, don't play the particle effects
+        var rb = hit[cIndex].collider.gameObject.GetComponent<Rigidbody>();
 
-        //length = (int)maxLength;
-        //position = new Vector3[length];
-        //lineRenderer.positionCount = (length);
-
-
+        if (rb != null)
+        {
+            rb.AddForceAtPosition(transform.forward*Time.deltaTime*10,hit[cIndex].point,ForceMode.VelocityChange);
+        }
     }
 
     private void OnEnable()
