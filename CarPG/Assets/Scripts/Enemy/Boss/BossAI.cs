@@ -316,7 +316,7 @@ public class BossAI : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     { 
 
-        if ((curState == BossStates.BeamAttack||curState==BossStates.BeamCool) && collision.transform.tag=="Player" && !forceField.activeSelf)
+        if ((curState == BossStates.BeamAttack||curState==BossStates.BeamCool) && (collision.gameObject.layer==9) && !forceField.activeSelf)
         {
             //Gets hurt
             rb.isKinematic = false;
