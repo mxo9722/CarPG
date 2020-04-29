@@ -124,8 +124,8 @@ public class Damagable : MonoBehaviour
                 {
                     gameObject.SendMessage("DieCollision", col, SendMessageOptions.DontRequireReceiver);
                 } 
-                gameObject.SendMessage("Die",SendMessageOptions.DontRequireReceiver);
                 
+                SendMessage("Die",SendMessageOptions.DontRequireReceiver);
             }
         }
     }
