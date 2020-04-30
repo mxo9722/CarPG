@@ -6,7 +6,8 @@ enum Song
 {
     DrivingSong = 0,
     FightSong = 1,
-    BossSong = 2
+    BossIntro = 2,
+    BossSong = 3
 }
 
 public class MusicManager : MonoBehaviour
@@ -18,61 +19,81 @@ public class MusicManager : MonoBehaviour
     public AudioClip[] songList;
 
     public bool lockCurrentSong;
+    public bool bossMode = false;
 
     private Song currentSong = 0;
 
-    private float musicDelay = 3;
+    private float musicDelay = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        EnemyBehaviorScript[] enemyArr = enemyHolder.GetComponentsInChildren<EnemyBehaviorScript>();
-        enemyList = new List<EnemyBehaviorScript>(enemyArr);
+        if (bossMode)
+        {
+            Invoke("PlayLoopTrack", songList[2].length - .5f);
+        }
+        else
+        {
+            EnemyBehaviorScript[] enemyArr = enemyHolder.GetComponentsInChildren<EnemyBehaviorScript>();
+            enemyList = new List<EnemyBehaviorScript>(enemyArr);
+        }
         //songList = new AudioClip[3];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (musicDelay > 0)
+        if (bossMode)
         {
-            musicDelay -= Time.deltaTime;
-        }
-        else if (!lockCurrentSong)
-        {
-            Song newSong = Song.DrivingSong;
 
-            for (int i = 0; i < enemyList.Count; i++)
+        }
+        else
+        {
+            if (musicDelay > 0)
             {
-                if (enemyList[i].currentState != EnemyState.Idle)
+                musicDelay -= Time.deltaTime;
+            }
+            else if (!lockCurrentSong)
+            {
+                Song newSong = Song.DrivingSong;
+
+                for (int i = 0; i < enemyList.Count; i++)
                 {
-                    if (enemyList[i].currentState == EnemyState.Dead)
+                    if (enemyList[i].currentState != EnemyState.Idle && enemyList[i].currentState != EnemyState.StandingUp)
                     {
-                        enemyList.RemoveAt(i);
-                        i--;
-                    }
-                    else if (enemyList[i].currentState == EnemyState.StandingUp)
-                    {
-                        
-                    }
-                    else
-                    {
-                        Debug.Log(enemyList[i].currentState.ToString());
-                        newSong = Song.FightSong;
-                        break;
+                        if (enemyList[i].currentState == EnemyState.Dead)
+                        {
+                            enemyList.RemoveAt(i);
+                            i--;
+                        }
+                        else
+                        {
+                            Debug.Log(enemyList[i].currentState.ToString());
+                            newSong = Song.FightSong;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if (currentSong != newSong)
-            {
-                BGM.Stop();
-                BGM.clip = songList[(int)newSong];
-                BGM.Play();
+                if (currentSong != newSong)
+                {
+                    BGM.Stop();
+                    BGM.clip = songList[(int)newSong];
+                    BGM.Play();
 
-                currentSong = newSong;
-                musicDelay = 3;
+                    currentSong = newSong;
+                    musicDelay = 5;
+                }
             }
         }
+    }
+
+    void PlayLoopTrack()
+    {
+        
+        BGM.Stop();
+        BGM.clip = songList[3];
+        BGM.loop = true;
+        BGM.Play();
     }
 }
