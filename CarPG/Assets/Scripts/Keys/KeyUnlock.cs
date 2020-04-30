@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class KeyUnlock : MonoBehaviour
 {
-    public GameObject door;
+    public LockedDoor door;
+
+    private bool dead = false;
 
     public ParticleSystem ps1;
     public ParticleSystem ps2;
@@ -14,11 +16,20 @@ public class KeyUnlock : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Die()
     {
-        Instantiate(ps1, gameObject.transform.position, Quaternion.identity);
-        Instantiate(ps2, gameObject.transform.position, Quaternion.identity);
-        door.GetComponent<LockedDoor>().Unlock(gameObject);
+        DieCollision();
+    }
+
+    // Update is called once per frame
+    void DieCollision()
+    {
+        if (!dead)
+        { 
+            dead = true;
+            Instantiate(ps1.gameObject, gameObject.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            Instantiate(ps2.gameObject, gameObject.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            door.Unlock(this);
+        }
     }
 }
