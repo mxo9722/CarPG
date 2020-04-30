@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LockedDoor : MonoBehaviour
 {
-    public List<GameObject> keys = new List<GameObject>();
+    public List<KeyUnlock> keys = new List<KeyUnlock>();
     public int locks;
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class LockedDoor : MonoBehaviour
         
     }
 
-    public void Unlock(GameObject cube)
+    public void Unlock(KeyUnlock cube)
     {
         if (keys.Contains(cube))
         {
