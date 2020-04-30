@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BossAnimation.unity
     guid: dae28f5179089ec4d94b90df5a5d21a6
   - enabled: 1
@@ -18,12 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Dungeon.unity
     guid: 8d4fe18c0a551ee42b8651123b8cfdac
   - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: d3a554e59408500408388c0e61189502
+  - enabled: 1
     path: Assets/Scenes/MenuScenes/PauseMenu.unity
     guid: 161fb020019754d4ea152b40a5ca0f42
   - enabled: 1
     path: Assets/Scenes/MenuScenes/MainMenu.unity
     guid: d6c43a11ec315d04fa3c519aa3edc4d9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuScenes/VictoryScreen.unity
     guid: c8c9f8ddfc4d0d24580aedea39f97401
   - enabled: 1
@@ -32,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeathMenu.unity
     guid: 90e5f0bd27b85c0438e6105b68e8f3b3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ProbuilderTest.unity
     guid: 1b54731632cad9748839ee4bcaa92f9f
   - enabled: 1

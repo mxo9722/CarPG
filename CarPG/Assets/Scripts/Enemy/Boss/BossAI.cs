@@ -300,7 +300,7 @@ public class BossAI : MonoBehaviour
 
         if (lives == 0)
         {
-            SceneManager.LoadScene("VictoryScreen", LoadSceneMode.Single);
+            SceneManager.LoadScene("Credits", LoadSceneMode.Single);
             GameObject.Destroy(gameObject);
         }
 

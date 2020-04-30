@@ -114,7 +114,10 @@ public class LaserBeam : MonoBehaviour
             if (dam.gameObject.name == "Pillar")
                 dam.ApplyDamage(Time.deltaTime * damage * 5);
             else
-                dam.ApplyDamage(Time.deltaTime * damage + dam.damageThreshhold);
+            {
+                dam.ApplyDamage(Time.deltaTime * damage * 2 + dam.damageThreshhold);
+                Debug.Log("nice");
+            }
         }
 
         var rb = hit[cIndex].collider.gameObject.GetComponent<Rigidbody>();
