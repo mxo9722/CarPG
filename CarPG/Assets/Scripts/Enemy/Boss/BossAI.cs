@@ -56,7 +56,8 @@ public class BossAI : MonoBehaviour
 
     public Vector3 startLoc=new Vector3(-45,7.5f,0);
 
-    private Damagable protector;
+    private Damagable protector1;
+    private Damagable protector2;
 
     public float circleDistance=20f;
 
@@ -137,7 +138,7 @@ public class BossAI : MonoBehaviour
             animator.SetBool("Open", true);
         }
 
-        if (protector?.GetComponent<Damagable>().health > 0)
+        if (protector1?.health > 0|| protector2?.health > 0)
         {
             forceField.SetActive(true);
         }
@@ -247,12 +248,18 @@ public class BossAI : MonoBehaviour
     void CreateHealers()
     {
 
-        if (protector != null)
+        if (protector1?.health <= 0)
         {
-            if (protector.health <= 0)
-            {
-                protector = null;
-            }
+            protector1 = null;
+        }
+
+        if(protector2?.health <= 0)
+        {
+            protector2 = null;
+        }
+
+        if (protector1 != null && protector2 != null)
+        {
             curState=BossStates.BeamAttack;
             BeamAttack();
             return;
@@ -267,7 +274,12 @@ public class BossAI : MonoBehaviour
         {
             var protectPos = transform.position;
             protectPos.y -= 4.5f;
-            protector=Instantiate(protectorPrefab, protectPos, Quaternion.identity).GetComponent<Damagable>();
+            protectPos.x -= 1;
+            if (protector1==null)
+                protector1=Instantiate(protectorPrefab, protectPos, Quaternion.identity).GetComponent<Damagable>();
+            protectPos.x += 2;
+            if (protector2 == null)
+                protector2 = Instantiate(protectorPrefab, protectPos, Quaternion.identity).GetComponent<Damagable>();
             curState = BossStates.HealerCool;
         }
     }
