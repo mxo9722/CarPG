@@ -321,7 +321,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
             rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
-            if (targetVelocity.magnitude > 0.05f)
+            if (targetVelocity.magnitude > 1.00f)
             {
                 targetVelocity.y = 0;
                 Quaternion rotato = Quaternion.LookRotation(targetVelocity.normalized);

@@ -157,7 +157,8 @@ MonoBehaviour:
   carmorSlot: {fileID: 4313925776727024929}
   bumperSlot: {fileID: 4313925776518667760}
   pickupDistance: 3
-  cameraController: {fileID: 0}
+  endMessage: 0
+  money: 0
 --- !u!114 &8560644068683107250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e738b1849e28e2c478db6667665d9af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevMouseVisible: 0
 --- !u!1 &8087631936878556495
 GameObject:
   m_ObjectHideFlags: 0

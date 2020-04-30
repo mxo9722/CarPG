@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
 
@@ -9,6 +10,8 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     public InventorySlot[] slots;
+    [SerializeField]
+    private static Item[] savedItems=null;
     [SerializeField]
     public Item itemHeld;
     [SerializeField]
@@ -44,6 +47,7 @@ public class Inventory : MonoBehaviour
 
         var players = GameObject.FindGameObjectsWithTag("Player");
 
+        SceneManager.sceneUnloaded += SaveSlots;
         
         for (int i=0;i<players.Length;i++)
         {
@@ -67,6 +71,25 @@ public class Inventory : MonoBehaviour
         cameraController = GameObject.FindGameObjectWithTag("CameraController").GetComponent<Cinemachine.CinemachineFreeLook>();
 
         car = GameObject.FindGameObjectWithTag("Player");
+
+        if (savedItems == null)
+        {
+            savedItems = new Item[29];
+        }
+        else
+        {
+            slots = gameObject.GetComponentsInChildren<InventorySlot>();
+            for (int i = 0; i < slots.Length; i++)
+            {
+                slots[i].Content = savedItems[i];
+            }
+
+            if (weaponSlot.Content != null)
+                applier.SetWeapon(weaponSlot.Content?.prefab);
+            applier.SetCarmor(carmorSlot.Content);
+            if (bumperSlot.Content != null)
+                applier.SetBumpers(bumperSlot.Content?.prefab);
+        }
 
         money = 0;
     }
@@ -237,6 +260,16 @@ public class Inventory : MonoBehaviour
         {
             Rect rect = new Rect(Screen.width/2.0f-100,Screen.height/2.0f+60,240,40);
             GUI.Box(rect, "Collected the " +pickedUpItem.name+"!\nPress E to access your inventory.");
+        }
+    }
+
+    void SaveSlots<Scene>(Scene scene)
+    {
+        print("The scene was unloaded!");
+
+        for (int i=0;i<slots.Length;i++)
+        {
+            savedItems[i] = slots[i].Content;
         }
     }
 }
