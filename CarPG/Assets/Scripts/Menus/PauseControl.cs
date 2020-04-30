@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class PauseControl : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class PauseControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var pressed = CrossPlatformInputManager.GetButtonDown("Pause");
+        var pressed = Input.GetButtonDown("Pause");
 
         if (pressed&&!SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {

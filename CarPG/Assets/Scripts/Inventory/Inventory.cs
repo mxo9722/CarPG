@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Vehicles.Car;
 
 [System.Serializable]
@@ -79,7 +78,7 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        bool press = CrossPlatformInputManager.GetButtonDown("Inventory");
+        bool press = Input.GetButtonDown("Inventory");
 
         if (PauseControl.MenuOpen)
             press = false;

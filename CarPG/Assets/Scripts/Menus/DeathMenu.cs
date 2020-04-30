@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class DeathMenu : MonoBehaviour
 {

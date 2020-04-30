@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 
     public float radius;
     public bool explode = false;
+    public float damage = 0;
 
     public void CreateProjectile(Vector3 targetPos, float speed)
     {
@@ -45,20 +46,34 @@ public class Projectile : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Hit(collider);
+            if(collider.gameObject!=gameObject)
+                Hit(collider);
         }
     }
 
     void Hit(Collider collision)
     {
-        if (!ignoreCollision.Contains("" + collision.gameObject.GetInstanceID()) && !ignoreCollision.Contains("" + collision.gameObject.tag) && !ignoreCollision.Contains("" + collision.gameObject.layer))
+        if (!ignoreCollision.Contains(collision.gameObject.GetInstanceID().ToString()) && !ignoreCollision.Contains(collision.gameObject.tag) && !ignoreCollision.Contains("" + collision.gameObject.layer)&&!collision.isTrigger)
         {
             if (explode)
             {
                 SendMessage("Explode");
             }
 
+            var dam = collision.GetComponent<Damagable>();
+            float damage = GetDamageDealt();
+
+            if (damage > 0 && dam != null)
+            {
+                dam.ApplyDamage(damage);
+            }
+
             Destroy(gameObject);
         }
     }
+
+    protected virtual float GetDamageDealt()
+    {
+        return damage;
+    } 
 }
