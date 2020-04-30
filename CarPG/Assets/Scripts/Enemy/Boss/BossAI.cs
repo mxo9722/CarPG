@@ -211,7 +211,7 @@ public class BossAI : MonoBehaviour
             if (stateTimer>rapidFireCount)
             {
                 rapidFireCount=Mathf.Ceil(stateTimer / 0.25f ) * 0.25f;
-                Instantiate(projectile,transform.position+transform.forward*2,Quaternion.identity).GetComponent<Projectile>().CreateProjectile(car.transform.position,35,"Enemy");
+                Instantiate(projectile,transform.position+transform.forward*2,Quaternion.identity).GetComponent<Projectile>().CreateProjectile(car.transform.position,55,"Enemy");
             }
 
             var deltaX = v.x;
