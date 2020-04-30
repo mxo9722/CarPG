@@ -25,7 +25,7 @@ public class KeyUnlock : MonoBehaviour
     void DieCollision()
     {
         if (!dead)
-
+        { 
             dead = true;
             Instantiate(ps1.gameObject, gameObject.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             Instantiate(ps2.gameObject, gameObject.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
