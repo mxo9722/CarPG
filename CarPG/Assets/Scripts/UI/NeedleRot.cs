@@ -36,7 +36,7 @@ namespace UnityStandardAssets.Vehicles.Car
         // Update is called once per frame
         void Update()
         {
-            rTransform.rotation = Quaternion.Euler(0, 0, startRot - (cController.velocity.magnitude* 1.868f));
+            rTransform.rotation = Quaternion.Euler(0, 0, startRot - (cController.velocity.magnitude* 1.868f * 3.0f));
         }
     }
 }
