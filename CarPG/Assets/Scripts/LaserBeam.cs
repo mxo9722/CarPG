@@ -13,7 +13,7 @@ public class LaserBeam : MonoBehaviour
     public float maxLength = 100.0f;
     public Color color = Color.red;
 
-    public float damage = 5;
+    public float damage = 1500;
 
 
     LineRenderer lineRenderer;
@@ -94,7 +94,7 @@ public class LaserBeam : MonoBehaviour
             }
         }
 
-        
+
 
         //Check to make sure we aren't hitting triggers but colliders
 
@@ -112,9 +112,9 @@ public class LaserBeam : MonoBehaviour
         if (dam != null)
         {
             if (dam.gameObject.name == "Pillar")
-                dam.ApplyDamage(Time.deltaTime * damage * 20);
+                dam.ApplyDamage(Time.deltaTime * damage * 5);
             else
-                dam.ApplyDamage(Time.deltaTime * damage+dam.damageThreshhold);
+                dam.ApplyDamage(Time.deltaTime * damage + dam.damageThreshhold);
         }
 
         var rb = hit[cIndex].collider.gameObject.GetComponent<Rigidbody>();
