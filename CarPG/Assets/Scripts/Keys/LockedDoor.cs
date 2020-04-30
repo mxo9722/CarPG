@@ -28,6 +28,7 @@ public class LockedDoor : MonoBehaviour
             if(locks <= 0)
             {
                 GetComponent<Damagable>().enabled = true;
+                SendMessage("Die", SendMessageOptions.DontRequireReceiver);
             }
         }
         

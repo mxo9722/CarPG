@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossAI : MonoBehaviour
 {
@@ -299,6 +300,7 @@ public class BossAI : MonoBehaviour
 
         if (lives == 0)
         {
+            SceneManager.LoadScene("VictoryScreen", LoadSceneMode.Single);
             GameObject.Destroy(gameObject);
         }
 
