@@ -68,7 +68,7 @@ public class MusicManager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log(enemyList[i].currentState.ToString());
+                            //Debug.Log(enemyList[i].currentState.ToString());
                             newSong = Song.FightSong;
                             break;
                         }

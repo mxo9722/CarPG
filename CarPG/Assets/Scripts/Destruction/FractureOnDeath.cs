@@ -87,6 +87,7 @@ public class FractureOnDeath : MonoBehaviour
             for (int i = 0; i < args.FracturePiecesRootObject.transform.childCount; i++)
             {
                 Transform piece = args.FracturePiecesRootObject.transform.GetChild(i);
+                piece.gameObject.tag = "Fragment";
 
                 Rigidbody rb = piece.GetComponent<Rigidbody>();
                 if (rb != null)

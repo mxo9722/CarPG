@@ -26,6 +26,7 @@ public class BoostPad : MonoBehaviour
             boostTimer -= Time.deltaTime;
             carController.maximumVelocity = 50;
             carController.accelerationFactor = 100;
+
             if(boostTimer <= 0)
             {
                 boostActive = false;

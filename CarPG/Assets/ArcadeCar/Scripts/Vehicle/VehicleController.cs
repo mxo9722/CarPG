@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Cinemachine;
+using System;
 
 namespace Vehicle
 {
@@ -164,7 +165,10 @@ namespace Vehicle
                 {
                     if (isMovingForward)
                     {
-                        myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * StraightVelocityMagnitude, steeringTransform.position, ForceMode.Acceleration);
+                        myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * Mathf.Clamp(StraightVelocityMagnitude, 0, 25), steeringTransform.position, ForceMode.Acceleration);
+                        //clamping the velocity magnitude so speed boosts don't affect steering too much
+                        //a better solution would be to have a variable that is added to max velocity instead of changing it itself but stephen code bad
+
 
                         if (gasInput == 1 && straightVelocityMagnitude < 1.0f) //we're probably stuck on a wall, magnitude won't help us anymore and there is no god
                         {

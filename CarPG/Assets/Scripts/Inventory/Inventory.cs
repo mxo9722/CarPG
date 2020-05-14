@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
+using Cinemachine;
 
 [System.Serializable]
 public class Inventory : MonoBehaviour
@@ -266,6 +267,14 @@ public class Inventory : MonoBehaviour
     void SaveSlots<Scene>(Scene scene)
     {
         print("The scene was unloaded!");
+        if (PlayerPrefs.GetString("Control") == "MANUAL")
+        {
+            cameraController.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
+        }
+        else if (PlayerPrefs.GetString("Control") == "AUTO")
+        {
+            cameraController.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+        }
 
         for (int i=0;i<slots.Length;i++)
         {

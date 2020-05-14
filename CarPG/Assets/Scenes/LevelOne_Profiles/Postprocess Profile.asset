@@ -21,7 +21,7 @@ MonoBehaviour:
     value: 270
   sampleCount:
     overrideState: 1
-    value: 10
+    value: 4
 --- !u!114 &-7754374681206613615
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -44,7 +44,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.188
+    value: 1
   fastMode:
     overrideState: 1
     value: 1
@@ -69,7 +69,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.97
+    value: 1.23
   color:
     overrideState: 0
     value: {r: 1, g: 0, b: 0.870769, a: 1}
@@ -87,7 +87,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 3.33
+    value: 4.02
   directLightingStrength:
     overrideState: 0
     value: 0
