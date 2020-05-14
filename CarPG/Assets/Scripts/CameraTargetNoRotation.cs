@@ -20,6 +20,6 @@ public class CameraTargetNoRotation : MonoBehaviour
     {
         Vector3 carPosition = car.transform.position;
 
-        transform.position = carPosition + Vector3.up * yOffset;
+        transform.position = carPosition + Vector3.up * yOffset + transform.forward;
     }
 }

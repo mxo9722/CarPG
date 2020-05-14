@@ -56,7 +56,7 @@ namespace Vehicle
         private float brakeFactor;
 
         [SerializeField]
-        private float steerFactor;
+        public float steerFactor;
 
         //private int stayGroundedFrames = 5;
 
@@ -115,9 +115,15 @@ namespace Vehicle
 
         private void FixedUpdate()
         {
+            if (myRigidbody.velocity.magnitude <= 1 || suspension.AreAllSpringsGrounded())
+            {
+                myRigidbody.drag = 0;
+                myRigidbody.angularDrag = .05f;
+            }
             //myRigidbody.AddForceAtPosition(-transform.up * 10000, transform.position); //lol disable gravity and uncomment this for a wild ride
             if (suspension.AreAllSpringsGrounded())
             {
+                
                 //if (cameraLogic.m_BindingMode != Cinemachine.CinemachineTransposer.BindingMode.LockToTargetNoRoll)
                 //    cameraLogic.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.LockToTargetNoRoll;
 
@@ -270,6 +276,12 @@ namespace Vehicle
                 Vector3 bounceForce = Vector3.Normalize(wallCorrectionTransform.position - collision.contacts[0].point) * collision.relativeVelocity.magnitude;
                 bounceForce.y = 0;
                 myRigidbody.AddForceAtPosition(bounceForce * 5, wallCorrectionTransform.position, ForceMode.Acceleration);
+            }
+
+            if (!suspension.AreAllSpringsGrounded() && collision.gameObject.tag != "Enemy")
+            {
+                myRigidbody.drag = 1;
+                myRigidbody.angularDrag = myRigidbody.angularVelocity.magnitude;
             }
         }
     }

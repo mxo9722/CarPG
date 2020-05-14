@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vehicle;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -25,6 +26,11 @@ namespace UnityStandardAssets.Vehicles.Car
 
         void Die()
         {
+            Debug.Log("kaboom");
+            gameObject.GetComponent<VehicleController>().maximumVelocity = 0;
+            gameObject.GetComponent<VehicleController>().accelerationFactor = 0;
+            gameObject.GetComponent<VehicleController>().steerFactor = 0;
+
             if (GetComponentInChildren<PcVehicleInput>() != null)
             {
                 GetComponentInChildren<PcVehicleInput>().enabled = false;
