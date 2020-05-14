@@ -7,12 +7,41 @@ public class InventoryApplier : MonoBehaviour
 {
 
     private CarController controller;
-    private Damagable damagable;
+    private Damagable _damagable;
+
+    protected Damagable damagable
+    {
+        get {
+            if (_damagable == null)
+                _damagable = GetComponent<Damagable>();
+            return _damagable;
+        }
+        set
+        {
+            _damagable = value;
+        }
+    }
+
     private GameObject weaponObject;
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
+
+    protected Rigidbody rigidbody
+    {
+        get
+        {
+            if (_rigidbody == null)
+                _rigidbody = GetComponent<Rigidbody>();
+            return _rigidbody;
+        }
+        set
+        {
+            _rigidbody = value;
+        }
+    }
+
     private Item carmor;
 
-    private Material originalMaterial;
+    private static Material originalMaterial=null;
     public Renderer renderer;
 
     public Transform bumperFrontPos;
@@ -21,12 +50,13 @@ public class InventoryApplier : MonoBehaviour
     private GameObject[] bumpers;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         controller = GetComponent<CarController>();
         damagable = GetComponent<Damagable>();
         rigidbody = GetComponent<Rigidbody>();
-        originalMaterial = renderer.material;
+        if(originalMaterial==null)
+            originalMaterial = renderer.material;
 
         bumpers = new GameObject[2];
     }
