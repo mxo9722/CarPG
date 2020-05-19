@@ -139,10 +139,8 @@ public class Inventory : MonoBehaviour
 
                 InventoryOpen = false;
 
-                if(weaponSlot.Content!=null)
                     applier.SetWeapon(weaponSlot.Content?.prefab);
                 applier.SetCarmor(carmorSlot.Content);
-                if(bumperSlot.Content!=null)
                     applier.SetBumpers(bumperSlot.Content?.prefab);
                 
             }
