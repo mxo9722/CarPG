@@ -30,7 +30,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected Animator anim;
     //public float attackDistance;
-    protected  GameObject car;
+    protected GameObject car;
 
     protected Joint joint;
     protected Renderer rend;
@@ -40,7 +40,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected List<Collider> bodyColliders;
     protected bool ragDoll = true;
-    public Vector3 idleWalkTarget=Vector3.zero;
+    public Vector3 idleWalkTarget = Vector3.zero;
 
     public float behaveTimer = 0;
     public float stateTimer = 0; // How long it's been in the current state, set to 0 whenever state changes
@@ -58,11 +58,11 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         bodyColliders = new List<Collider>(GetComponentsInChildren<Collider>());
         behaveTimer = UnityEngine.Random.value * -1;
-        
+
         car = GameObject.FindWithTag("Player");
         agent = GetComponentInChildren<NavMeshAgent>();
-        agent.speed = maxSpeed*2;
-        agent.acceleration = acceleration*4;
+        agent.speed = maxSpeed * 2;
+        agent.acceleration = acceleration * 4;
         agent.baseOffset = cCollider.height / 2.0f;
 
         SetRagDoll(false);
@@ -111,9 +111,9 @@ public class EnemyBehaviorScript : MonoBehaviour
             }
         }
 
-        
 
-        float horVel = new Vector2(rb.velocity.x,rb.velocity.z).magnitude;
+
+        float horVel = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
 
         SetAnimationSpeeds(horVel);
 
@@ -122,13 +122,13 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        
+
     }
 
     protected virtual void StandingUp()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp")&&!anim.GetNextAnimatorStateInfo(0).IsName("StandUp"))
-        { 
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StandUp") && !anim.GetNextAnimatorStateInfo(0).IsName("StandUp"))
+        {
             currentState = EnemyState.Aggro;
             joint.massScale = 1;
         }
@@ -137,59 +137,69 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected virtual void Idle()
     {
-        if (!agent.isStopped)
-        {
-            PathTo(idleWalkTarget, acceleration/2.0f,maxSpeed/2.0f);
-        }
 
-        if (Mathf.Floor(stateTimer) % 6 == 0&&IsGrounded()) //every 3 seconds this happens twice
+        if (agent.isActiveAndEnabled&&agent.isOnNavMesh)
         {
-            idleWalkTarget.x = float.PositiveInfinity;
-            float tries = 0;
-            while (float.IsPositiveInfinity(idleWalkTarget.x)&&tries<9)
+
+            if (!agent.isStopped)
             {
-                tries++;
-                float walkRadius = 5;
-                Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
-                randomDirection += transform.position;
-                NavMeshHit hit;
-                NavMesh.SamplePosition(randomDirection, out hit, 5, 1);
-                Vector3 finalPosition = hit.position;
-                
-                idleWalkTarget = finalPosition;
-            }
-            if (float.IsPositiveInfinity(idleWalkTarget.x))
-            {
-                idleWalkTarget = transform.position;
-            }
-            else
-            {
-                PathTo(idleWalkTarget, acceleration);
+                PathTo(idleWalkTarget, acceleration / 2.0f, maxSpeed / 2.0f);
             }
 
-            stateTimer = 1;
+            if (Mathf.Floor(stateTimer) % 6 == 0 && IsGrounded()) //every 3 seconds this happens twice
+            {
+                idleWalkTarget.x = float.PositiveInfinity;
+                float tries = 0;
+                while (float.IsPositiveInfinity(idleWalkTarget.x) && tries < 9)
+                {
+                    tries++;
+                    float walkRadius = 5;
+                    Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
+                    randomDirection += transform.position;
+                    NavMeshHit hit;
+                    NavMesh.SamplePosition(randomDirection, out hit, 5, 1);
+                    Vector3 finalPosition = hit.position;
+
+                    idleWalkTarget = finalPosition;
+                }
+                if (float.IsPositiveInfinity(idleWalkTarget.x))
+                {
+                    idleWalkTarget = transform.position;
+                }
+                else
+                {
+                    PathTo(idleWalkTarget, acceleration);
+                }
+
+                stateTimer = 1;
+            }
         }
 
         if (Vector3.Distance(car.transform.position, transform.position) < aggroDistance)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, car.transform.position - transform.position, out hit) && hit.transform.tag != "Wall") {
-                currentState = EnemyState.Aggro;
-                stateTimer = 0;
-                behaveTimer = 1; // setting this to 1 so it starts going NOW
+            RaycastHit[] hits = Physics.RaycastAll(transform.position, car.transform.position - transform.position, (car.transform.position - transform.position).magnitude);
+
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider.tag == "Wall")
+                    return;
             }
+
+            currentState = EnemyState.Aggro;
+            stateTimer = 0;
+            behaveTimer = 1; // setting this to 1 so it starts going NOW
         }
     }
 
     protected virtual void Aggro()
     {
-        
+
     }
 
     protected virtual void Attack()
     {
-        
-        
+
+
     }
 
     protected virtual void Vulnerable()
@@ -209,7 +219,7 @@ public class EnemyBehaviorScript : MonoBehaviour
                 SetRagDoll(false);
             }
         }
-        else 
+        else
         {
             stateTimer = 0;
         }
@@ -237,7 +247,7 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     protected virtual void Flee()
     {
-        
+
     }
 
     public void SetAnimationSpeeds(float horizontalSpeed)
@@ -245,20 +255,20 @@ public class EnemyBehaviorScript : MonoBehaviour
         if (anim)
             if (anim.enabled)
             {
-                anim.SetFloat("HorizontalSpeed",horizontalSpeed);
+                anim.SetFloat("HorizontalSpeed", horizontalSpeed);
             }
     }
 
     public void SetAnimationTrigger(string setting)
     {
         if (anim)
-            if(anim.enabled)
+            if (anim.enabled)
             {
                 anim.SetTrigger(setting);
             }
     }
 
-    public void MoveTo(Vector3 target,float speed)
+    public void MoveTo(Vector3 target, float speed)
     {
         target.y = this.transform.position.y;
 
@@ -272,13 +282,29 @@ public class EnemyBehaviorScript : MonoBehaviour
         Move(target);
     }
 
-    public virtual bool PathTo(Vector3 target,float speed,float maxSpeed=-1)
+    public virtual bool PathTo(Vector3 target, float speed, float maxSpeed = -1)
     {
         if (!agent.enabled)
             return false;
 
+        if (!agent.isActiveAndEnabled||!agent.isOnNavMesh)
+            return false;
+
         if (agent.destination != target)
-            agent.destination = target;
+        {
+            NavMeshPath path = new NavMeshPath();
+
+            agent.CalculatePath(target, path);
+
+            if (path.status == NavMeshPathStatus.PathComplete || path.status == NavMeshPathStatus.PathPartial)
+            {
+                agent.SetPath(path);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         if (agent.pathStatus == NavMeshPathStatus.PathInvalid)
             return false;
@@ -288,11 +314,11 @@ public class EnemyBehaviorScript : MonoBehaviour
 
         //movement.y = 0;
 
-        if (movement.magnitude !=0)
+        if (movement.magnitude != 0)
         {
-            movement/=agent.speed*Time.fixedDeltaTime;
+            movement /= agent.speed * Time.fixedDeltaTime;
             movement *= speed;
-            movement += rb.velocity;           
+            movement += rb.velocity;
         }
 
         Move(movement, maxSpeed);
@@ -300,7 +326,7 @@ public class EnemyBehaviorScript : MonoBehaviour
         return true;
     }
 
-    public virtual void Move(Vector3 targetVelocity, float maxSpeed=-1)
+    public virtual void Move(Vector3 targetVelocity, float maxSpeed = -1)
     {
         if (IsGrounded())
         {
@@ -332,23 +358,23 @@ public class EnemyBehaviorScript : MonoBehaviour
 
     public void SetRagDoll(bool rd)
     {
-        if (anim && ragDoll!=rd)
+        if (anim && ragDoll != rd)
         {
-            Debug.Log("Ragdoll set to "+rd);
+            Debug.Log("Ragdoll set to " + rd);
 
             if (rd)
             {
-                foreach(Collider col in bodyColliders)
+                foreach (Collider col in bodyColliders)
                 {
                     col.enabled = true;
-                    var body=col.gameObject.GetComponent<Rigidbody>();
+                    var body = col.gameObject.GetComponent<Rigidbody>();
                     if (body != null && body != rb)
                     {
                         body.mass *= 100;
                         body.constraints = RigidbodyConstraints.None;
                     }
                 }
-                
+
                 joint.massScale = 1;
                 cCollider.enabled = false;
                 anim.enabled = false;
@@ -375,12 +401,12 @@ public class EnemyBehaviorScript : MonoBehaviour
                 var pos = gameObject.transform.localPosition;
                 pos.y += cCollider.height / 2.0f * gameObject.transform.lossyScale.y;
                 gameObject.transform.localPosition = pos;
-                
+
                 cCollider.enabled = true;
-                
+
                 anim.enabled = true;
                 agent.enabled = true;
-                
+
                 currentState = EnemyState.StandingUp;
             }
 
