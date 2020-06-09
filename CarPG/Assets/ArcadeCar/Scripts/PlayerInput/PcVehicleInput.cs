@@ -24,33 +24,20 @@ namespace PlayerInput
 
         private float horizontal;
 
-        private bool isGasOn;
-        private bool isBreakOn;
+        private float isGasOn;
+        private float isBreakOn;
 
         public float Horizontal { get { return horizontal; } }
 
-        public bool IsGasOn { get { return isGasOn; } }
-        public bool IsBreakOn { get { return isBreakOn; } }
+        public float IsGasOn { get { return isGasOn; } }
+        public float IsBreakOn { get { return isBreakOn; } }
         
         private void Update()
         {
             horizontal = Input.GetAxis("Horizontal");
 
-            if (Input.GetKey(gasKeyCode))
-            {
-                isGasOn = true;
-                isBreakOn = false;
-            }
-            else if (Input.GetKey(breakKeyCode))
-            {
-                isGasOn = false;
-                isBreakOn = true;
-            }
-            else
-            {
-                isGasOn = false;
-                isBreakOn = false;
-            }
+            isGasOn = Mathf.Max(Input.GetAxis("Vertical"), 0);
+            isBreakOn = Mathf.Max(-Input.GetAxis("Vertical"), 0);
         }
     }
 }

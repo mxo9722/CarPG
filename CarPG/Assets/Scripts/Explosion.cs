@@ -12,7 +12,6 @@ public class Explosion : MonoBehaviour
 
     public void Explode()
     {
-        Debug.Log("boom!");
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 

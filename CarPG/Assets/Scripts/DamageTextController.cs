@@ -14,7 +14,6 @@ public class DamageTextController : MonoBehaviour
         if (!popupText)
             popupText = Resources.Load<DamageText>("PopupTextParent");
 
-        Debug.Log((bool)popupText);
     }
 
     public static void CreateDamageText(string text, Transform location)

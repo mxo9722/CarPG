@@ -24,32 +24,32 @@ namespace Vehicle
         {
             if (input != null && controller != null)
             {
-                if (input.IsBreakOn)
+                if (input.IsBreakOn>0)
                 {
                     if (!Mathf.Approximately(controller.StraightVelocityMagnitude, 0.0f))
                     {
                         if (controller.IsMovingForward)
                         {
                             controller.Gas(0.0f);
-                            controller.Brake(1.0f);
+                            controller.Brake(input.IsBreakOn);
                         }
                         else
                         {
                             // Gas backwards
-                            controller.Gas(-1.0f);
+                            controller.Gas(-input.IsBreakOn);
                             controller.Brake(0.0f);
                         }
                     }
                     else // carEngine.IsStationary, 0 straight(front back) velocity
                     {
                         // Gas backwards
-                        controller.Gas(-1.0f);
+                        controller.Gas(-input.IsBreakOn);
                         controller.Brake(0.0f);
                     }
                 }
-                else if (input.IsGasOn)
+                else if (input.IsGasOn>0)
                 {
-                    controller.Gas(1.0f);
+                    controller.Gas(input.IsGasOn);
                     controller.Brake(0.0f);
                 }
                 else
