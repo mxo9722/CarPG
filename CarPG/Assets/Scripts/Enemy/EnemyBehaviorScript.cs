@@ -334,7 +334,10 @@ public class EnemyBehaviorScript : MonoBehaviour
     {
         if (anim && ragDoll!=rd)
         {
+<<<<<<< Updated upstream
             Debug.Log("Ragdoll set to "+rd);
+=======
+>>>>>>> Stashed changes
 
             if (rd)
             {
