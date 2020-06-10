@@ -6,7 +6,8 @@ using UnityEngine;
 /*
 -Create the function that places hallways between connected rooms (optional)
 -make the script delete itself and see what happens (optional)
--do room Setup (figure out if special rooms need to be separated)
+-do room Setup
+-setup hallway walls thing
 */
 
 public class GeneratorScript : MonoBehaviour
@@ -139,11 +140,16 @@ public class GeneratorScript : MonoBehaviour
             int nextRoom = generatableRooms[randomGrab];
 
             //if the function is successful add to room count
-            if(SpecialRoomSolver(nextRoom, specialIndex))
+            if(NextRoomSolver(nextRoom, specialIndex))
             {
                 specialIndex++;
             }
             generatableRooms.RemoveAt (randomGrab);
+        }
+
+        for(int i = 0; i < spawnedRooms.Count; i++)
+        {
+            roomScripts[i].RoomSetup();
         }
 
         Debug.Log("Dungeon Generated");
@@ -151,7 +157,7 @@ public class GeneratorScript : MonoBehaviour
 
     //method to create new rooms 
     //returns true or false based on if it worked or not
-    private bool NextRoomSolver(int roomIndex)
+    private bool NextRoomSolver(int roomIndex, int specialIndex = -1)
     {
         int chosenSide = 0;
         List<int> availableSides = roomScripts[roomIndex].checkConnectable();
@@ -178,9 +184,14 @@ public class GeneratorScript : MonoBehaviour
         }
 
         //choose a new room
-        int randomRoom = Random.Range(0,basicRooms.Count);
-        //Debug.Log("Room index chosen: " + randomRoom);
-        spawnedRooms.Add (basicRooms[randomRoom]);
+        if(specialIndex < 0 || specialIndex >= specialRooms.Count)
+        {
+            spawnedRooms.Add (basicRooms[Random.Range(0,basicRooms.Count)]);
+        }
+        else//use the special index if given;
+        {
+            spawnedRooms.Add (specialRooms[specialIndex]);
+        }
         int newRoomIndex = spawnedRooms.Count - 1;
 		spawnedRooms [newRoomIndex] = Instantiate (spawnedRooms [newRoomIndex]);
         roomScripts.Add(spawnedRooms[newRoomIndex].GetComponent<RoomScript> ());
@@ -279,7 +290,7 @@ public class GeneratorScript : MonoBehaviour
                         Destroy(spawnedRooms[newRoomIndex]);
                         spawnedRooms.RemoveAt(newRoomIndex);
                         roomScripts.RemoveAt(newRoomIndex);
-                        Debug.Log("raan out of turns");
+                        Debug.Log("ran out of turns");
                         return false;
                     }
                     newChosenSide = TurnTheRoom(roomIndex, newRoomIndex, chosenSide, false);
@@ -314,6 +325,7 @@ public class GeneratorScript : MonoBehaviour
         roomScripts[roomIndex].connectedDoors[chosenSide][chosenDoor] = true;
         roomScripts[newRoomIndex].connectedSides[newChosenSide] = true;
         roomScripts[newRoomIndex].connectedDoors[newChosenSide][newChosenDoor] = true;
+        roomScripts[newRoomIndex].name = "room_" + newRoomIndex;
 
 
         //connect the rooms via hallways
@@ -327,7 +339,14 @@ public class GeneratorScript : MonoBehaviour
             placedHallways.Add (hallwayStandin);
             hallwayIndex = placedHallways.Count - 1;
 		    placedHallways [hallwayIndex] = Instantiate (placedHallways [hallwayIndex]);
-            placedHallways[hallwayIndex].GetComponent<Transform> ().position = piecePosition + (roomScripts[roomIndex].doorDirections[chosenSide] * ((i * 20) - 10));
+            HallwayScript hallwaysScript = placedHallways[hallwayIndex].GetComponent<HallwayScript> ();
+            hallwaysScript.transform.position = piecePosition + (roomScripts[roomIndex].doorDirections[chosenSide] * ((i * 20) - 10));
+            hallwaysScript.hallwayDirection = roomScripts[roomIndex].doorDirections[chosenSide];
+            if(i == 2)
+            {
+                hallwaysScript.litHallway = true;
+            }
+            hallwaysScript.HallwaySetup();
         }
 
         Debug.Log("Room " + roomIndex + " connected to room " + newRoomIndex + " between " + roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].name + " and " + roomScripts[newRoomIndex].doorPositions[newChosenSide][newChosenDoor].name);
@@ -383,195 +402,6 @@ public class GeneratorScript : MonoBehaviour
             
         }
         return -1;
-    }
-
-    private bool SpecialRoomSolver(int roomIndex, int specialIndex)
-    {
-        int chosenSide = 0;
-        List<int> availableSides = roomScripts[roomIndex].checkConnectable();
-        //find unused sides for the room
-        if(availableSides.Count != 0)
-        {
-            chosenSide = availableSides[Random.Range(0, availableSides.Count)];
-        }
-        else
-        {
-            /*This should never happen*/
-            Debug.Log("This should never happen: chosen room has no available sides to branch from");
-            return false;
-        }
-        //choose a door
-        int chosenDoor;
-        if(roomScripts[roomIndex].connectedDoors[chosenSide].Count == 1)
-        {
-            chosenDoor = 0;
-        }
-        else
-        {
-            chosenDoor = Random.Range(0,roomScripts[roomIndex].connectedDoors[chosenSide].Count);
-        }
-
-        //Debug.Log("Room index chosen: " + randomRoom);
-        //get the special room from the index
-        spawnedRooms.Add (specialRooms[specialIndex]);
-        int newRoomIndex = spawnedRooms.Count - 1;
-		spawnedRooms [newRoomIndex] = Instantiate (spawnedRooms [newRoomIndex]);
-        roomScripts.Add(spawnedRooms[newRoomIndex].GetComponent<RoomScript> ());
-        roomScripts[newRoomIndex].dataSetup();
-
-        /*
-          If the process fails after this point remember to remove 
-          this from the lists and destroy it
-        */
-        
-        //choose a side for the new room
-        roomScripts[newRoomIndex].Orientation = 0;
-        roomScripts[newRoomIndex].transform.rotation = Quaternion.Euler(0,90 * roomScripts[newRoomIndex].Orientation,0);
-        int newChosenSide = 0;
-        newChosenSide = TurnTheRoom(roomIndex, newRoomIndex, chosenSide, true);
-        if(newChosenSide == -1)
-        {
-            //if there are no more available the room is lost
-            Debug.Log("This should never happen: the chosen room has no available doors");
-            Destroy(spawnedRooms[newRoomIndex]);
-            spawnedRooms.RemoveAt(newRoomIndex);
-            roomScripts.RemoveAt(newRoomIndex);
-            return false;
-        }
-
-        //choose the door of the new room
-        int newChosenDoor;
-        if(roomScripts[newRoomIndex].connectedDoors[newChosenSide].Count == 1)
-        {
-            newChosenDoor = 0;
-        }
-        else
-        {
-            newChosenDoor = Random.Range(0,roomScripts[newRoomIndex].connectedDoors[newChosenSide].Count);
-        }
-
-        bool placeGood = false;
-        int doorChecks = 1;
-        int turnChecks = 1;
-        
-        //postion the new room
-        while(!placeGood)
-        {
-            Vector3 doorDistance = roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].GetComponent<Transform> ().position - roomScripts[roomIndex].transform.position;
-            Vector3 newDoorDistance = roomScripts[newRoomIndex].doorPositions[newChosenSide][newChosenDoor].GetComponent<Transform> ().position - roomScripts[newRoomIndex].transform.position;
-            Vector3 newRoomPosition = roomScripts[roomIndex].transform.position;
-
-            if(roomScripts[roomIndex].doorDirections[chosenSide].x != 0)//movement in the x direction
-            {
-                newRoomPosition.z += doorDistance.z;
-                newRoomPosition += roomScripts[roomIndex].doorDirections[chosenSide] * (roomScripts[roomIndex].getXWidth + roomScripts[newRoomIndex].getXWidth + 60);
-                newRoomPosition.z -= newDoorDistance.z;
-            }
-            else//movemnet in the z direction
-            {
-                newRoomPosition.x += doorDistance.x;
-                newRoomPosition += roomScripts[roomIndex].doorDirections[chosenSide] * (roomScripts[roomIndex].getZWidth + roomScripts[newRoomIndex].getZWidth + 60);
-                newRoomPosition.x -= newDoorDistance.x;
-            }
-            roomScripts[newRoomIndex].transform.position = newRoomPosition;
-
-            //check if it's colliding with anything
-            bool isColliding = false;
-            for(int i = 0; i < spawnedRooms.Count - 1; i++)
-            {
-                Vector3 checkDistance = roomScripts[newRoomIndex].transform.position - roomScripts[i].transform.position;
-                checkDistance.x = Mathf.Abs(checkDistance.x);
-                checkDistance.z = Mathf.Abs(checkDistance.z);
-                //if rooms are colliding try a different door
-                if(checkDistance.x < (roomScripts[newRoomIndex].getXWidth + roomScripts[i].getXWidth + 20) && checkDistance.z < (roomScripts[newRoomIndex].getZWidth + roomScripts[i].getZWidth + 20))
-                {
-                    isColliding = true;
-                    break;
-                }
-            }
-
-            //if the room is colliding try some different things
-            if(isColliding)
-            {
-                //try a new door on the same side
-                if(doorChecks < roomScripts[newRoomIndex].connectedDoors[newChosenSide].Count)
-                {
-                    doorChecks++;
-                    newChosenDoor++;
-                    if(newChosenDoor >= roomScripts[newRoomIndex].connectedDoors[newChosenSide].Count)
-                    {
-                        newChosenDoor = 0;
-                    }
-                    continue;
-                }
-                else //if(turnChecks < roomScripts[newRoomIndex].checkConnectable().Count)//try turning the room
-                {
-                    if(turnChecks >= roomScripts[newRoomIndex].checkConnectable().Count)
-                    {
-                        //if there are no more available the room is lost
-                        Destroy(spawnedRooms[newRoomIndex]);
-                        spawnedRooms.RemoveAt(newRoomIndex);
-                        roomScripts.RemoveAt(newRoomIndex);
-                        Debug.Log("raan out of turns");
-                        return false;
-                    }
-                    newChosenSide = TurnTheRoom(roomIndex, newRoomIndex, chosenSide, false);
-                    if(newChosenSide == -1)
-                    {
-                        //if there are no more available the room is lost
-                        Destroy(spawnedRooms[newRoomIndex]);
-                        spawnedRooms.RemoveAt(newRoomIndex);
-                        roomScripts.RemoveAt(newRoomIndex);
-                        Debug.Log("no more sides available");
-                        return false;
-                    }
-                    doorChecks = 0;
-                    turnChecks++;
-                    if(roomScripts[newRoomIndex].connectedDoors[newChosenSide].Count == 1)
-                    {
-                        newChosenDoor = 0;
-                    }
-                    else
-                    {
-                        newChosenDoor = Random.Range(0,roomScripts[newRoomIndex].connectedDoors[newChosenSide].Count);
-                    }
-                    continue;
-                }
-            }
-            
-            placeGood = true;
-        }
-
-        //mark the doors and sides as used
-        roomScripts[roomIndex].connectedSides[chosenSide] = true;
-        roomScripts[roomIndex].connectedDoors[chosenSide][chosenDoor] = true;
-        roomScripts[newRoomIndex].connectedSides[newChosenSide] = true;
-        roomScripts[newRoomIndex].connectedDoors[newChosenSide][newChosenDoor] = true;
-
-
-        //connect the rooms via hallways
-        //HallwaySolver(roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].GetComponent<Transform> ().position, roomScripts[roomIndex].doorDirections[chosenSide], roomScripts[newRoomIndex].doorPositions[newChosenSide][newChosenDoor].GetComponent<Transform> ().position, true);
-        Vector3 piecePosition;
-        int hallwayIndex;
-        piecePosition = roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].GetComponent<Transform>().position;
-
-        for(int i = 1; i < 4; i++)
-        {
-            placedHallways.Add (hallwayStandin);
-            hallwayIndex = placedHallways.Count - 1;
-		    placedHallways [hallwayIndex] = Instantiate (placedHallways [hallwayIndex]);
-            placedHallways[hallwayIndex].GetComponent<Transform> ().position = piecePosition + (roomScripts[roomIndex].doorDirections[chosenSide] * ((i * 20) - 10));
-        }
-
-        Debug.Log("Room " + roomIndex + " connected to room " + newRoomIndex + " between " + roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].name + " and " + roomScripts[newRoomIndex].doorPositions[newChosenSide][newChosenDoor].name);
-
-        //if the room has available sides, add it to the list of rooms to be branched from
-        if(roomScripts[newRoomIndex].checkConnectable().Count != 0)
-        {
-            generatableRooms.Add(newRoomIndex);
-        }
-        //room creation was successful
-        return true;
     }
 
     //place the hallways

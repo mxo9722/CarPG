@@ -9,6 +9,13 @@ public class RoomScript : MonoBehaviour
     public List<GameObject> posZDoors = new List<GameObject>();
     public List<GameObject> negXDoors = new List<GameObject>();
     public List<GameObject> negZDoors = new List<GameObject>();
+    public List<GameObject> posXWalls = new List<GameObject>();
+    public List<GameObject> posZWalls = new List<GameObject>();
+    public List<GameObject> negXWalls = new List<GameObject>();
+    public List<GameObject> negZWalls = new List<GameObject>();
+    public List<GameObject> flatWalls = new List<GameObject>();
+    public List<GameObject>[] roomWalls;
+
     public List<GameObject>[] doorPositions;
     public List<bool>[] connectedDoors;
     public bool[] connectedSides;
@@ -17,12 +24,14 @@ public class RoomScript : MonoBehaviour
     // 1 = positive Z
     // 2 = negative X
     // 3 = negative Z
-    //placeholder variables
+    //variables
     public int xWidth;
     public int zWidth;
     public int getXWidth;
     public int getZWidth;
     private int orientation;
+    public bool isSecret;
+    public bool isShop;
     //when orientation is set, set up the direction 
     //vectors for the doors and the relative length and width
     public int Orientation
@@ -98,6 +107,12 @@ public class RoomScript : MonoBehaviour
         doorPositions[2] = negXDoors;
         doorPositions[3] = negZDoors;
 
+        roomWalls = new List<GameObject>[4];
+        roomWalls[0] = posXWalls;
+        roomWalls[1] = posZWalls;
+        roomWalls[2] = negXWalls;
+        roomWalls[3] = negZWalls;
+
         //setup door data
         connectedSides = new bool[4];
         connectedDoors = new List<bool>[4];
@@ -136,6 +151,33 @@ public class RoomScript : MonoBehaviour
     //spawn enemies, walls, objects, etc., based on room door data and children
     public void RoomSetup()
     {
+        //place the walls
+        for(int i = 3; i >= 0; i--)
+        {
+            //place flat walls on doors that aren't connected
+            if(!connectedSides[i] || connectedDoors[i] == null)
+            {
+                //get rid of the door walls
+                while(roomWalls[i].Count != 0)
+                {
+                    Destroy(roomWalls[i][0]);
+                    roomWalls[i].RemoveAt(0);
+                }
+            }
+            else//place the walls that have door frames
+            {
+                Destroy(flatWalls[i]);
+                flatWalls.RemoveAt(i);
+                for(int j = roomWalls[i].Count - 1; j >= 0; j--)
+                {
+                    if(!connectedDoors[i][j])
+                    {
+                        Destroy(roomWalls[i][j]);
+                        roomWalls[i].RemoveAt(j);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -152,6 +194,4 @@ public class RoomScript : MonoBehaviour
         }
         return checkAvailableSides;
     }
-
-
 }
