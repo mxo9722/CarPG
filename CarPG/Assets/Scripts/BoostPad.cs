@@ -39,22 +39,7 @@ public class BoostPad : MonoBehaviour
             boostTimer -= Time.deltaTime;
             carController.maximumVelocity = 50;
             carController.accelerationFactor = 100;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            if(boostTimer <= 0)
-=======
-
             if(boostTimer <= 0 || Input.GetAxis("Vertical") < 0)
->>>>>>> Stashed changes
-=======
-
-            if(boostTimer <= 0 || Input.GetAxis("Vertical") < 0)
->>>>>>> Stashed changes
-=======
-
-            if(boostTimer <= 0 || Input.GetAxis("Vertical") < 0)
->>>>>>> Stashed changes
             {
                 boostActive = false;
                 flash.gameObject.SetActive(boostActive);

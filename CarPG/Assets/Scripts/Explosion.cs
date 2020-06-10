@@ -10,7 +10,9 @@ public class Explosion : MonoBehaviour
 
     public GameObject explosionEffect;
 
-    public void Explode()
+    public bool explodeOnDeath = false;
+
+    void Explode()
     {
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
@@ -60,5 +62,18 @@ public class Explosion : MonoBehaviour
         }
 
         Instantiate(explosionEffect,transform.position, Quaternion.identity);
+    }
+
+    void DieCollision()
+    {
+        Die();
+    }
+
+    void Die()
+    {
+        if (explodeOnDeath)
+        {
+            Explode();
+        }
     }
 }

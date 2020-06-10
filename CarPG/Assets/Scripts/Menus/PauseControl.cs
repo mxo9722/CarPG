@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.CrossPlatformInput;
+using Cinemachine;
 
 public class PauseControl : MonoBehaviour
 {
-
+    public CinemachineFreeLook cfl;
     //public SceneAsset pauseMenu;
 
     public static bool MenuOpen = false;
@@ -18,13 +18,24 @@ public class PauseControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (PlayerPrefs.GetString("Control") == "")
+        {
+            PlayerPrefs.SetString("Control", "MANUAL");
+        }
+        else if (PlayerPrefs.GetString("Control") == "MANUAL")
+        {
+            cfl.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
+        }
+        else 
+        {
+            cfl.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        var pressed = CrossPlatformInputManager.GetButtonDown("Pause");
+        var pressed = Input.GetButtonDown("Pause");
 
         if (pressed&&!SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {
@@ -41,6 +52,15 @@ public class PauseControl : MonoBehaviour
             Cursor.visible = prevMouseVisible;
             Cursor.lockState = hideCursor;
             
+            if (PlayerPrefs.GetString("Control") == "MANUAL")
+            {
+                cfl.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
+            }
+            else
+            {
+                cfl.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+            }
+
             MenuOpen = false;
         }
     }

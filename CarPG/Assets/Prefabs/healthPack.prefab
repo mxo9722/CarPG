@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2127520602057169895}
   - component: {fileID: 2127520602057169888}
   m_Layer: 0
-  m_Name: Pickup (1)
+  m_Name: healthPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127520602057137477}
-  m_Mesh: {fileID: 4300004, guid: 959be6347b65b7a4c9baa6bc323541fd, type: 3}
+  m_Mesh: {fileID: -2347209432393133012, guid: f7b4ff0a897def4469e09284c3708027, type: 3}
 --- !u!23 &2127520602055132037
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c59d3b60bca749143a0fee8eabe5495f, type: 2}
+  - {fileID: 2100000, guid: b30627d9d472a5046996653074efbdb6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 4300004, guid: 959be6347b65b7a4c9baa6bc323541fd, type: 3}
+  m_Mesh: {fileID: -2347209432393133012, guid: f7b4ff0a897def4469e09284c3708027, type: 3}
 --- !u!54 &2127520602057169889
 Rigidbody:
   m_ObjectHideFlags: 0

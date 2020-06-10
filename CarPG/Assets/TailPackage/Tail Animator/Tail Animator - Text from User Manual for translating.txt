@@ -1,0 +1,112 @@
+﻿Text to be used in translation if you need.
+
+Page 1:
+
+Tail animator is dedicated to work on model’s bones, but when you import skeletonal model to unity, bones are just simple transforms (game objects)
+
+so finding bones you want to use is pretty easy.
+that also means you can use tail animator on game objects chain, no need for them to be bones.
+
+When your model is animated, you should know few things. 
+Unity’s animators are changing bones rotations every frame, that’s why you can’t move bones in playmode.
+
+To change bones positions you need to use lateupdate() instead of update() method in code so you can add TailAnimator and set LateUpdate in "UpdateOrder" variable.
+
+
+Page 2:
+
+To use tail animator find first bone of GameObjects chain you want to animate 
+add TailAnimator then hit play!
+Tail animator will automatically get all children bones and animate them.
+Be sure you add component on true first bone of chain, when you add wrong it can provide errors.
+
+Of course you can add tail animator to other game object 
+and define first bone from it, just check inspector window
+
+.
+You can define tail chain in many ways and inspector will guide you what will happen.
+
+If you want to be sure what bones will be included click auto
+.
+
+To tweak tail’s elasticity behaviour 
+play with this two controls
+
+.
+
+If you can’t figure out what variables are doing just hover mouse over it to view tooltip (not working in playmode)
+
+To use tail animator with ui / 2d / animated models
+choose correct component which is dedicated to behaviour
+you want to archieve.
+
+Page 3:
+
+[1] Tail animator by default enables option 
+which gives you smooth waving rotation for first bone in chain, you can tweak it to your needs or disable it and use other options.
+
+[2] When you have animated model "ConnectWithAnimator" button can give you
+cool effects which will cooperate with keyframed animation
+This option changes 3 variables (hover on button for tooltip)
+ You can add it even to arms or spine of your model, it will make animations more smooth and responsive with elasticity for object’s movement and rotations.
+[3] When your model’s tail isn’t animated or you want fully replace it’s animation, you can just add TailAnimatorBlending 
+and tweak behaviour with UseWaving tab
+[4] When you want save hours of work on keyframeing smooth tail motion, so you’ll will have more time for polishing animation overall, you can use chain blending
+With this feature you can use first bones’ rotations to define tail’s motion for each animation.
+For example with this setting, first two
+bones will be animated by keyframed
+animation and rest by tail animator!
+
+It works similar to “Use waving” but sometimes you’ll need dedicated tail motion rotations for certain animations.
+
+
+
+Page 4:
+
+[1] Option "DisconnectTransforms" is not recommended to use but it sometimes helps models to animate correctly, check cape and big tentacles of medusa object inside demo scene.
+It’s disconnecting bones transforms from main gameobject
+making it’s update clock independent from root game object.
+[2] Option "AddTailReference" is adding component
+ "TailReference" to each tail segment and thanks to that 
+you can access main tail component from any tail’s transform
+it’s usefeful for example when you add colliders to tail segments
+and need to access tail component in order to change variables through code.
+[3] "PositionsNotAnimated" is option avaiable in "TailAnimatorBlending" 
+it’s enabled by default because in most cases keyframed aniation is not animating positions, just rotations, leaving this option disabled can provide sometimes errors.
+[4] Toggle near to tentacle sprite is to view predicted or defined tail chain
+in scene view, thanks to that you can check if you need to change children hierarchy 
+
+tail animator ‘auto get’ goes up 
+through first child in hierarchy.
+[5] Tuning parameters contains options for more complex tweaking, some of them was described on page 3. 
+Using "Automatic" variable, will try to compute math translations so component will work properly on any skeleton axis structure. you can hit play and save this variables then disable automatic variable for some additional tweaks.
+Now you’ll be able to make your tail be bend in alternative way, just play with all variables in here.
+
+Page 5:
+
+When you have static mesh models and you want them to wiggle like tail and you don’t know how to skin them in modelling software, 
+or you just want quickly make object animate with tail animator you can use tail editor skinner!
+
+This component is dedicated to quickly create skinned meshes from static ones in purpose to animate them.
+You can quickly define chain
+for bones, configure spreading weight over them,
+then click skin it and then you have skinned mesh renderer.
+
+Define count of bones 
+configure positions 
+shape it with other parameters to fit to the model.
+
+Set weight settings to your likes
+ limit how many bones can share vertex weights for 
+smoothness / optimization.
+
+Make working with this component easier with helper options and just skin it.
+
+Page 6:
+
+Quick TIP
+1.ADD COMPONENT -> 2.HIT PLAY -> 3.TWEAK! -> 4.COPY COMPONENT 
+-> 5.EXIT PLAYMODE -> 6.PASTE COMPONENT VALUES
+
+
+If you will like this package please visit page on asset store and rate or write review :)

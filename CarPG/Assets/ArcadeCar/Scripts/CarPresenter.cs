@@ -50,10 +50,10 @@ namespace Example
         {
             Vector3 rollingRotateAxis = vehicleController.IsMovingForward ? Vector3.right : Vector3.left;
             float rollingRotateAngle = vehicleController.StraightVelocityMagnitude * wheelsSpinSpeed * Time.deltaTime;
-            wheelFrontLeft.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
-            wheelFrontRight.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
-            wheelRearLeft.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
-            wheelRearLeft.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
+            //wheelFrontLeft.transform.Rotate(rollingRotateAxis, rollingRotateAngle); //these make the wheels spin, disabled because weird with motion blur
+            //wheelFrontRight.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
+            //wheelRearLeft.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
+            //wheelRearLeft.transform.Rotate(rollingRotateAxis, rollingRotateAngle);
 
             // TODO: Fix conflict of rotations, front wheels not rolling properly
             wheelFrontLeft.transform.localEulerAngles = new Vector3(wheelFrontLeft.transform.localEulerAngles.x,

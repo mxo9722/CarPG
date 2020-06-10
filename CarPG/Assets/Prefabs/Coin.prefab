@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7177749372943302437}
   - component: {fileID: 7177749372943302435}
   m_Layer: 0
-  m_Name: Pickup
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7177749372476368753}
-  m_Mesh: {fileID: 4300004, guid: 959be6347b65b7a4c9baa6bc323541fd, type: 3}
+  m_Mesh: {fileID: 2159703810824169821, guid: cbe4ca81802ed6a4e9e47f1e53790915, type: 3}
 --- !u!23 &7177749372474374577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 4300004, guid: 959be6347b65b7a4c9baa6bc323541fd, type: 3}
+  m_Mesh: {fileID: 2159703810824169821, guid: cbe4ca81802ed6a4e9e47f1e53790915, type: 3}
 --- !u!54 &7177749372943302434
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public MainMenuButton[] mainMenuButtons = new MainMenuButton[3];
     public int thisButtonIndex;
     public string sceneName;
+    public PauseMenu scene;
 
     public bool hovering = false;
 
@@ -92,9 +93,10 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        Debug.Log("nice");
         if (sceneName == "quit")
             Application.Quit();
+        else if (sceneName == "resume")
+            scene.UnloadScene();
         else
             SceneManager.LoadScene(sceneName);
     }

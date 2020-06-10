@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Cinemachine;
+using System;
 
 namespace Vehicle
 {
@@ -25,6 +27,8 @@ namespace Vehicle
         [SerializeField]
         private Transform centerOfMassTransform;
 
+        [SerializeField]
+        private Transform wallCorrectionTransform;
         /// <summary>
         /// Transform that holds relative position where gas and brake forces are applied.
         /// Note: Can be shifted for alternative styles of vehicles to give different weight transfer feeling.
@@ -52,8 +56,12 @@ namespace Vehicle
         private float brakeFactor;
 
         [SerializeField]
-        private float steerFactor;
+        public float steerFactor;
 
+        //private int stayGroundedFrames = 5;
+
+        //[SerializeField]
+        //private CinemachineFreeLook cameraLogic;
         /// <summary>
         /// Sideways traction based on the movement of the vehicle.
         /// Note: can be tweaked for a more drifting feeling, for example.
@@ -83,6 +91,7 @@ namespace Vehicle
         /// </summary>
         public float steerInput;
 
+        [SerializeField]
         private bool isMovingForward;
         private Vector3 straightVelocity;
         public float straightVelocityMagnitude;
@@ -106,8 +115,19 @@ namespace Vehicle
 
         private void FixedUpdate()
         {
+            if (myRigidbody.velocity.magnitude <= 1 || suspension.AreAllSpringsGrounded())
+            {
+                myRigidbody.drag = 0;
+                myRigidbody.angularDrag = .05f;
+            }
+            //myRigidbody.AddForceAtPosition(-transform.up * 10000, transform.position); //lol disable gravity and uncomment this for a wild ride
             if (suspension.AreAllSpringsGrounded())
             {
+                
+                //if (cameraLogic.m_BindingMode != Cinemachine.CinemachineTransposer.BindingMode.LockToTargetNoRoll)
+                //    cameraLogic.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.LockToTargetNoRoll;
+
+
                 Vector3 projectedForward = suspension.GetSuspensionProjectedForwardDirection();
                 Vector3 projectedRight = Vector3.Cross(Vector3.up, projectedForward);
                 straightVelocity = projectedForward * Vector3.Dot(myRigidbody.velocity, projectedForward);
@@ -151,7 +171,15 @@ namespace Vehicle
                 {
                     if (isMovingForward)
                     {
-                        myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * StraightVelocityMagnitude, steeringTransform.position, ForceMode.Acceleration);
+                        myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * Mathf.Clamp(StraightVelocityMagnitude, 0, 25), steeringTransform.position, ForceMode.Acceleration);
+                        //clamping the velocity magnitude so speed boosts don't affect steering too much
+                        //a better solution would be to have a variable that is added to max velocity instead of changing it itself but stephen code bad
+
+
+                        if (gasInput == 1 && straightVelocityMagnitude < 1.0f) //we're probably stuck on a wall, magnitude won't help us anymore and there is no god
+                        {
+                            myRigidbody.AddForceAtPosition(steerInput * projectedRight * steerFactor * 100, wallCorrectionTransform.position, ForceMode.Acceleration);
+                        }
                     }
                     else
                     {
@@ -196,6 +224,14 @@ namespace Vehicle
             }
             else
             {
+                //if (cameraLogic.m_BindingMode != Cinemachine.CinemachineTransposer.BindingMode.WorldSpace)
+                //    cameraLogic.m_BindingMode = Cinemachine.CinemachineTransposer.BindingMode.WorldSpace;
+
+                //if (stayGroundedFrames < 100)
+                //{
+                //    myRigidbody.AddForceAtPosition(-transform.up * 10000, steeringTransform.position);
+                //    stayGroundedFrames++;
+                //}
                 isMovingForward = false;
 
                 /**if (gasInput != 0.0f || brakeInput > 0.0f) //W and S inputs used for pitching in the air
@@ -210,7 +246,7 @@ namespace Vehicle
             }
 
             // Air Resistance / Aerodynamic drag
-            const float AERODYNAMIC_DRAG_MODIFIER = 0.001f;
+            const float AERODYNAMIC_DRAG_MODIFIER = 0.003f;
             //myRigidbody.AddForce(-myRigidbody.velocity.normalized * boxCollider.size.magnitude * AERODYNAMIC_DRAG_MODIFIER * myRigidbody.velocity.sqrMagnitude,ForceMode.Acceleration);
         }
 
@@ -227,6 +263,26 @@ namespace Vehicle
         public void Steer(float steerInput)
         {
             this.steerInput = Mathf.Clamp(steerInput, -1.0f, 1.0f);
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Wall")
+            {
+                //myRigidbody.AddForceAtPosition(transform.right * steerInput * 200, steeringTransform.position, ForceMode.Acceleration);
+                //GameObject go = new GameObject();
+                //Instantiate(go, collision.contacts[0].point, new Quaternion());
+                
+                Vector3 bounceForce = Vector3.Normalize(wallCorrectionTransform.position - collision.contacts[0].point) * collision.relativeVelocity.magnitude;
+                bounceForce.y = 0;
+                myRigidbody.AddForceAtPosition(bounceForce * 5, wallCorrectionTransform.position, ForceMode.Acceleration);
+            }
+
+            if (!suspension.AreAllSpringsGrounded() && collision.gameObject.tag != "Enemy")
+            {
+                myRigidbody.drag = 1;
+                myRigidbody.angularDrag = myRigidbody.angularVelocity.magnitude;
+            }
         }
     }
 }

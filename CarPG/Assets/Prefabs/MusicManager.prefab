@@ -48,9 +48,10 @@ MonoBehaviour:
   enemyHolder: {fileID: 0}
   enemyList: []
   songList:
-  - {fileID: 8300000, guid: c5c1b2a37ff15744f8ae7bc3139fd06e, type: 3}
-  - {fileID: 8300000, guid: df2e7f73c81a92e45849d1867eabe557, type: 3}
-  - {fileID: 8300000, guid: cd4788dab3be7fa468e279532dcffdd6, type: 3}
+  - {fileID: 8300000, guid: 549991bf9c95921449bfc384eb50386e, type: 3}
+  - {fileID: 8300000, guid: 8ff6404763d575a41a21da7830d82904, type: 3}
+  - {fileID: 8300000, guid: 3e05ce33bb1784b4baede94203fb0171, type: 3}
+  - {fileID: 8300000, guid: 68f8b253bf321fb47a242136b9cbfc77, type: 3}
   lockCurrentSong: 0
 --- !u!82 &4897261029173459462
 AudioSource:
@@ -62,7 +63,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c5c1b2a37ff15744f8ae7bc3139fd06e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 549991bf9c95921449bfc384eb50386e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.746
   m_Pitch: 1

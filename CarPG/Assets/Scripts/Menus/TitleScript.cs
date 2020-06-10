@@ -50,6 +50,7 @@ public class TitleScript : MonoBehaviour
             animator.enabled = true;
             song.enabled = true;
             carRB.AddForce(25000, 5000, 0);
+            carRB.AddRelativeTorque(new Vector3(Random.Range(0, 100), Random.Range(0, 100), Random.Range(0, 100)));
         }
     }
 }
