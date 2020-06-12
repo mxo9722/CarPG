@@ -34,9 +34,9 @@ namespace PlayerInput
         
         private void Update()
         {
-            horizontal = Input.GetAxis("Horizontal");
+            horizontal = UniInputs.move.x;
 
-            isGasOn = Mathf.Max(Input.GetAxis("Vertical"), 0);
+            isGasOn = Mathf.Max((float)UniInputs.gas, 0);
             isBreakOn = Mathf.Max(-Input.GetAxis("Vertical"), 0);
         }
     }
