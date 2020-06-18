@@ -24,20 +24,20 @@ namespace PlayerInput
 
         private float horizontal;
 
-        private float isGasOn;
-        private float isBreakOn;
+        private float gas;
+        private float breaks;
 
         public float Horizontal { get { return horizontal; } }
 
-        public float IsGasOn { get { return isGasOn; } }
-        public float IsBreakOn { get { return isBreakOn; } }
+        public float Gas { get { return gas; } }
+        public float Breaks { get { return breaks; } }
         
         private void Update()
         {
             horizontal = UniInputs.move.x;
 
-            isGasOn = Mathf.Max((float)UniInputs.gas, 0);
-            isBreakOn = Mathf.Max(-Input.GetAxis("Vertical"), 0);
+            gas = (float)UniInputs.gas;
+            breaks = (float)UniInputs.breaks;
         }
     }
 }

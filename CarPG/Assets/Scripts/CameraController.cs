@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Cinemachine.CinemachineFreeLook freeLook;
+
+    private void Start()
     {
-        UniInputs.camera = gameObject.GetComponent<Cinemachine.CinemachineFreeLook>();   
+        freeLook = GetComponent<Cinemachine.CinemachineFreeLook>();
+    }
+
+    private void Update()
+    {
+        freeLook.m_XAxis.m_InputAxisValue = UniInputs.look.x;
+        freeLook.m_YAxis.m_InputAxisValue = UniInputs.look.y;
     }
 }

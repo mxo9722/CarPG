@@ -30,28 +30,27 @@ public class PauseControl : MonoBehaviour
         {
             cfl.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
         }
+
+        UniInputs.pauseOpen.AddListener(PauseOpen);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PauseOpen()
     {
-        var pressed = Input.GetButtonDown("Pause");
-
-        if (pressed&&!SceneManager.GetSceneByName("PauseMenu").isLoaded)
+        if (!SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {
-            SceneManager.LoadSceneAsync("PauseMenu",LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive);
             hideCursor = Cursor.lockState;
             prevMouseVisible = Cursor.visible;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             MenuOpen = true;
         }
-        else if (pressed)
+        else
         {
             SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("PauseMenu").buildIndex);
             Cursor.visible = prevMouseVisible;
             Cursor.lockState = hideCursor;
-            
+
             if (PlayerPrefs.GetString("Control") == "MANUAL")
             {
                 cfl.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;

@@ -39,12 +39,6 @@ public class Explosion : MonoBehaviour
 
             Debug.Log(go.name);
 
-            if (!explosionList.Contains(rb)&&rb!=null)
-            {
-                rb.AddExplosionForce(power, transform.position, radius, 0.3f);
-                explosionList.Add(rb);
-            }
-
             Damagable d = go.GetComponent<Damagable>();
             //if(d==null)
                 //d = go.GetComponentInChildren<Damagable>();
@@ -58,6 +52,21 @@ public class Explosion : MonoBehaviour
                 d.ApplyDamage(damageAmount);
 
                 damagableList.Add(d);
+            }
+        }
+
+        colliders = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (Collider collider in colliders)
+        {
+            Rigidbody rb = null;
+
+            rb = collider.gameObject.GetComponent<Rigidbody>();
+
+            if (!explosionList.Contains(rb) && rb != null)
+            {
+                rb.AddExplosionForce(power*rb.mass, transform.position, radius, 1f);
+                explosionList.Add(rb);
             }
         }
 

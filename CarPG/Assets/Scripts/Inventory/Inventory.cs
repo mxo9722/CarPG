@@ -93,6 +93,8 @@ public class Inventory : MonoBehaviour
         }
 
         money = 0;
+
+        UniInputs.inventoryOpen.AddListener(InventoryPressed);
     }
 
     private void OnValidate()
@@ -102,50 +104,6 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        bool press = Input.GetButtonDown("Inventory");
-
-        if (PauseControl.MenuOpen)
-            press = false;
-
-        if (press)
-        {
-            _canvas.enabled = !_canvas.enabled;
-            DropItem(itemHeld);
-            itemHeld = null;
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-
-            if (Cursor.lockState==CursorLockMode.Locked)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-
-                axisMSpeedX = cameraController.m_XAxis.m_MaxSpeed;
-                axisMSpeedY = cameraController.m_YAxis.m_MaxSpeed; 
-
-                cameraController.m_XAxis.m_MaxSpeed = 0;
-                cameraController.m_YAxis.m_MaxSpeed = 0;
-
-                InventoryOpen = true;
-
-            }
-            else
-            {
-                Cursor.visible = false;
-
-                cameraController.m_XAxis.m_MaxSpeed = axisMSpeedX;
-                cameraController.m_YAxis.m_MaxSpeed = axisMSpeedY;
-
-                Cursor.lockState = CursorLockMode.Locked;
-
-                InventoryOpen = false;
-
-                    applier.SetWeapon(weaponSlot.Content?.prefab);
-                applier.SetCarmor(carmorSlot.Content);
-                    applier.SetBumpers(bumperSlot.Content?.prefab);
-                
-            }
-        }
-
         var items = GameObject.FindGameObjectsWithTag("ItemDrop");
 
         pickupItem = null;
@@ -170,6 +128,48 @@ public class Inventory : MonoBehaviour
             {
                 GameObject.Destroy(pickupItem);
             }
+        }
+    }
+
+    public void InventoryPressed()
+    {
+        if (PauseControl.MenuOpen)
+            return;
+
+        _canvas.enabled = !_canvas.enabled;
+        DropItem(itemHeld);
+        itemHeld = null;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            axisMSpeedX = cameraController.m_XAxis.m_MaxSpeed;
+            axisMSpeedY = cameraController.m_YAxis.m_MaxSpeed;
+
+            cameraController.m_XAxis.m_MaxSpeed = 0;
+            cameraController.m_YAxis.m_MaxSpeed = 0;
+
+            InventoryOpen = true;
+
+        }
+        else
+        {
+            Cursor.visible = false;
+
+            cameraController.m_XAxis.m_MaxSpeed = axisMSpeedX;
+            cameraController.m_YAxis.m_MaxSpeed = axisMSpeedY;
+
+            Cursor.lockState = CursorLockMode.Locked;
+
+            InventoryOpen = false;
+
+            applier.SetWeapon(weaponSlot.Content?.prefab);
+            applier.SetCarmor(carmorSlot.Content);
+            applier.SetBumpers(bumperSlot.Content?.prefab);
+
         }
     }
 

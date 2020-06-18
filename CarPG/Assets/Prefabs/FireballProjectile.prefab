@@ -14399,6 +14399,7 @@ MonoBehaviour:
   ignoreCollision: []
   radius: 0.2
   explode: 1
+  damage: 0
 --- !u!114 &-9169980833060892908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14411,8 +14412,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf6e7ac4726ee24c9f0e2f1d9f15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 100000
+  power: 500
   radius: 20
   damage: 20
   explosionEffect: {fileID: 353892447993257469, guid: a0618614604137e45b3420ae69bf8aba,
     type: 3}
+  explodeOnDeath: 0
