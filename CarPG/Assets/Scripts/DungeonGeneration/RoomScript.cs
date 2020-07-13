@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DinoFracture;
 
 public class RoomScript : MonoBehaviour
 {
@@ -15,23 +16,31 @@ public class RoomScript : MonoBehaviour
     public List<GameObject> negZWalls = new List<GameObject>();
     public List<GameObject> flatWalls = new List<GameObject>();
     public List<GameObject>[] roomWalls;
+    public GameObject[] actualDoors;
 
     public List<GameObject>[] doorPositions;
     public List<bool>[] connectedDoors;
     public bool[] connectedSides;
     public Vector3[] doorDirections;
-    // 0 = positive X
-    // 1 = positive Z
-    // 2 = negative X
-    // 3 = negative Z
+    
     //variables
     public int xWidth;
     public int zWidth;
     public int getXWidth;
     public int getZWidth;
     private int orientation;
+    // 0 = positive X
+    // 1 = positive Z
+    // 2 = negative X
+    // 3 = negative Z
+
+    //secret variables
+    public GameObject itemChest;
     public bool isSecret;
+
+    //shop variables
     public bool isShop;
+    
     //when orientation is set, set up the direction 
     //vectors for the doors and the relative length and width
     public int Orientation
@@ -117,6 +126,7 @@ public class RoomScript : MonoBehaviour
         connectedSides = new bool[4];
         connectedDoors = new List<bool>[4];
         doorDirections = new Vector3[4];
+        actualDoors = new GameObject[4];
 
         for (int i = 0; i < 4; i++)
         {
@@ -149,12 +159,12 @@ public class RoomScript : MonoBehaviour
 
     //For Later
     //spawn enemies, walls, objects, etc., based on room door data and children
-    public void RoomSetup()
+    public void RoomSetup(GameObject destructionParent)
     {
         //place the walls
         for(int i = 3; i >= 0; i--)
         {
-            //place flat walls on doors that aren't connected
+            //place flat walls where doors aren't connected
             if(!connectedSides[i] || connectedDoors[i] == null)
             {
                 //get rid of the door walls
@@ -175,8 +185,21 @@ public class RoomScript : MonoBehaviour
                         Destroy(roomWalls[i][j]);
                         roomWalls[i].RemoveAt(j);
                     }
+                    else if(actualDoors[i] != null)//spawn the right type of door for the connection
+                    {
+                        //actualDoors.Add(doorTypes[connectedDoors[i][j]]);
+                        GameObject newDoor = actualDoors[i];
+                        newDoor = Instantiate(newDoor);
+                        newDoor.transform.GetComponentInChildren<RuntimeFracturedGeometry>().PiecesParent = destructionParent.transform;
+                        newDoor.GetComponent<Transform>().position = new Vector3(0,1,0) + doorPositions[i][j].GetComponent<Transform>().position + (doorDirections[i] * -0.5f);
+                        if(doorDirections[i].x != 0)
+                        {
+                            newDoor.GetComponent<Transform>().rotation = Quaternion.Euler(0,90,0);
+                        }
+                    }
                 }
             }
+            //secret room specific setup
         }
 
     }

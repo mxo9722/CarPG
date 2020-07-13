@@ -7,7 +7,7 @@ public class ItemHolder : MonoBehaviour
 {
     public Item content;
 
-    public void SetContent(Item i)
+    public void SetContent(Item i) 
     {
         content = i;
         gameObject.name = i.name;

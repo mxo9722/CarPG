@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2893340074481597108}
   - component: {fileID: 8609551063491786065}
   - component: {fileID: 4476192426955344166}
+  - component: {fileID: 6956709672722571766}
   m_Layer: 0
   m_Name: wall_Flat_03
   m_TagString: Untagged
@@ -308,6 +309,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &6956709672722571766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226022189926820271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &1882053879814229333
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +338,7 @@ GameObject:
   - component: {fileID: 7866810651398356478}
   - component: {fileID: 4353163619820175367}
   - component: {fileID: 78909560106397251}
+  - component: {fileID: 1139345861228642206}
   m_Layer: 0
   m_Name: wall_door_02
   m_TagString: Untagged
@@ -1096,6 +1114,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &1139345861228642206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882053879814229333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &2426716864975275164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1143,7 @@ GameObject:
   - component: {fileID: 1663417531902213679}
   - component: {fileID: 7504103836318006194}
   - component: {fileID: 8927709124842160176}
+  - component: {fileID: 3374530659292090139}
   m_Layer: 0
   m_Name: wall_door_04
   m_TagString: Untagged
@@ -1884,6 +1919,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &3374530659292090139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2426716864975275164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &2470900276956448393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,6 +2008,7 @@ GameObject:
   - component: {fileID: 6161757619275531803}
   - component: {fileID: 8644614992458327857}
   - component: {fileID: 1662151260475531364}
+  - component: {fileID: 5274813427800839026}
   m_Layer: 0
   m_Name: wall_Flat_02
   m_TagString: Untagged
@@ -2252,6 +2304,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &5274813427800839026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3419292176221694377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3517094146267614987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2333,7 @@ GameObject:
   - component: {fileID: 2649252821926486251}
   - component: {fileID: 4872474996116201932}
   - component: {fileID: 932542632002142616}
+  - component: {fileID: 7002056082160313636}
   m_Layer: 0
   m_Name: wall_door_01
   m_TagString: Untagged
@@ -3040,6 +3109,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &7002056082160313636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517094146267614987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &4069206044644548797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,6 +3168,7 @@ GameObject:
   - component: {fileID: 6594879190938466094}
   - component: {fileID: 4854535582878326511}
   - component: {fileID: 1205325709700944294}
+  - component: {fileID: 2391737964987336310}
   m_Layer: 0
   m_Name: wall_door_03
   m_TagString: Untagged
@@ -3858,6 +3944,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &2391737964987336310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731142471410423339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &6387460248641116114
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,7 +4015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7952113044547594388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -113, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4157002808351617434}
@@ -3965,12 +4067,20 @@ MonoBehaviour:
   - {fileID: 3419292176221694377}
   - {fileID: 1226022189926820271}
   - {fileID: 8058545576621388506}
-  connectedSides: 
-  doorDirections: []
+  doorTypes: []
+  connectedSides: 00000000
+  doorDirections:
+  - {x: 0, y: 0, z: -1}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: -1, y: 0, z: 0}
   xWidth: 50
   zWidth: 50
-  getXWidth: 0
-  getZWidth: 0
+  getXWidth: 50
+  getZWidth: 50
+  itemChest: {fileID: 0}
+  isSecret: 0
+  isShop: 0
 --- !u!1 &8021404661872743100
 GameObject:
   m_ObjectHideFlags: 0
@@ -4532,6 +4642,7 @@ GameObject:
   - component: {fileID: 366013101661770162}
   - component: {fileID: 6456089797650955284}
   - component: {fileID: 3748713462041342459}
+  - component: {fileID: 8053634318045930785}
   m_Layer: 0
   m_Name: wall_Flat_04
   m_TagString: Untagged
@@ -4827,6 +4938,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &8053634318045930785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058545576621388506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8126976281994649260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,6 +4967,7 @@ GameObject:
   - component: {fileID: 3074433431994303193}
   - component: {fileID: 2234190552646656703}
   - component: {fileID: 1547662603385840460}
+  - component: {fileID: 133213279233850644}
   m_Layer: 0
   m_Name: wall_Flat_01
   m_TagString: Untagged
@@ -5135,3 +5263,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &133213279233850644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126976281994649260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

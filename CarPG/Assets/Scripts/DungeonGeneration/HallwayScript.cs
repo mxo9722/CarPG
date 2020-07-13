@@ -24,6 +24,7 @@ public class HallwayScript : MonoBehaviour
         
     }
 
+    //called by the dungeon generator to set up what walls still exist for the hallways
     public void HallwaySetup()
     {
         if(hallwayDirection.x != 0)

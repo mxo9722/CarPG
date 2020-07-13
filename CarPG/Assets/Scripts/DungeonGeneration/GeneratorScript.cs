@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-//TO DO
+/*TO DO*/
 /*
 -Create the function that places hallways between connected rooms (optional)
 -make the script delete itself and see what happens (optional)
--do room Setup
--setup hallway walls thing
+-add the item-based room spawning
 */
 
 public class GeneratorScript : MonoBehaviour
@@ -18,13 +18,24 @@ public class GeneratorScript : MonoBehaviour
     public int roomCount;
     public int roomMax;
 
-    public List<GameObject> basicRooms = new List<GameObject>();
+    public List<GameObject> spawnableRooms = new List<GameObject>();
+    public List<int> roomEnums = new List<int>(); //will be used to keep track of how many times specific rooms have been spawned
+    public List<GameObject> wingRooms = new List<GameObject>();
     public List<GameObject> specialRooms = new List<GameObject>();
     public List<GameObject> spawnedRooms = new List<GameObject>();
     public List<RoomScript> roomScripts = new List<RoomScript>();
     public List<int> generatableRooms = new List<int>();
     public GameObject hallwayStandin;
     public List<GameObject> placedHallways = new List<GameObject>();
+    public List<GameObject> doorTypes = new List<GameObject>();
+
+    public GameObject destructionParent;
+
+    public List<Item> chestItems = new List<Item>();
+
+    //navmesh variables
+    public NavMeshSurface surface;
+    bool reMeshed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +43,23 @@ public class GeneratorScript : MonoBehaviour
         //Random.seed = 50;
         roomCount = 0;
         GenerateDungeon();
+        //surface.BuildNavMesh();
     }
 
     // Update is called once per frame
     void Update()
     {
-        testTicks++;
-        if (testTicks > 100)
+        //set up the nav mesh (for some reason it doesn't work right when run from Start())
+        if(!reMeshed)
         {
+            surface.BuildNavMesh();
+            reMeshed = true;
+            Debug.Log("reMeshed");
+        }
+        testTicks++;
+        if (testTicks > 250)
+        {
+            
             
             testTicks = 0;
         }
@@ -47,9 +67,21 @@ public class GeneratorScript : MonoBehaviour
 
     //create the floor layout
     void GenerateDungeon()
-    {
+    {   
+        /*TO DO*/
+        //later on check here for items that the player has
+        //and add rooms to spawnable rooms based on the items
+
+        //choose the new item for the floor
+        /*right now the only item is wings*/
+        int itemIndex = 0;
+        for(int i = 0; i < spawnableRooms.Count; i++)
+        {
+            roomEnums.Add(0);
+        }
+
         //spawn the first room
-        spawnedRooms.Add (basicRooms[0]);
+        spawnedRooms.Add (spawnableRooms[0]);
 		spawnedRooms [0] = Instantiate (spawnedRooms [0]);
         roomScripts.Add(spawnedRooms[0].GetComponent<RoomScript> ());
         roomScripts[0].dataSetup();
@@ -57,6 +89,7 @@ public class GeneratorScript : MonoBehaviour
         roomScripts[0].Orientation = Random.Range(0,4);
         roomScripts[0].transform.rotation = Quaternion.Euler(0,90 * roomScripts[0].Orientation,0);
         roomCount++;
+        
         /*
           For now make one side unavailable
           later it will be automatic because 
@@ -81,7 +114,7 @@ public class GeneratorScript : MonoBehaviour
         //spawn the rest of the rooms randomly
         while (roomCount < roomMax)
         {
-            //choose a random available room
+            //if the list of rooms to branch from is empty, refind branchable rooms
             if(generatableRooms.Count == 0)
             {
                 for(int i = 0; i < roomScripts.Count; i++)
@@ -92,6 +125,21 @@ public class GeneratorScript : MonoBehaviour
                     }
                 }
             }
+
+            //add the item rooms to the equation at the halfway mark
+            if(roomCount == (roomMax / 2))
+            {
+                //add the room that spawns the special item
+
+                //add the rooms that utilize the special item
+                for(int i = 0; i < wingRooms.Count; i++)
+                {
+                    spawnableRooms.Add(wingRooms[i]);
+                    roomEnums.Add(0);
+                }
+            }
+
+            //choose a random available room
             int randomGrab = Random.Range(0, generatableRooms.Count);
             int nextRoom = generatableRooms[randomGrab];
             //choose an amount of rooms to extend off that room
@@ -147,9 +195,18 @@ public class GeneratorScript : MonoBehaviour
             generatableRooms.RemoveAt (randomGrab);
         }
 
+        //run the room setup for all the spawned rooms
         for(int i = 0; i < spawnedRooms.Count; i++)
         {
-            roomScripts[i].RoomSetup();
+            //if the room is a secret room, give it a chest item
+            if(roomScripts[i].isSecret)
+            {
+                int giveItem = Random.Range(0,chestItems.Count);
+                roomScripts[i].itemChest.GetComponent<ItemHolder>().SetContent(chestItems[giveItem]);
+                //remove the chest item from the list so no more of that item can appear
+                chestItems.RemoveAt(giveItem);
+            }
+            roomScripts[i].RoomSetup(destructionParent);
         }
 
         Debug.Log("Dungeon Generated");
@@ -184,9 +241,11 @@ public class GeneratorScript : MonoBehaviour
         }
 
         //choose a new room
+        int newGrab = -1;
         if(specialIndex < 0 || specialIndex >= specialRooms.Count)
         {
-            spawnedRooms.Add (basicRooms[Random.Range(0,basicRooms.Count)]);
+            newGrab = Random.Range(0,spawnableRooms.Count);
+            spawnedRooms.Add (spawnableRooms[newGrab]);
         }
         else//use the special index if given;
         {
@@ -323,10 +382,19 @@ public class GeneratorScript : MonoBehaviour
         //mark the doors and sides as used
         roomScripts[roomIndex].connectedSides[chosenSide] = true;
         roomScripts[roomIndex].connectedDoors[chosenSide][chosenDoor] = true;
+        roomScripts[roomIndex].actualDoors[chosenSide] = doorTypes[specialIndex + 1];
         roomScripts[newRoomIndex].connectedSides[newChosenSide] = true;
         roomScripts[newRoomIndex].connectedDoors[newChosenSide][newChosenDoor] = true;
+        roomScripts[newRoomIndex].actualDoors[newChosenSide] = doorTypes[specialIndex + 1];
         roomScripts[newRoomIndex].name = "room_" + newRoomIndex;
+        if(newGrab != -1)
+        {
+            roomEnums[newGrab]++;
+        }
 
+        /*TO DO*/
+        //check roomEnums to see if the most recently used room has gone over the limit of uses
+        /*only do this once there are more rooms (enough to actually fill the dungeon)*/ 
 
         //connect the rooms via hallways
         //HallwaySolver(roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].GetComponent<Transform> ().position, roomScripts[roomIndex].doorDirections[chosenSide], roomScripts[newRoomIndex].doorPositions[newChosenSide][newChosenDoor].GetComponent<Transform> ().position, true);
@@ -403,6 +471,37 @@ public class GeneratorScript : MonoBehaviour
         }
         return -1;
     }
+
+    //does the navmesh stuffs
+    // public void BuildNavMesh () 
+    // {
+    //     int agentTypeCount = NavMesh.GetSettingsCount();
+    //     Debug.Log("agentTypeCount = " + agentTypeCount);
+    //     return;
+        
+    //     if (agentTypeCount < 1) 
+    //     { 
+    //         return; 
+    //     } 
+
+    //     for (int i = 0; i < navMeshElements.Count; ++i) 
+    //     { 
+    //         navMeshElements[i].transform.SetParent(navMeshRoot.transform, true); 
+    //     }
+
+    //     for (int i = 0; i < agentTypeCount; ++i) 
+    //     {
+    //         NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(i);
+    //         NavMeshSurface navMeshSurface = environment.AddComponent<NavMeshSurface>();
+    //         navMeshSurface.agentTypeID = settings.agentTypeID;
+ 
+    //         NavMeshBuildSettings actualSettings = navMeshSurface.GetBuildSettings();
+    //         navMeshSurface.useGeometry = NavMeshCollectGeometry.PhysicsColliders; // or you can use RenderMeshes
+ 
+    //         navMeshSurface.BuildNavMesh();
+    //     }
+ 
+    // }
 
     //place the hallways
     // public void HallwaySolver(Vector3 startDoor, Vector3 hallwayDirection, Vector3 endDoor, bool justMade)

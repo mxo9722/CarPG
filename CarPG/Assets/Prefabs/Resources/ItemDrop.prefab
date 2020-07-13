@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 6554134172033868288}
   - component: {fileID: 2583420316130329442}
   - component: {fileID: 7853767422420215842}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ItemDrop
   m_TagString: ItemDrop
   m_Icon: {fileID: 0}
@@ -87,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemChest
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4e77fb96897c0b747a33bea4878fb67b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4e77fb96897c0b747a33bea4878fb67b,
         type: 3}

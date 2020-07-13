@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3428061779718831476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4949604704404412635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &9043417588735422520
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +27,7 @@ GameObject:
   - component: {fileID: 9043417588735422521}
   - component: {fileID: 9043417588735422516}
   - component: {fileID: 9043417588735422519}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4761,7 +4777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9043417589281339645}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Torch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4798,7 +4814,7 @@ GameObject:
   - component: {fileID: 9043417589632251026}
   - component: {fileID: 9043417589632251025}
   - component: {fileID: 9043417589632251024}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireBright
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9550,7 +9566,7 @@ GameObject:
   - component: {fileID: 9043417589939392879}
   - component: {fileID: 9043417589939392874}
   - component: {fileID: 9043417589939392877}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14301,7 +14317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9043417590317255170}
   - component: {fileID: 9043417590317255171}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14394,10 +14410,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: ice cream cone
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -5102530947620581811, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5102530947620581811, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
         type: 3}
@@ -14479,6 +14505,12 @@ PrefabInstance:
 --- !u!4 &4105621139908885900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
+    type: 3}
+  m_PrefabInstance: {fileID: 9043417589119964822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4949604704404412635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5102530947620581811, guid: dd18c0737b2ea9a4cafeeab5af4cd460,
     type: 3}
   m_PrefabInstance: {fileID: 9043417589119964822}
   m_PrefabAsset: {fileID: 0}
