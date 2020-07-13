@@ -9,7 +9,7 @@ public class TitleScript : MonoBehaviour
     public Light light1;
     public Light light2;
     private bool buttonPushed;
-    private float timer;
+    public float timer;
     private bool carFlung;
     public Animator animator;
     public AudioSource song;
@@ -34,7 +34,7 @@ public class TitleScript : MonoBehaviour
         if (timer <= 2.5f)
             wText.color = new Color(255, 255, 255, timer / 2.5f);
 
-        if (Input.GetKeyDown(KeyCode.W) && !buttonPushed)
+        if (UniInputs.navigate.y>0 && !buttonPushed)
         {
             buttonPushed = true;
 

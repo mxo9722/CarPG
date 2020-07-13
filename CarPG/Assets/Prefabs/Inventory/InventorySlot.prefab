@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4313925775734319993}
   - component: {fileID: 4313925775734319992}
   - component: {fileID: 4313925775734319995}
-  - component: {fileID: 6049893395386491313}
+  - component: {fileID: 9191471084473099750}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -149,10 +149,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 0}
   type: 5
+  gridX: 0
+  gridY: 0
   hover: 0
   clicked: 0
   itemDisplay: {fileID: 4313925776435506015}
---- !u!114 &6049893395386491313
+  highlight: {fileID: 4313925775734319993}
+--- !u!114 &9191471084473099750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,23 +182,6 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4313925775734319995}
-          m_MethodName: Hover
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null

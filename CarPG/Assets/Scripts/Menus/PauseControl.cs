@@ -31,7 +31,7 @@ public class PauseControl : MonoBehaviour
             cfl.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
         }
 
-        UniInputs.pauseOpen.AddListener(PauseOpen);
+        UniInputs.PauseOpen.AddListener(PauseOpen);
     }
 
     public void PauseOpen()

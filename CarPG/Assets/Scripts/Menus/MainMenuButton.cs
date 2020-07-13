@@ -5,17 +5,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
-public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     public TextMeshProUGUI buttonText;
 
     public float bigScale = 1.25f;
     public float scaleRate = 1f; 
-    private RectTransform rectTransform;
+    public RectTransform rectTransform;
 
     public MainMenuButton[] mainMenuButtons = new MainMenuButton[3];
-    public int thisButtonIndex;
+    public int buttonIndex;
     public string sceneName;
     public PauseMenu scene;
 
@@ -25,6 +27,7 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        UniInputs.SubmitPressed.AddListener(Submit);
     }
 
     // Update is called once per frame
@@ -39,11 +42,11 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 //rectTransform.localPosition += new Vector3(rectTransform.)
                 for (int i = 0; i < mainMenuButtons.Length; i++)
                 {
-                    if (i == thisButtonIndex)
+                    if (i == buttonIndex)
                     {
                         continue;
                     }
-                    if (i > thisButtonIndex)
+                    if (i > buttonIndex)
                     {
                         mainMenuButtons[i].rectTransform.localPosition -= new Vector3(0, Time.deltaTime * 100 * scaleRate * (bigScale - rectTransform.localScale.x));
                     }
@@ -62,11 +65,11 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
                 for (int i = 0; i < mainMenuButtons.Length; i++)
                 {
-                    if (i == thisButtonIndex)
+                    if (i == buttonIndex)
                     {
                         continue;
                     }
-                    if (i > thisButtonIndex)
+                    if (i > buttonIndex)
                     {
                         mainMenuButtons[i].rectTransform.localPosition += new Vector3(0, Time.deltaTime * 100 * scaleRate * (rectTransform.localScale.x - 1));
                     }
@@ -82,17 +85,20 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        hovering = true;
-        
-    }
-
-    public void OnPointerExit(PointerEventData pointerEventData)
-    {
-        hovering = false;
+        MainMenuGroup.CurSelected=buttonIndex;
     }
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
+        Submit();
+    }
+
+    public void Submit()
+    {
+        Debug.Log("We here");
+        if (!hovering)
+            return;
+
         if (sceneName == "quit")
             Application.Quit();
         else if (sceneName == "resume")

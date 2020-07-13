@@ -315,6 +315,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110387803}
   m_CullTransparentMesh: 0
+--- !u!115 &155902377
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 5
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: InputSystemUIInputModule
+  m_Namespace: UnityEngine.InputSystem.UI
 --- !u!1 &362593459
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,16 +514,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 397312616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 155902377}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_PointAction: {fileID: 5929964639427091152, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_MoveAction: {fileID: -1201376623444151721, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_SubmitAction: {fileID: 1712402296827028910, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_CancelAction: {fileID: 5854337116691897678, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_LeftClickAction: {fileID: 8059213981695154417, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2378214944346620481, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_RightClickAction: {fileID: 5532184066370910474, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 3049194906491074157, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: -4006255823320284333, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -7411732935254401022, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &397312618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,6 +900,7 @@ GameObject:
   - component: {fileID: 1007511288}
   - component: {fileID: 1007511287}
   - component: {fileID: 1007511286}
+  - component: {fileID: 1007511290}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -980,13 +1014,43 @@ RectTransform:
   m_Children:
   - {fileID: 362593460}
   m_Father: {fileID: 1389407225}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -254}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1007511290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007511285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1389407221}
+          m_MethodName: set_CurSelected
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1008828880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,6 +1296,8 @@ GameObject:
   - component: {fileID: 1389407223}
   - component: {fileID: 1389407222}
   - component: {fileID: 1389407221}
+  - component: {fileID: 1389407227}
+  - component: {fileID: 1389407226}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1251,14 +1317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f34f9439f809da48b4a59a81f9e7346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseObjects:
-  - {fileID: 1404198918}
-  - {fileID: 2067969053}
-  - {fileID: 1875936409}
-  optionsObjects:
-  - {fileID: 1456323105}
-  - {fileID: 1847150053}
-  - {fileID: 1007511285}
+  pauseButtons:
+  - {fileID: 2067969055}
+  - {fileID: 1404198920}
+  - {fileID: 1875936411}
+  optionsButtons:
+  - {fileID: 1847150054}
+  - {fileID: 1456323106}
+  - {fileID: 1007511286}
 --- !u!114 &1389407222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,12 +1398,12 @@ RectTransform:
   m_Children:
   - {fileID: 57572624}
   - {fileID: 1984758539}
-  - {fileID: 1404198919}
   - {fileID: 2067969054}
+  - {fileID: 1404198919}
   - {fileID: 1875936410}
-  - {fileID: 1007511289}
   - {fileID: 1847150057}
   - {fileID: 1456323109}
+  - {fileID: 1007511289}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1346,6 +1412,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1389407226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389407220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da02e38a0c527cb47b22d731a7a1ce05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1389407227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389407220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ee7e80be9bac9a043b471f7f714101c6,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceLostEvent, Unity.InputSystem,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceRegainedEvent, Unity.InputSystem,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ControlsChangedEvent, Unity.InputSystem,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1404198918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1473,7 @@ GameObject:
   - component: {fileID: 1404198922}
   - component: {fileID: 1404198921}
   - component: {fileID: 1404198920}
+  - component: {fileID: 1404198923}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -1378,7 +1494,7 @@ RectTransform:
   m_Children:
   - {fileID: 1733172192}
   m_Father: {fileID: 1389407225}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1478,6 +1594,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404198918}
   m_CullTransparentMesh: 0
+--- !u!114 &1404198923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404198918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1389407221}
+          m_MethodName: set_CurSelected
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1456323105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,6 +1636,7 @@ GameObject:
   - component: {fileID: 1456323108}
   - component: {fileID: 1456323107}
   - component: {fileID: 1456323106}
+  - component: {fileID: 1456323110}
   m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
@@ -1603,13 +1750,43 @@ RectTransform:
   m_Children:
   - {fileID: 2057086656}
   m_Father: {fileID: 1389407225}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -82}
   m_SizeDelta: {x: 815.6, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1456323110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456323105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1389407221}
+          m_MethodName: set_CurSelected
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1733172191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,6 +1957,7 @@ GameObject:
   - component: {fileID: 1847150056}
   - component: {fileID: 1847150055}
   - component: {fileID: 1847150054}
+  - component: {fileID: 1847150058}
   m_Layer: 5
   m_Name: Mute
   m_TagString: Untagged
@@ -1893,13 +2071,43 @@ RectTransform:
   m_Children:
   - {fileID: 682658481}
   m_Father: {fileID: 1389407225}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000024796, y: 43}
   m_SizeDelta: {x: 611.7, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1847150058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847150053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1389407221}
+          m_MethodName: set_CurSelected
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1875936409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,6 +2120,7 @@ GameObject:
   - component: {fileID: 1875936413}
   - component: {fileID: 1875936412}
   - component: {fileID: 1875936411}
+  - component: {fileID: 1875936414}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -2032,6 +2241,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875936409}
   m_CullTransparentMesh: 0
+--- !u!114 &1875936414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875936409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1389407221}
+          m_MethodName: set_CurSelected
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1984758538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,6 +2515,7 @@ GameObject:
   - component: {fileID: 2067969057}
   - component: {fileID: 2067969056}
   - component: {fileID: 2067969055}
+  - component: {fileID: 2067969058}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -2296,7 +2536,7 @@ RectTransform:
   m_Children:
   - {fileID: 110387804}
   m_Father: {fileID: 1389407225}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2326,7 +2566,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2396,3 +2636,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067969053}
   m_CullTransparentMesh: 0
+--- !u!114 &2067969058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067969053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1389407221}
+          m_MethodName: set_CurSelected
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null

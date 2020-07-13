@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class Inventory : MonoBehaviour
@@ -36,15 +37,42 @@ public class Inventory : MonoBehaviour
 
     public float endMessage = 0;
 
+    public float selectTime = 0;
+    private Dictionary<string, InventorySlot> grid;
+
+    private InventorySlot curSelected;
+
+    public InventorySlot CurSelected
+    {
+        get
+        {
+            return curSelected;
+        }
+        set
+        {
+            curSelected = value;
+
+            foreach(InventorySlot slot in slots)
+            {
+                slot.Hover(false);
+            }
+
+            curSelected.Hover(true);
+        }
+    }
+
     private Cinemachine.CinemachineFreeLook cameraController;
     private float axisMSpeedX;
     private float axisMSpeedY;
-    bool InventoryOpen;
+    public static bool InventoryOpen = false;
     public int money;
 
     void Awake()
     {
+        InventoryOpen = false;
+
         _canvas=gameObject.GetComponent<Canvas>();
+        grid = new Dictionary<string, InventorySlot>();
 
         var players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -80,6 +108,7 @@ public class Inventory : MonoBehaviour
         else
         {
             slots = gameObject.GetComponentsInChildren<InventorySlot>();
+
             for (int i = 0; i < slots.Length; i++)
             {
                 slots[i].Content = savedItems[i];
@@ -92,9 +121,17 @@ public class Inventory : MonoBehaviour
                 applier.SetBumpers(bumperSlot.Content?.prefab);
         }
 
+        grid = new Dictionary<string, InventorySlot>();
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            grid.Add(slots[i].gridX + "," + slots[i].gridY, slots[i]);
+        }
+        CurSelected = grid["0,0"];
+
         money = 0;
 
-        UniInputs.inventoryOpen.AddListener(InventoryPressed);
+        UniInputs.InventoryOpen.AddListener(InventoryPressed);
     }
 
     private void OnValidate()
@@ -104,6 +141,48 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
+        if (Time.fixedUnscaledTime-selectTime>0.2f)
+        {
+            if (UniInputs.navigate.x > 0.5f)
+            {
+                selectTime = Time.fixedUnscaledTime;
+                int gridX = curSelected.gridX + 1;
+
+                if (grid.ContainsKey(gridX + "," + curSelected.gridY))
+                {
+                    CurSelected = grid[gridX + "," + curSelected.gridY];
+                }
+            }
+            else if (UniInputs.navigate.x < -0.5f)
+            {
+                selectTime = Time.fixedUnscaledTime;
+                int gridX = curSelected.gridX - 1;
+                if (grid.ContainsKey(gridX + "," + curSelected.gridY))
+                {
+                    CurSelected = grid[gridX + "," + curSelected.gridY];
+                }
+            }
+
+            if (UniInputs.navigate.y > 0.5f)
+            {
+                selectTime = Time.fixedUnscaledTime;
+                int gridY = curSelected.gridY + 1;
+                if (grid.ContainsKey(curSelected.gridX + "," + gridY))
+                {
+                    CurSelected = grid[curSelected.gridX + "," + gridY];
+                }
+            }
+            else if (UniInputs.navigate.y < -0.5f)
+            {
+                selectTime = Time.fixedUnscaledTime;
+                int gridY = curSelected.gridY - 1;
+                if (grid.ContainsKey(curSelected.gridX + "," + gridY))
+                {
+                    CurSelected = grid[curSelected.gridX + "," + gridY];
+                }
+            }
+        }
+
         var items = GameObject.FindGameObjectsWithTag("ItemDrop");
 
         pickupItem = null;
@@ -153,7 +232,6 @@ public class Inventory : MonoBehaviour
             cameraController.m_YAxis.m_MaxSpeed = 0;
 
             InventoryOpen = true;
-
         }
         else
         {

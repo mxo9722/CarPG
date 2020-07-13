@@ -12,17 +12,17 @@ public class FadeAway : MonoBehaviour
     public Shader alphaShader;
 
     private float bornTime;
-    private List<Renderer> renderer;
+    private List<Renderer> renderers;
     // Start is called before the first frame update
     void Start()
     {
         bornTime = Time.time;
         fadeStartTime += bornTime;
         fadeTime += fadeStartTime;
-        renderer = new List<Renderer>(GetComponentsInChildren<Renderer>());
+        renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
 
         if(!WaitTillDeath)
-        foreach (Renderer rend in renderer)
+        foreach (Renderer rend in renderers)
         {
             for (int i = 0; i < rend.materials.Length; i++)
             {
@@ -39,7 +39,7 @@ public class FadeAway : MonoBehaviour
         {
             if (Time.time > fadeStartTime)
             {
-                foreach (Renderer rend in renderer)
+                foreach (Renderer rend in renderers)
                 {
                     for (int i=0;i<rend.materials.Length;i++)
                     {
@@ -69,7 +69,7 @@ public class FadeAway : MonoBehaviour
     {
         if (WaitTillDeath)
         {
-            foreach (Renderer rend in renderer)
+            foreach (Renderer rend in renderers)
             {
                 for (int i = 0; i < rend.materials.Length; i++)
                 {

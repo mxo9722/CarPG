@@ -1,5 +1,4 @@
-﻿using PlayerInput;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Vehicle
 {
@@ -22,7 +21,7 @@ namespace Vehicle
 
         private void Update()
         {
-            if (input != null && controller != null)
+            if (input != null && controller != null && !Inventory.InventoryOpen)
             {
                 if (input.Breaks>input.Gas)
                 {

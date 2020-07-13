@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-namespace PlayerInput
-{
     /// <summary>
     /// Encapsulates player input logic to control the vehicles,
     /// exposes readonly flags informing the current input state.
@@ -10,18 +8,6 @@ namespace PlayerInput
     /// </summary>
     public class PcVehicleInput : MonoBehaviour
     {
-        [SerializeField]
-        private KeyCode leftKeyCode;
-
-        [SerializeField]
-        private KeyCode rightKeyCode;
-
-        [SerializeField]
-        private KeyCode gasKeyCode;
-
-        [SerializeField]
-        private KeyCode breakKeyCode;
-
         private float horizontal;
 
         private float gas;
@@ -40,4 +26,3 @@ namespace PlayerInput
             breaks = (float)UniInputs.breaks;
         }
     }
-}
