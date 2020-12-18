@@ -55,6 +55,7 @@ public class GeneratorScript : MonoBehaviour
             surface.BuildNavMesh();
             reMeshed = true;
             Debug.Log("reMeshed");
+            //CombineMeshes();
         }
         testTicks++;
         if (testTicks > 250)
@@ -88,27 +89,13 @@ public class GeneratorScript : MonoBehaviour
         roomScripts[0].transform.position = new Vector3(0,0,0);
         roomScripts[0].Orientation = Random.Range(0,4);
         roomScripts[0].transform.rotation = Quaternion.Euler(0,90 * roomScripts[0].Orientation,0);
+        roomScripts[0].transform.SetParent(transform);
         roomCount++;
-        
-        /*
-          For now make one side unavailable
-          later it will be automatic because 
-          the player will not be spawning in 
-          this room
-        */
-        roomScripts[0].connectedSides[Random.Range(0,4)] = true;
 
-        //spawn three rooms off the starting room
-        for(int i = 0; i < 3; i++)
+        //spawn two branching paths from the original room, leave the other sides open for more branches
+        for (int i = 0; i < 2; i++)
         {
-            if(NextRoomSolver(0))
-            {
-                roomCount++;
-            }
-            else
-            {
-                break;
-            }
+            NextRoomSolver(0);
         }
 
         //spawn the rest of the rooms randomly
@@ -125,6 +112,9 @@ public class GeneratorScript : MonoBehaviour
                     }
                 }
             }
+
+            /*TO DO*/
+            //finish this by adding multiple types of special rooms and spawnable items
 
             //add the item rooms to the equation at the halfway mark
             if(roomCount == (roomMax / 2))
@@ -387,6 +377,9 @@ public class GeneratorScript : MonoBehaviour
         roomScripts[newRoomIndex].connectedDoors[newChosenSide][newChosenDoor] = true;
         roomScripts[newRoomIndex].actualDoors[newChosenSide] = doorTypes[specialIndex + 1];
         roomScripts[newRoomIndex].name = "room_" + newRoomIndex;
+
+        roomScripts[newRoomIndex].transform.SetParent(transform);
+
         if(newGrab != -1)
         {
             roomEnums[newGrab]++;
@@ -415,6 +408,7 @@ public class GeneratorScript : MonoBehaviour
                 hallwaysScript.litHallway = true;
             }
             hallwaysScript.HallwaySetup();
+            placedHallways[hallwayIndex].transform.SetParent(transform);
         }
 
         Debug.Log("Room " + roomIndex + " connected to room " + newRoomIndex + " between " + roomScripts[roomIndex].doorPositions[chosenSide][chosenDoor].name + " and " + roomScripts[newRoomIndex].doorPositions[newChosenSide][newChosenDoor].name);
@@ -470,6 +464,44 @@ public class GeneratorScript : MonoBehaviour
             
         }
         return -1;
+    }
+
+    //combine the meshes of similar textured objects to lessen the stress of the game
+    public void CombineMeshes()
+    {
+        Quaternion oldRot = transform.rotation;
+        Vector3 oldPos = transform.position;
+
+        transform.rotation = Quaternion.identity;
+        transform.position = Vector3.zero;
+
+        MeshFilter[] filters = GetComponentsInChildren<MeshFilter>();
+
+        Mesh finalMesh =  new Mesh();
+
+        CombineInstance[] combiners = new CombineInstance[filters.Length];
+
+        for(int i = 0; i < filters.Length; i++)
+        {
+            if(filters[i].transform == transform)
+                continue;
+
+            combiners[i].subMeshIndex = 0;
+            combiners[i].mesh = filters[i].sharedMesh;
+            combiners[i].transform = filters[i].transform.localToWorldMatrix;
+        }
+
+        finalMesh.CombineMeshes(combiners);
+
+        GetComponent<MeshFilter>().sharedMesh = finalMesh;
+
+        transform.rotation = oldRot;
+        transform.position = oldPos;
+
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     //does the navmesh stuffs

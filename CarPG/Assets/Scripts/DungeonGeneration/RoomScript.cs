@@ -40,6 +40,9 @@ public class RoomScript : MonoBehaviour
 
     //shop variables
     public bool isShop;
+
+    //boss variables
+    public bool isBoss;
     
     //when orientation is set, set up the direction 
     //vectors for the doors and the relative length and width
