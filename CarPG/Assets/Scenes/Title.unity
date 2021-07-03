@@ -297,7 +297,6 @@ GameObject:
   - component: {fileID: 17088264}
   - component: {fileID: 17088263}
   m_Layer: 5
-  m_Name: PlayButton (1)
   m_Name: PlayButton (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20419,6 +20418,7 @@ MonoBehaviour:
   - {fileID: 17088263}
   - {fileID: 960967055}
   thisButtonIndex: 0
+  sceneName: RandomizeTest
   scene: {fileID: 0}
   hovering: 0
 --- !u!43 &720624861
@@ -27648,7 +27648,6 @@ GameObject:
   - component: {fileID: 960967056}
   - component: {fileID: 960967055}
   m_Layer: 5
-  m_Name: PlayButton (2)
   m_Name: PlayButton (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
